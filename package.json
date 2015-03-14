@@ -1,0 +1,14 @@
+{
+  "name": "episodehunter-api",
+  "version": "0.0.1",
+  "description": "Api server for episodehunter.tv",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oskar Karlsson",
+  "license": "MIT",
+  "dependencies": {
+    "hapi": "^8.4.0"
+  }
+}
