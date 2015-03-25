@@ -1,0 +1,16 @@
+{
+  "exclude": [
+    ".git/**",
+    ".idea/**",
+    "node_modules/**"
+  ],
+  "libs": [
+    "underscore"
+  ],
+  "plugins": {
+    "node": {},
+    "doc_comment": {
+      "fullDocs": true
+    }
+  }
+}
