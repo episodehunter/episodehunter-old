@@ -14,6 +14,9 @@ var dependencyInjection = function(Cls, depth) {
     }
 
     var dependencies = Cls.inject.map(function(dep) {
+        if (!registeredDependencies[dep]) {
+            throw new Error('IoC: Couldn\'t find: ' + dep + '. Make sure you have registered it');
+        }
         return dependencyInjection(registeredDependencies[dep], depth+1);
     });
     dependencies.unshift(null);
