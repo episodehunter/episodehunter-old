@@ -2,23 +2,23 @@
 
 var registeredDependencies = {};
 
-var dependencyInjection = function(cls, depth) {
-    if (typeof cls !== 'function') {
-        return cls;
+var dependencyInjection = function(Cls, depth) {
+    if (typeof Cls !== 'function') {
+        return Cls;
     }
     if (depth >= 10) {
         throw new Error('IoC: Too many dependencies');
     }
-    if (!Array.isArray(cls.inject)) {
-        return new cls();
+    if (!Array.isArray(Cls.inject)) {
+        return new Cls();
     }
 
-    var dependencies = cls.inject.map(function(dep) {
+    var dependencies = Cls.inject.map(function(dep) {
         return dependencyInjection(registeredDependencies[dep], depth+1);
     });
     dependencies.unshift(null);
 
-    return new (cls.bind.apply(cls, dependencies))();
+    return new (Cls.bind.apply(Cls, dependencies))();
 };
 
 var register = function(name, obj) {
