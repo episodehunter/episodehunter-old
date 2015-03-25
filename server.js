@@ -2,10 +2,9 @@ global.include = function(file) {
     return require(__dirname + '/' + file);
 };
 
+require('./src/appstart/ioc');
+
 var Hapi = require('hapi');
-var ioc = require('./src/lib/ioc');
-var db = require('./src/lib/db');
-ioc.register('lib.db', db);
 var sections = require('./src/sections');
 var plugins = require('./src/lib/plugins');
 var server = new Hapi.Server();
