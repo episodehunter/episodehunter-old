@@ -4,9 +4,6 @@ var db = include('/src/lib/db');
 var secret = 'asdfghjklpoiy';
 
 var validate = function (decoded, request, next) {
-
-    console.log(decoded);
-
     db.getUser(decoded.id)
         .then(() => next(null, true))
         .catch(() => next(new Error('Not a valid user'), false));
