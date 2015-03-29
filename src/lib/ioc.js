@@ -1,8 +1,7 @@
 'use strict';
 
-var registeredDependencies = {};
-
 var dependencyInjection = function(Cls, depth) {
+    depth = depth || 0;
     if (typeof Cls !== 'function') {
         return Cls;
     }
@@ -13,22 +12,14 @@ var dependencyInjection = function(Cls, depth) {
         return new Cls();
     }
 
-    var dependencies = Cls.inject.map(function(dep) {
-        if (!registeredDependencies[dep]) {
-            throw new Error('IoC: Couldn\'t find: ' + dep + '. Make sure you have registered it');
-        }
-        return dependencyInjection(registeredDependencies[dep], depth+1);
+    var dependencies = Cls.inject.map(dep => {
+        return dependencyInjection(dep, depth+1);
     });
-    dependencies.unshift(null);
+    dependencies.unshift(Cls);
 
     return new (Cls.bind.apply(Cls, dependencies))();
 };
 
-var register = function(name, obj) {
-    registeredDependencies[name] = obj;
-};
-
 module.exports = {
-    inject: dependencyInjection,
-    register: register
+    inject: dependencyInjection
 };

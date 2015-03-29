@@ -2,8 +2,6 @@ global.include = function(file) {
     return require(__dirname + '/' + file);
 };
 
-require('./src/appstart/ioc');
-
 var Hapi = require('hapi');
 var sections = require('./src/sections');
 var plugins = require('./src/lib/plugins');

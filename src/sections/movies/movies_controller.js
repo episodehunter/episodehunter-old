@@ -1,5 +1,7 @@
 'use strict';
 
+var db = require('../../lib/db');
+
 class Movies {
 
     constructor(db) {
@@ -19,6 +21,5 @@ class Movies {
 
 }
 
-Movies.inject = ['lib.db']
-
+Movies.inject = [db];
 module.exports = Movies;
