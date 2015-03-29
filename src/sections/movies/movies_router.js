@@ -1,7 +1,7 @@
 'use strict';
 
 var moviesController = require('./movies_controller');
-var ioc = include('/src/lib/ioc');
+var ioc = require('../../lib/ioc');
 var controller = ioc.inject(moviesController);
 
 module.exports = (function() {

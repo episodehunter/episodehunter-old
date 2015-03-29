@@ -1,5 +1,5 @@
 var jwt = require('hapi-auth-jwt2');
-var db = include('/src/lib/db');
+var db = require('../db');
 
 var secret = 'asdfghjklpoiy';
 

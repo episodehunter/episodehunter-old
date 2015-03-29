@@ -1,6 +1,6 @@
 'use strict';
 var JWT = require('jsonwebtoken');
-var db = include('/src/lib/db');
+var db = require('../../lib/db');
 
 var secret = 'asdfghjklpoiy';
 
