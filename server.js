@@ -8,6 +8,6 @@ server.connection({ port: 3000 });
 plugins.register(server);
 sections.registerRouts(server);
 
-server.start(() => {
+server.start(function() {
     console.log('Server running at:', server.info.uri);
 });
