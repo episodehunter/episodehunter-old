@@ -1,21 +1,24 @@
+/* @flow */
 'use strict';
 
 var db = require('../../lib/db');
 
 class Movies {
 
-    constructor(db) {
-        this.db = db;
+    db: Database;
+
+    constructor(_db: Database) {
+        this.db = _db;
     }
 
-    get(request, reply) {
+    get(request: Object, reply: Function) {
         console.log('Okej, using: ' + request.headers.authorization);
         this.db.query('Something').then(result => {
             reply(result).type('application/json');
         });
     }
 
-    post(request, reply) {
+    post(request: Object, reply: Function) {
         reply('Post!');
     }
 

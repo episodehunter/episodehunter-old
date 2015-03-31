@@ -1,3 +1,5 @@
+/* @flow */
+
 var Hapi = require('hapi');
 var sections = require('./build/sections');
 var plugins = require('./build/lib/plugins');

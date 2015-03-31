@@ -1,7 +1,10 @@
+/* @flow */
+'use strict';
+
 var registerJWT = require('./jwt');
 
 module.exports = {
-    register: server => {
+    register: function(server: hapiServer) {
         registerJWT(server);
     }
 };

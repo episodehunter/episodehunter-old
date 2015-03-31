@@ -1,3 +1,6 @@
+/* @flow */
+'use strict';
+
 var jwt = require('hapi-auth-jwt2');
 var db = require('../db');
 
@@ -9,8 +12,7 @@ var validate = function (decoded, request, next) {
         .catch(() => next(new Error('Not a valid user'), false));
 };
 
-module.exports = function(server) {
-    'use strict';
+module.exports = function(server: hapiServer) {
     server.register(jwt, function(err) {
         if (err) {
             throw err;
@@ -22,4 +24,3 @@ module.exports = function(server) {
         });
     });
 };
-

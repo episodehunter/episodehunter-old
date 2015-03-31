@@ -1,3 +1,4 @@
+/* @flow */
 'use strict';
 
 var moviesController = require('./movies_controller');

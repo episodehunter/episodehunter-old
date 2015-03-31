@@ -1,3 +1,4 @@
+/* @flow */
 'use strict';
 
 var authController = require('./auth_controller');

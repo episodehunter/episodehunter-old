@@ -1,3 +1,6 @@
+/* @flow */
+'use strict';
+
 var path = require('path');
 var routePrefix = '_router';
 var exports = module.exports;
@@ -6,8 +9,7 @@ var exports = module.exports;
  * Register all sections routes
  * @param {exports.Server} server
  */
-exports.registerRouts = function(server) {
-    'use strict';
+exports.registerRouts = function(server: hapiServer) {
     var sections = ['movies', 'auth'];
 
     sections.forEach(function(section) {

@@ -1,4 +1,6 @@
+/* @flow */
 'use strict';
+
 var JWT = require('jsonwebtoken');
 var db = require('../../lib/db');
 
@@ -10,7 +12,7 @@ class Auth {
 
     }
 
-    login(request, reply) {
+    login(request: Object, reply: Function) {
         db.getUser(request.params.userid)
             .then(user => {
                 reply({
