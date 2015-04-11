@@ -1,0 +1,16 @@
+var episodeModel = {
+    id: 'tv_episode.id',
+    tvdbId: 'tv_episode.tvdb_id',
+    seriesTvdbId: 'tv_episode.serie_tvdb_id',
+    seriesId: 'tv_episode.serie_id',
+    title: 'tv_episode.name',
+    seasonNr: 'tv_episode.season',
+    episodeNr: 'tv_episode.episode',
+    firstAired: 'tv_episode.first_aired',
+    overview: 'tv_episode.overview',
+    backdrop: 'tv_episode.image'
+};
+
+episodeModel.$table = 'tv_episode';
+
+module.exports = episodeModel;
