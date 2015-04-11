@@ -10,7 +10,7 @@ var exports = module.exports;
  * @param {exports.Server} server
  */
 exports.registerRouts = function(server: hapiServer) {
-    var sections = ['movies', 'auth'];
+    var sections = ['movies', 'auth', 'series'];
 
     sections.forEach(function(section) {
         try {
