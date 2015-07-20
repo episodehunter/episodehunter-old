@@ -5,7 +5,8 @@ var seriesModel = {
     title: 'tv_show.name',
     airs: {
         dayOfWeek: 'tv_show.airs_dayOfWeek',
-        time: 'tv_show.airs_time'
+        time: 'tv_show.airs_time',
+        first: 'tv_show.first_aired'
     },
     genre: 'tv_show.genre',
     language: 'tv_show.language',

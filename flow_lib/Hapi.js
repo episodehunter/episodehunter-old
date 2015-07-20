@@ -8,7 +8,7 @@ declare class hapiServer {
     };
 
     connection(settings: Object): void;
-    start(callback: function): void;
+    start(callback: Function): void;
     route(r: any): void;
     register(reg: Object, callback: Function) : void;
 

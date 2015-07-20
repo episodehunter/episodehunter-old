@@ -20,7 +20,9 @@ class Series {
         var userId = 2;
         this.service.upcoming(userId)
             .then(data => {
-                reply(data);
+                reply({
+                    episodes: data
+                });
             });
     }
 

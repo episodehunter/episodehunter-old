@@ -10,7 +10,7 @@ module.exports = (function() {
         {
             method: 'GET',
             path: '/movies',
-            config : {
+            config: {
                 handler: controller.get,
                 auth: 'jwt',
                 bind: controller

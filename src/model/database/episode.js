@@ -8,7 +8,7 @@ var episodeModel = {
     episodeNr: 'tv_episode.episode',
     firstAired: 'tv_episode.first_aired',
     overview: 'tv_episode.overview',
-    backdrop: 'tv_episode.image'
+    thumbnail: 'tv_episode.image'
 };
 
 episodeModel.$table = 'tv_episode';

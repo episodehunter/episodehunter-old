@@ -1,58 +1,44 @@
 /* @flow */
 'use strict';
 
-var db = require('../../lib/db');
+var upcomingRepository = require('./upcoming_repository');
 
 class ServiesService {
 
-    db: Database;
+    rep: upcomingRepository;
 
-    constructor(_db: Database) {
-        this.db = _db;
+    constructor(_rep: upcomingRepository) {
+        this.rep = _rep;
     }
 
     upcoming(userId: number) {
-
-        var today = new Date().toISOString().slice(0, 10);
-        var limit = 100;
-        var raw = this.db.q.raw;
-
-        var model = {
-            series: this.db.model.series,
-            episode: this.db.model.episode,
-            follow: this.db.model.followSeries
-        };
-
-        return this.db.q
-            .select(
-                model.series.id,
-                model.series.title,
-                model.series.poster
-            )
-            .max(model.episode.seasonNr + ' as season')
-            .min(model.episode.episodeNr + ' as episode')
-            .min(model.episode.firstAired + ' as first_aired')
-            .from(model.follow.$table)
-            .leftJoin(model.series.$table, model.follow.seriesId, model.series.id)
-            .leftJoin(model.episode.$table, function() {
-                this.on(model.follow.seriesId, '=', model.episode.seriesId)
-                    .on(model.episode.seasonNr, '!=', raw('0'))
-                    .on(model.episode.episodeNr, '!=', raw('0'))
-                    .on(model.episode.firstAired, '>=', raw('"' + today + '"'));
-            })
-            .where(model.follow.userId, '=', userId)
-            .where(function() {
-                this.where(model.series.status, '=', 'Continuing')
-                    .orWhereNotNull(model.episode.episodeNr);
-            })
-            .groupBy(model.follow.id)
-            .orderBy(model.episode.firstAired)
-            .limit(limit);
-
+        return this.rep.get(userId).then(data => {
+            return data.map(el => {
+                return {
+                    ids: {
+                        id: el.id
+                    },
+                    title: el.title,
+                    season: el.season,
+                    episode: el.episode,
+                    airs: el.airs,
+                    thumbnail: el.thumbnail,
+                    show: {
+                        ids: {
+                            id: el.series_id
+                        },
+                        title: el.series_title,
+                        year: el.series_year,
+                        poster: el.series_poster,
+                        fanart: el.series_fanart
+                    }
+                };
+            });
+        });
     }
 
 }
 
-ServiesService.inject = [db];
+ServiesService.inject = [upcomingRepository];
 
 export default ServiesService;
