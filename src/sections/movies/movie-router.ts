@@ -1,9 +1,8 @@
-/* @flow */
 'use strict';
 
-var moviesController = require('./movies_controller');
-var ioc = require('../../lib/ioc');
-var controller = ioc.inject(moviesController);
+import {MovieController} from './movie-controller';
+import {dependencyInjection} from '../../lib/ioc';
+let controller = dependencyInjection<MovieController>(MovieController);
 
 module.exports = (function() {
     return [

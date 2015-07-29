@@ -1,7 +1,6 @@
 'use strict';
 
-var dependencyInjection = function(Cls, depth) {
-    depth = depth || 0;
+function dependencyInjection<T>(Cls, depth = 0): T {
     if (typeof Cls !== 'function') {
         return Cls;
     }
@@ -9,7 +8,7 @@ var dependencyInjection = function(Cls, depth) {
         throw new Error('IoC: Too many dependencies');
     }
     if (!Array.isArray(Cls.inject)) {
-        return new Cls();
+        return new (<any>Cls());
     }
 
     var dependencies = Cls.inject.map(dep => {
@@ -20,6 +19,4 @@ var dependencyInjection = function(Cls, depth) {
     return new (Cls.bind.apply(Cls, dependencies))();
 };
 
-module.exports = {
-    inject: dependencyInjection
-};
+export {dependencyInjection};

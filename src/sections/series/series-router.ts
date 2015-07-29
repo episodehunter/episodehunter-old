@@ -1,9 +1,8 @@
-/* @flow */
 'use strict';
 
-var seriesController = require('./series_controller');
-var ioc = require('../../lib/ioc');
-var controller = ioc.inject(seriesController);
+import {SeriesController} from './series-controller';
+import {dependencyInjection} from '../../lib/ioc';
+let controller = dependencyInjection<SeriesController>(SeriesController);
 
 module.exports = (function() {
     return [

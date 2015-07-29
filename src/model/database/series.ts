@@ -1,4 +1,4 @@
-var seriesModel = {
+const seriesModel = {
     id: 'tv_show.id',
     tvdbId: 'tv_show.tvdb_id',
     imdbId: 'tv_show.imdb_id',
@@ -16,9 +16,9 @@ var seriesModel = {
     status: 'tv_show.status',
     fanart: 'tv_show.fanart',
     poster: 'tv_show.poster',
-    lastupdate: 'tv_show.lastupdate'
+    lastupdate: 'tv_show.lastupdate',
+
+    $table: 'tv_show'
 };
 
-seriesModel.$table = 'tv_show';
-
-module.exports = seriesModel;
+export {seriesModel};

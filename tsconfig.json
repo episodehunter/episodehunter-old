@@ -1,0 +1,39 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true
+    },
+    "filesGlob": [
+        "./src/**/*.ts",
+        "!./node_modules/**/*.ts",
+        "./typings/tsd.d.ts"
+    ],
+    "compileOnSave": false,
+    "files": [
+        "./src/config/config-interface.ts",
+        "./src/config/default.ts",
+        "./src/config/index.ts",
+        "./src/config/local.ts",
+        "./src/lib/db.ts",
+        "./src/lib/ioc.ts",
+        "./src/model/database/episode.ts",
+        "./src/model/database/following-series.ts",
+        "./src/model/database/index.ts",
+        "./src/model/database/model-interface.ts",
+        "./src/model/database/series.ts",
+        "./src/model/database/user.ts",
+        "./src/model/movie.ts",
+        "./src/sections/movies/movie-controller.ts",
+        "./src/sections/movies/movie-router.ts",
+        "./src/sections/movies/movie-service.ts",
+        "./src/sections/series/series-controller.ts",
+        "./src/sections/series/series-router.ts",
+        "./src/sections/series/series-service.ts",
+        "./src/sections/series/upcoming-repository.ts",
+        "./src/server.ts",
+        "./typings/tsd.d.ts"
+    ]
+}

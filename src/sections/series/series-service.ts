@@ -1,14 +1,15 @@
-/* @flow */
 'use strict';
 
-var upcomingRepository = require('./upcoming_repository');
+import {UpcomingRepository} from './upcoming-repository';
 
 class ServiesService {
 
-    rep: upcomingRepository;
+    static inject = [UpcomingRepository];
 
-    constructor(_rep: upcomingRepository) {
-        this.rep = _rep;
+    rep: UpcomingRepository;
+
+    constructor(rep: UpcomingRepository) {
+        this.rep = rep;
     }
 
     upcoming(userId: number) {
@@ -28,7 +29,7 @@ class ServiesService {
                             id: el.series_id
                         },
                         title: el.series_title,
-                        year: el.series_year,
+                        year: 0,
                         poster: el.series_poster,
                         fanart: el.series_fanart
                     }
@@ -39,6 +40,4 @@ class ServiesService {
 
 }
 
-ServiesService.inject = [upcomingRepository];
-
-export default ServiesService;
+export {ServiesService};

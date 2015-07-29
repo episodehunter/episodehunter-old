@@ -1,0 +1,24 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "hapi/hapi.d.ts": {
+      "commit": "be03157bace6e6465e63f13073d7b68e8ea1303c"
+    },
+    "node/node.d.ts": {
+      "commit": "be03157bace6e6465e63f13073d7b68e8ea1303c"
+    },
+    "bluebird/bluebird.d.ts": {
+      "commit": "be03157bace6e6465e63f13073d7b68e8ea1303c"
+    },
+    "knex/knex.d.ts": {
+      "commit": "f6c8ca47193fb67947944a3170912672ac3e908e"
+    },
+    "lodash/lodash.d.ts": {
+      "commit": "db3a54c801e29e73bdaae327a64ed7991778c958"
+    }
+  }
+}

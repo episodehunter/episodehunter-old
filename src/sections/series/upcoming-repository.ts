@@ -1,25 +1,40 @@
-/* @flow */
 'use strict';
 
-var db = require('../../lib/db');
+import {db as Database} from '../../lib/db';
+
+interface UpcompingDatabaseInterface {
+    id: number;
+    thumbnail: string;
+    title: string;
+    series_id: number;
+    series_title: string;
+    series_first_aired: string;
+    series_poster: string;
+    series_fanart: string;
+    season: number;
+    episode: number;
+    airs: string;
+}
 
 class UpcomingRepository {
 
+    static inject = [Database];
+
     db: Database;
 
-    constructor(_db: Database) {
-        this.db = _db;
+    constructor(db: Database) {
+        this.db = db;
     }
 
-    get(userId: number) {
-        var today = new Date().toISOString().slice(0, 10);
-        var limit = 100;
-        var raw = this.db.q.raw;
+    get(userId: number) : Promise<Array<UpcompingDatabaseInterface>> {
+        let today = new Date().toISOString().slice(0, 10);
+        let limit = 100;
+        let raw = this.db.q.raw;
 
-        var model = {
-            series: this.db.model.series,
-            episode: this.db.model.episode,
-            follow: this.db.model.followSeries
+        let model = {
+            series: this.db.model.seriesModel,
+            episode: this.db.model.episodeModel,
+            follow: this.db.model.followingSeriesModel
         };
 
         return this.db.q
@@ -56,6 +71,4 @@ class UpcomingRepository {
 
 }
 
-UpcomingRepository.inject = [db];
-
-export default UpcomingRepository;
+export {UpcomingRepository};

@@ -8,9 +8,9 @@ var episodeModel = {
     episodeNr: 'tv_episode.episode',
     firstAired: 'tv_episode.first_aired',
     overview: 'tv_episode.overview',
-    thumbnail: 'tv_episode.image'
+    thumbnail: 'tv_episode.image',
+
+    $table: 'tv_episode'
 };
 
-episodeModel.$table = 'tv_episode';
-
-module.exports = episodeModel;
+export {episodeModel};
