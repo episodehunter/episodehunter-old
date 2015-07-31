@@ -1,11 +1,8 @@
-'use strict';
-
+import {autoInject} from 'autoinject';
 import {UpcomingRepository} from './upcoming-repository';
 
+@autoInject
 class ServiesService {
-
-    static inject = [UpcomingRepository];
-
     rep: UpcomingRepository;
 
     constructor(rep: UpcomingRepository) {

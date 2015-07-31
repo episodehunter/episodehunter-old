@@ -1,11 +1,11 @@
 'use strict';
 
 import Hapi = require('hapi');
+import {autoInject} from 'autoinject';
 import {ServiesService} from './series-service';
 
+@autoInject
 class SeriesController {
-
-    static inject = [ServiesService];
     service: ServiesService;
 
     constructor(service: ServiesService) {
@@ -14,7 +14,7 @@ class SeriesController {
 
     get(request: Hapi.Request, reply: Hapi.IReply) {
         console.log('Okej, using: ' + request.headers['authorization']);
-        reply({'hej': 'hej'}).type('application/json');
+        reply(this.service.rep.db.model.seriesModel).type('application/json');
     }
 
     upcoming(request: Hapi.Request, reply: Hapi.IReply) {

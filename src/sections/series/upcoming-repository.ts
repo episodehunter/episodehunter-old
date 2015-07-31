@@ -1,5 +1,6 @@
 'use strict';
 
+import {autoInject} from 'autoinject';
 import {db as Database} from '../../lib/db';
 
 interface UpcompingDatabaseInterface {
@@ -16,6 +17,7 @@ interface UpcompingDatabaseInterface {
     airs: string;
 }
 
+@autoInject
 class UpcomingRepository {
 
     static inject = [Database];

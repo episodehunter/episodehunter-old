@@ -1,11 +1,12 @@
 'use strict';
 
+import Promise = require('bluebird');
+import {autoInject} from 'autoinject';
 import {db} from '../../lib/db';
 import {Movie} from '../../model/movie';
-import Promise = require('bluebird');
 
+@autoInject
 class MovieService {
-    static inject = [db];
     db: db;
 
     constructor(db: db) {

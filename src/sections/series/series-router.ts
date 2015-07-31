@@ -10,7 +10,8 @@ const seriesRouts = [
         path: '/series',
         handler: controller.get,
         config: {
-            bind: controller
+            bind: controller,
+            auth: false
         }
     }, {
         method: 'GET',

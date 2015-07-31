@@ -1,14 +1,14 @@
 'use strict';
 
 import Hapi = require('hapi');
+import {autoInject} from 'autoinject';
 import {UserRepository} from './auth-repository';
 import {sign} from 'jsonwebtoken';
 
 var secret = 'asdfghjklpoiy';
 
+@autoInject
 class AuthController {
-
-    static inject = [UserRepository]
     rep: UserRepository;
 
     constructor(rep: UserRepository) {

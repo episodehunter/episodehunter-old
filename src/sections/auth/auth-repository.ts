@@ -1,6 +1,8 @@
+import {autoInject} from 'autoinject';
 import {db as Database} from '../../lib/db';
 import {User} from '../../model/user';
 
+@autoInject
 class UserRepository {
     public db: Database;
 

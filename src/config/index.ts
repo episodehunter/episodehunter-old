@@ -4,10 +4,7 @@ import {config as localConfig} from './local';
 import {defaultsDeep} from 'lodash';
 
 const production = false;
-var config: configInterface;
 
-if (production === false) {
-    config = defaultsDeep<Object, configInterface>(localConfig, defaultConfig);
-}
+const config = defaultsDeep<Object, configInterface>(localConfig, defaultConfig);
 
 export {config};

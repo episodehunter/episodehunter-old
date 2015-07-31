@@ -1,10 +1,11 @@
 'use strict';
 
 import Hapi = require('hapi');
+import {autoInject} from 'autoinject';
 import {MovieService} from './movie-service';
 
+@autoInject
 class MovieController {
-    static inject = [MovieService];
     service: MovieService;
 
     constructor(service: MovieService) {
