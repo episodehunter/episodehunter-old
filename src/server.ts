@@ -1,14 +1,21 @@
-/// <reference path="../typings/tsd"/>
+'use strict';
 
-var Hapi = require('hapi');
-var sections = require('./build/sections');
-var plugins = require('./build/lib/plugins');
+import Hapi = require('hapi');
+import {registerRouts} from './sections/index';
+import {registerPlugin} from './lib/plugins/index';
+import {config} from './config/index';
+
 var server = new Hapi.Server();
 
-server.connection({ port: 3000 });
+server.connection({
+    port: config.port,
+    routes: {
+        cors: true
+    }
+});
 
-plugins.register(server);
-sections.registerRouts(server);
+registerPlugin(server);
+registerRouts(server);
 
 server.start(() => {
     console.log('Server running at:', server.info.uri);

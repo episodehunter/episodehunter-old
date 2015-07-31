@@ -8,7 +8,7 @@ function dependencyInjection<T>(Cls, depth = 0): T {
         throw new Error('IoC: Too many dependencies');
     }
     if (!Array.isArray(Cls.inject)) {
-        return new (<any>Cls());
+        return new Cls();
     }
 
     var dependencies = Cls.inject.map(dep => {

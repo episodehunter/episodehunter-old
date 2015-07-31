@@ -9,6 +9,7 @@ interface configInterface {
         };
         debug: boolean;
     };
+    port: number;
 };
 
 export {configInterface};

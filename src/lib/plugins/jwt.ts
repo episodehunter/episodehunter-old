@@ -1,8 +1,7 @@
-/* @flow */
 'use strict';
 
-var jwt = require('hapi-auth-jwt2');
-// var db = require('../db');
+import Hapi = require('hapi');
+const jwt = require('hapi-auth-jwt2');
 
 var secret = 'asdfghjklpoiy';
 
@@ -13,8 +12,8 @@ var validate = function (decoded, request, next) {
     //     .catch(() => next(new Error('Not a valid user'), false));
 };
 
-module.exports = function(server: hapiServer) {
-    server.register(jwt, function(err) {
+function registerJWT(server: Hapi.Server) {
+    server.register(jwt, err => {
         if (err) {
             throw err;
         }
@@ -25,3 +24,5 @@ module.exports = function(server: hapiServer) {
         });
     });
 };
+
+export {registerJWT};

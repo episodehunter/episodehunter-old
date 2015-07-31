@@ -10,7 +10,8 @@ const config: configInterface = {
             "database": "episodehunter"
         },
         "debug": true
-    }
+    },
+    port: 3000
 };
 
 export {config};

@@ -9,7 +9,7 @@
       "commit": "be03157bace6e6465e63f13073d7b68e8ea1303c"
     },
     "node/node.d.ts": {
-      "commit": "be03157bace6e6465e63f13073d7b68e8ea1303c"
+      "commit": "855569dbc86b619aa3bbfab98f3ff2e6b55b5fcd"
     },
     "bluebird/bluebird.d.ts": {
       "commit": "be03157bace6e6465e63f13073d7b68e8ea1303c"
@@ -19,6 +19,9 @@
     },
     "lodash/lodash.d.ts": {
       "commit": "db3a54c801e29e73bdaae327a64ed7991778c958"
+    },
+    "jsonwebtoken/jsonwebtoken.d.ts": {
+      "commit": "855569dbc86b619aa3bbfab98f3ff2e6b55b5fcd"
     }
   }
 }

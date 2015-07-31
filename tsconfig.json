@@ -4,7 +4,8 @@
         "module": "commonjs",
         "noImplicitAny": false,
         "removeComments": true,
-        "preserveConstEnums": true
+        "preserveConstEnums": true,
+        "outDir": "./dist"
     },
     "filesGlob": [
         "./src/**/*.ts",
@@ -19,6 +20,8 @@
         "./src/config/local.ts",
         "./src/lib/db.ts",
         "./src/lib/ioc.ts",
+        "./src/lib/plugins/index.ts",
+        "./src/lib/plugins/jwt.ts",
         "./src/model/database/episode.ts",
         "./src/model/database/following-series.ts",
         "./src/model/database/index.ts",
@@ -26,6 +29,11 @@
         "./src/model/database/series.ts",
         "./src/model/database/user.ts",
         "./src/model/movie.ts",
+        "./src/model/user.ts",
+        "./src/sections/auth/auth-controller.ts",
+        "./src/sections/auth/auth-repository.ts",
+        "./src/sections/auth/auth-router.ts",
+        "./src/sections/index.ts",
         "./src/sections/movies/movie-controller.ts",
         "./src/sections/movies/movie-router.ts",
         "./src/sections/movies/movie-service.ts",

@@ -4,22 +4,22 @@ import {SeriesController} from './series-controller';
 import {dependencyInjection} from '../../lib/ioc';
 let controller = dependencyInjection<SeriesController>(SeriesController);
 
-module.exports = (function() {
-    return [
-        {
-            method: 'GET',
-            path: '/series',
-            config: {
-                handler: controller.get,
-                bind: controller
-            }
-        }, {
-            method: 'GET',
-            path: '/series/upcoming',
-            config: {
-                handler: controller.upcoming,
-                bind: controller
-            }
+const seriesRouts = [
+    {
+        method: 'GET',
+        path: '/series',
+        handler: controller.get,
+        config: {
+            bind: controller
         }
-    ];
-}());
+    }, {
+        method: 'GET',
+        path: '/series/upcoming',
+        handler: controller.upcoming,
+        config: {
+            bind: controller
+        }
+    }
+];
+
+export {seriesRouts};
