@@ -1,17 +1,24 @@
 import {configInterface} from './config-interface';
 
 const config: configInterface = {
-    "db": {
-        "client": "mysql",
-        "connection": {
-            "host": "192.168.56.101",
-            "user": "episodehunter",
-            "password": "episodehunter",
-            "database": "episodehunter"
+    db: {
+        client: 'mysql',
+        connection: {
+            host: 'localhost',
+            user: 'episodehunter',
+            password: 'episodehunter',
+            database: 'episodehunter',
+            port: 33060
         },
-        "debug": true
+        debug: true
     },
-    port: 3000
+    port: 3000,
+    hash: {
+        salt: 'salt'
+    },
+    jwt: {
+        salt: 'salt'
+    }
 };
 
 export {config};

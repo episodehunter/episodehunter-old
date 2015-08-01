@@ -1,5 +1,7 @@
-import {configInterface} from './config-interface';
-
-const config = {};
+const config = {
+    jwt: {
+        salt: 'asdfghjklpoiy'
+    }
+};
 
 export {config};
