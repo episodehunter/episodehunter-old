@@ -2,10 +2,11 @@
 
 import Hapi = require('hapi');
 const jwt = require('hapi-auth-jwt2');
+import {config} from '../../config/index';
 
-var secret = 'asdfghjklpoiy';
+const jwtSecret = config.jwt.salt;
 
-var validate = function (decoded, request, next) {
+var validate = (decoded, request, next) => {
     next(null, true);
     // db.getUser(decoded.id)
     //     .then(() => next(null, true))
@@ -19,7 +20,7 @@ function registerJWT(server: Hapi.Server) {
         }
 
         server.auth.strategy('jwt', 'jwt', true, {
-            key: secret,
+            key: jwtSecret,
             validateFunc: validate
         });
     });

@@ -2,30 +2,24 @@
 
 import Hapi = require('hapi');
 import {autoInject} from 'autoinject';
-import {UserRepository} from './auth-repository';
-import {sign} from 'jsonwebtoken';
-
-var secret = 'asdfghjklpoiy';
+import {AuthService} from './auth-service';
 
 @autoInject
 class AuthController {
-    rep: UserRepository;
 
-    constructor(rep: UserRepository) {
-        this.rep = rep;
-    }
+    constructor(public service: AuthService) {}
 
-    login(request: Hapi.Request, reply: Hapi.IReply): void {
-        let username = request.params['username'];
-        let password = request.params['password'];
-        this.rep.getUser(username, password)
-            .then(user => {
+    createToken(request: Hapi.Request, reply: Hapi.IReply): void {
+        let username = request.payload['username'];
+        let password = request.payload['password'];
+        this.service.generateToken(username, password)
+            .then(token => reply({token}))
+            .catch(error => {
                 reply({
-                    token: sign(user, secret)
-                })
-                .type('application/json');
-            })
-            .catch(() => reply('No user :('));
+                    id: 'forbidden',
+                    reason: 'Forbidden: Invalid username or password'
+                });
+            });
     }
 
 }

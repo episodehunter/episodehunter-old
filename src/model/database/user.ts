@@ -1,6 +1,6 @@
 const userModel = {
     id: 'id',
-    username: 'usernamn',
+    username: 'username',
     password: 'password',
 
     $table: 'users'
