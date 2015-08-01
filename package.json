@@ -16,7 +16,8 @@
     "jsonwebtoken": "^4.1.0",
     "knex": "^0.7.6",
     "lodash": "^3.10.0",
-    "mysql": "^2.6.1"
+    "mysql": "^2.6.1",
+    "twin-bcrypt": "^2.1.1"
   },
   "devDependencies": {}
 }
