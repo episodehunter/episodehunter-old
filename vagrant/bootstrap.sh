@@ -29,9 +29,10 @@ else
   echo "\n--- Setting up our MySQL user and db ---\n"
   mysql -uroot -p$DBPASSWD -e "CREATE DATABASE $DBNAME"
   mysql -uroot -p$DBPASSWD -e "grant all privileges on $DBNAME.* to '$DBUSER'@'%' identified by '$DBPASSWD'"
+  mysql -uroot -p$DBPASSWD $DBNAME < /home/vagrant/data/vagrant/$DBNAME.sql
 
   echo "\n--- Updating mysql configs in /etc/mysql/my.cnf ---\n"
-  sudo sed -i "s/bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
+  sed -i "s/bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
   echo "\n--- Restarting mysql ---\n"
   service mysql restart
 
