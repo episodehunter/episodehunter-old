@@ -1,7 +1,5 @@
 import {autoInject} from 'autoinject';
 import {db as Database} from '../../lib/db';
-import {User} from '../../model/user';
-import {hash} from '../../lib/bcrypt';
 
 interface UserSelectionInterface {
     id: number;
@@ -23,13 +21,18 @@ class UserRepository {
         ];
     }
 
-    getUserById(id: number) {
+    getUserById(id: number) : Promise<UserSelectionInterface> {
         return this.db.q
             .select(this.selections)
             .from(this.db.model.userModel.$table)
             .where(
                 this.db.model.userModel.id, '=', id
-            );
+            ).then(user => {
+                if (user === undefined) {
+                    return Promise.reject(undefined)
+                }
+                return user;
+            });
     }
 
     getUserByUsername(username: string) : Promise<UserSelectionInterface> {
@@ -38,7 +41,12 @@ class UserRepository {
             .from(this.db.model.userModel.$table)
             .where(
                 this.db.model.userModel.username, '=', username
-            );
+            ).then(user => {
+                if (user === undefined) {
+                    return Promise.reject(undefined)
+                }
+                return user;
+            });
     }
 
 }
