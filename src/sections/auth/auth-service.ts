@@ -15,7 +15,11 @@ class AuthService {
         return this.rep
             .getUserByUsername(username)
             .then(user => compareUserPassword(user, password))
-            .then(user => sign(user, config.jwt.salt));
+            .then(user => {
+                // Remove the password
+                user.password = undefined;
+                return sign(user, config.jwt.salt)
+            });
     }
 }
 

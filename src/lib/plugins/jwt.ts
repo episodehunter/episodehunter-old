@@ -6,8 +6,13 @@ import {config} from '../../config/index';
 
 const jwtSecret = config.jwt.salt;
 
-var validate = (decoded, request, next) => {
-    next(null, true);
+interface Decoded {
+    id: number;
+    username: string;
+}
+
+var validate = (decoded: Decoded, request, next) => {
+    next(null, true, decoded);
     // db.getUser(decoded.id)
     //     .then(() => next(null, true))
     //     .catch(() => next(new Error('Not a valid user'), false));
