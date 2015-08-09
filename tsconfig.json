@@ -11,12 +11,13 @@
         "outDir": "./dist"
     },
     "filesGlob": [
+        "./typings/tsd.d.ts",
         "./src/**/*.ts",
-        "!./node_modules/**/*.ts",
-        "./typings/tsd.d.ts"
+        "!./node_modules/**/*.ts"
     ],
     "compileOnSave": false,
     "files": [
+        "./typings/tsd.d.ts",
         "./src/config/config-interface.ts",
         "./src/config/default.ts",
         "./src/config/index.ts",
@@ -26,7 +27,7 @@
         "./src/lib/db.ts",
         "./src/lib/ioc.ts",
         "./src/lib/plugins/index.ts",
-        "./src/lib/plugins/jwt.ts",
+        "./src/lib/plugins/jwt/jwt.ts",
         "./src/model/database/episode.ts",
         "./src/model/database/following-series.ts",
         "./src/model/database/index.ts",
@@ -43,11 +44,13 @@
         "./src/sections/movies/movie-controller.ts",
         "./src/sections/movies/movie-router.ts",
         "./src/sections/movies/movie-service.ts",
+        "./src/sections/series/model/series-model.ts",
+        "./src/sections/series/model/upcomping-model.ts",
         "./src/sections/series/series-controller.ts",
+        "./src/sections/series/series-repository.ts",
         "./src/sections/series/series-router.ts",
         "./src/sections/series/series-service.ts",
         "./src/sections/series/upcoming-repository.ts",
-        "./src/server.ts",
-        "./typings/tsd.d.ts"
+        "./src/server.ts"
     ]
 }
