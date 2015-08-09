@@ -23,7 +23,7 @@ class UserRepository {
 
     getUserById(id: number) : Promise<UserSelectionInterface> {
         return this.db.q
-            .select(this.selections)
+            .first(...this.selections)
             .from(this.db.model.userModel.$table)
             .where(
                 this.db.model.userModel.id, '=', id
