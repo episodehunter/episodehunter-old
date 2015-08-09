@@ -3,6 +3,9 @@
 import Hapi = require('hapi');
 import {autoInject} from 'autoinject';
 import {ServiesService} from './series-service';
+import {notFound, badImplementation} from 'boom';
+
+let int = (obj): number => obj | 0;
 
 @autoInject
 class SeriesController {
@@ -13,18 +16,24 @@ class SeriesController {
     }
 
     get(request: Hapi.Request, reply: Hapi.IReply) {
-        console.log('Okej, using: ' + request.headers['authorization']);
-        reply(this.service.rep.db.model.seriesModel).type('application/json');
+        let seriesId = int(request.params['id']);
+        this.service
+            .getSeries(seriesId)
+            .then(series => reply({series}))
+            .catch(code => {
+                if (code === 404) {
+                    reply(notFound());
+                } else {
+                    reply(badImplementation())
+                }
+            });
     }
 
     upcoming(request: Hapi.Request, reply: Hapi.IReply) {
-        var userId = 2;
-        this.service.upcoming(userId)
-            .then(data => {
-                reply({
-                    episodes: data
-                });
-            });
+        let userId = request.auth.credentials.id;
+        this.service
+            .upcoming(userId)
+            .then(episodes => reply({episodes}));
     }
 
 }

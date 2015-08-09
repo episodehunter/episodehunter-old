@@ -19,16 +19,13 @@ interface UpcompingDatabaseInterface {
 
 @autoInject
 class UpcomingRepository {
-
-    static inject = [Database];
-
     db: Database;
 
     constructor(db: Database) {
         this.db = db;
     }
 
-    get(userId: number) : Promise<Array<UpcompingDatabaseInterface>> {
+    get(userId: number): Promise<Array<UpcompingDatabaseInterface>> {
         let today = new Date().toISOString().slice(0, 10);
         let limit = 100;
         let raw = this.db.q.raw;

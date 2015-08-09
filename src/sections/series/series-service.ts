@@ -1,16 +1,49 @@
 import {autoInject} from 'autoinject';
+import {SeriesRepository} from './series-repository';
 import {UpcomingRepository} from './upcoming-repository';
+import {Series} from './model/series-model';
+import {UpcomingEpisode} from './model/upcomping-model';
 
 @autoInject
 class ServiesService {
-    rep: UpcomingRepository;
+    upcomingRep: UpcomingRepository;
+    seriesRep: SeriesRepository;
 
-    constructor(rep: UpcomingRepository) {
-        this.rep = rep;
+
+    constructor(upcomingRep: UpcomingRepository, seriesRep: SeriesRepository) {
+        this.upcomingRep = upcomingRep;
+        this.seriesRep = seriesRep;
     }
 
-    upcoming(userId: number) {
-        return this.rep.get(userId).then(data => {
+    getSeries(id: number): Promise<Series> {
+        let k = this.seriesRep.get(id)
+            .then(series => {
+                return {
+                    ids: {
+                        id: series.id
+                    },
+                    title: series.title,
+                    year: 0,
+                    airs: {
+                        dayOfWeek: series.dayOfWeek,
+                        time: series.time,
+                        first: series.first
+                    },
+                    genre: series.genre,
+                    language: series.language,
+                    network: series.network,
+                    overview: series.overview,
+                    runtime: series.runtime,
+                    status: series.status,
+                    fanart: series.fanart,
+                    poster: series.poster
+                }
+            });
+        return k;
+    }
+
+    upcoming(userId: number): Promise<UpcomingEpisode[]> {
+        return this.upcomingRep.get(userId).then(data => {
             return data.map(el => {
                 return {
                     ids: {
