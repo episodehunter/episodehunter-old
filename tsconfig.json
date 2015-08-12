@@ -23,6 +23,7 @@
         "./src/config/index.ts",
         "./src/config/local.ts",
         "./src/config/production.ts",
+        "./src/config/test.ts",
         "./src/lib/bcrypt.ts",
         "./src/lib/db.ts",
         "./src/lib/ioc.ts",
