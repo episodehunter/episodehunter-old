@@ -1,7 +1,7 @@
 'use strict';
 
 import {autoInject} from 'autoinject';
-import {db as Database} from '../../lib/db';
+import {database} from '../../lib/db';
 
 interface SeriesDatabaseInterface {
     id: number;
@@ -23,19 +23,14 @@ interface SeriesDatabaseInterface {
 
 @autoInject
 class SeriesRepository {
-    db: Database;
-
-    constructor(db: Database) {
-        this.db = db;
-    }
 
     get(seriesId: number): Promise<SeriesDatabaseInterface> {
         let limit = 100;
-        let raw = this.db.q.raw;
-        let model = this.db.model.seriesModel;
+        let raw = database.q.raw;
+        let model = database.model.seriesModel;
         let as = (column, newName) => `${column} as ${newName}`;
 
-        let k = this.db.q
+        return database.q
             .first(
                 model.id,
                 as(model.tvdbId, 'tvdbId'),

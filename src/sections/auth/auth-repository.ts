@@ -1,5 +1,5 @@
 import {autoInject} from 'autoinject';
-import {db as Database} from '../../lib/db';
+import {database} from '../../lib/db';
 
 interface UserSelectionInterface {
     id: number;
@@ -9,24 +9,22 @@ interface UserSelectionInterface {
 
 @autoInject
 class UserRepository {
-    db: Database;
     selections: Array<string>;
 
-    constructor(db: Database) {
-        this.db = db;
+    constructor() {
         this.selections = [
-            this.db.model.userModel.id,
-            this.db.model.userModel.username,
-            this.db.model.userModel.password
+            database.model.userModel.id,
+            database.model.userModel.username,
+            database.model.userModel.password
         ];
     }
 
     getUserById(id: number) : Promise<UserSelectionInterface> {
-        return this.db.q
+        return database.q
             .first(...this.selections)
-            .from(this.db.model.userModel.$table)
+            .from(database.model.userModel.$table)
             .where(
-                this.db.model.userModel.id, '=', id
+                database.model.userModel.id, '=', id
             ).then(user => {
                 if (user === undefined) {
                     return Promise.reject(undefined)
@@ -36,11 +34,11 @@ class UserRepository {
     }
 
     getUserByUsername(username: string) : Promise<UserSelectionInterface> {
-        return this.db.q
+        return database.q
             .first(...this.selections)
-            .from(this.db.model.userModel.$table)
+            .from(database.model.userModel.$table)
             .where(
-                this.db.model.userModel.username, '=', username
+                database.model.userModel.username, '=', username
             ).then(user => {
                 if (user === undefined) {
                     return Promise.reject(undefined)

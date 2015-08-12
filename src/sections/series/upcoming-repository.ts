@@ -1,7 +1,7 @@
 'use strict';
 
 import {autoInject} from 'autoinject';
-import {db as Database} from '../../lib/db';
+import {database} from '../../lib/db';
 
 interface UpcompingDatabaseInterface {
     id: number;
@@ -19,24 +19,19 @@ interface UpcompingDatabaseInterface {
 
 @autoInject
 class UpcomingRepository {
-    db: Database;
-
-    constructor(db: Database) {
-        this.db = db;
-    }
 
     get(userId: number): Promise<Array<UpcompingDatabaseInterface>> {
         let today = new Date().toISOString().slice(0, 10);
         let limit = 100;
-        let raw = this.db.q.raw;
+        let raw = database.q.raw;
 
         let model = {
-            series: this.db.model.seriesModel,
-            episode: this.db.model.episodeModel,
-            follow: this.db.model.followingSeriesModel
+            series: database.model.seriesModel,
+            episode: database.model.episodeModel,
+            follow: database.model.followingSeriesModel
         };
 
-        return this.db.q
+        return database.q
             .select(
                 model.episode.id,
                 model.episode.thumbnail,
