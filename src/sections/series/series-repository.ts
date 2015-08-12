@@ -56,17 +56,12 @@ class SeriesRepository {
             .from(model.$table)
             .where(model.id, '=', seriesId)
             .limit(limit)
-            .catch(wtf => {
-                console.log('FEL FEL FEL!!!', wtf);
-                return Promise.reject(wtf);
-            })
             .then(series => {
                 if (series === undefined) {
                     return Promise.reject(404);
                 }
                 return series;
             });
-        return k;
     }
 
 }

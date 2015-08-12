@@ -16,7 +16,7 @@ class ServiesService {
     }
 
     getSeries(id: number): Promise<Series> {
-        let k = this.seriesRep.get(id)
+        return this.seriesRep.get(id)
             .then(series => {
                 return {
                     ids: {
@@ -39,7 +39,6 @@ class ServiesService {
                     poster: series.poster
                 }
             });
-        return k;
     }
 
     upcoming(userId: number): Promise<UpcomingEpisode[]> {
