@@ -17,6 +17,12 @@ server.connection({
 registerPlugin(server);
 registerRouts(server);
 
-server.start(() => {
-    console.log('Server running at:', server.info.uri);
-});
+
+// Ony start the server if we run the script directly
+if (!module.parent) {
+    server.start(() => {
+        console.log('Server running at:', server.info.uri);
+    });
+}
+
+export {server};
