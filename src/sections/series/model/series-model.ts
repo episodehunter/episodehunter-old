@@ -11,7 +11,7 @@ interface Series {
         first: string;
     }
     year: number;
-    genre?: string;
+    genre?: Array<string>;
     language?: string;
     network?: string;
     overview?: string;

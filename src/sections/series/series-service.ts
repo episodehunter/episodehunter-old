@@ -6,13 +6,23 @@ import {UpcomingEpisode} from './model/upcomping-model';
 
 @autoInject
 class ServiesService {
+
     upcomingRep: UpcomingRepository;
     seriesRep: SeriesRepository;
-
 
     constructor(upcomingRep: UpcomingRepository, seriesRep: SeriesRepository) {
         this.upcomingRep = upcomingRep;
         this.seriesRep = seriesRep;
+    }
+
+    convertGenre(rawGenre: string): Array<string> {
+        if (typeof rawGenre !== 'string') {
+            return [];
+        } else {
+            return (rawGenre
+                .split('|')
+                .filter(g => g !== ''));
+        }
     }
 
     getSeries(id: number): Promise<Series> {
@@ -29,7 +39,7 @@ class ServiesService {
                         time: series.time,
                         first: series.first
                     },
-                    genre: series.genre,
+                    genre: this.convertGenre(series.genre),
                     language: series.language,
                     network: series.network,
                     overview: series.overview,
