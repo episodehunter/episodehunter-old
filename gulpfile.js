@@ -7,6 +7,10 @@ var sourcemaps = require('gulp-sourcemaps');
 
 var tsProject = ts.createProject('tsconfig.json');
 
+gulp.task('watch', function() {
+    gulp.watch('src/**/*.ts', ['build:typescript']);
+});
+
 gulp.task('build:typescript', function() {
     return gulp.src(['./typings/tsd.d.ts', 'src/**/*.ts'])
         .pipe(sourcemaps.init())
