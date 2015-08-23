@@ -20,6 +20,10 @@ else
   echo "\n--- Install base packages ---\n"
   apt-get -y install vim curl build-essential python-software-properties git > /dev/null 2>&1
 
+  echo "\n--- Install NodeJS v0.12 ---\n"
+  curl -sL https://deb.nodesource.com/setup_0.12 | bash -
+  apt-get install -y nodejs
+
   echo "\n--- Install MySQL specific packages and settings ---\n"
   echo "mysql-server mysql-server/root_password password $DBPASSWD" | debconf-set-selections
   echo "mysql-server mysql-server/root_password_again password $DBPASSWD" | debconf-set-selections
