@@ -28,6 +28,12 @@
     },
     "boom/boom.d.ts": {
       "commit": "8de599097a8acb3c246f9cc152f07b323c5a8b49"
+    },
+    "chai/chai.d.ts": {
+      "commit": "af81415504b4edce8dac8446d96857f8018c6e9f"
+    },
+    "mocha/mocha.d.ts": {
+      "commit": "af81415504b4edce8dac8446d96857f8018c6e9f"
     }
   }
 }

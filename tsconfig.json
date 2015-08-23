@@ -54,7 +54,9 @@
         "./src/sections/series/upcoming-repository.ts",
         "./src/server.ts",
         "./src/specs/integration/auth/login.ts",
-        "./src/specs/integration/helper-functions.ts",
-        "./src/specs/integration/series.ts"
+        "./src/specs/integration/helper/auth.ts",
+        "./src/specs/integration/helper/database.ts",
+        "./src/specs/integration/series/fetch.ts",
+        "./src/specs/integration/server.ts"
     ]
 }
