@@ -20,6 +20,25 @@ describe('Series', () => {
 
     describe('Fetch', () => {
 
+        it(`Should get unauthorized response if trying to fetch series with invalid token`, () => {
+            let options: any = {
+                method: 'GET',
+                url: '/series/1',
+                headers: {
+                    Authorization: 'bad-token'
+                }
+            };
+
+            tracker.on('query', query => {
+                loginIfTrying(query);
+            });
+
+            return server.injectThen(options)
+                .then(response => {
+                    assert.equal(response.statusCode, 401);
+                });
+        });
+
         it(`Should return 404 for a series that doesn't exist`, () => {
             let options: any = {
                 method: 'GET',
@@ -37,7 +56,7 @@ describe('Series', () => {
                     let result = response.result;
                     assert.equal(response.statusCode, 404);
                     assert.deepEqual(response.result, { statusCode: 404, error: 'Not Found' });
-            });
+                });
         });
 
         it(`Should return a tv show when asking for it`, () => {
