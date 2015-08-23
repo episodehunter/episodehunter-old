@@ -53,6 +53,7 @@
         "./src/sections/series/series-service.ts",
         "./src/sections/series/upcoming-repository.ts",
         "./src/server.ts",
+        "./src/specs/integration/auth/login.ts",
         "./src/specs/integration/helper-functions.ts",
         "./src/specs/integration/series.ts"
     ]
