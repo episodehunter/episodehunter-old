@@ -46,17 +46,21 @@
         "./src/sections/movies/movie-router.ts",
         "./src/sections/movies/movie-service.ts",
         "./src/sections/series/model/series-model.ts",
-        "./src/sections/series/model/upcomping-model.ts",
         "./src/sections/series/series-controller.ts",
         "./src/sections/series/series-repository.ts",
         "./src/sections/series/series-router.ts",
         "./src/sections/series/series-service.ts",
-        "./src/sections/series/upcoming-repository.ts",
+        "./src/sections/user/upcoming/model/upcomping-model.ts",
+        "./src/sections/user/upcoming/upcoming-controller.ts",
+        "./src/sections/user/upcoming/upcoming-episodes.ts",
+        "./src/sections/user/upcoming/upcoming-repository.ts",
+        "./src/sections/user/user-router.ts",
         "./src/server.ts",
         "./src/specs/integration/auth/login.ts",
         "./src/specs/integration/helper/auth.ts",
         "./src/specs/integration/helper/database.ts",
         "./src/specs/integration/series/fetch.ts",
+        "./src/specs/integration/series/upcoming.ts",
         "./src/specs/integration/server.ts"
     ]
 }

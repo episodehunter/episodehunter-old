@@ -29,13 +29,6 @@ class SeriesController {
             });
     }
 
-    upcoming(request: Hapi.Request, reply: Hapi.IReply) {
-        let userId = request.auth.credentials.id;
-        this.service
-            .upcoming(userId)
-            .then(episodes => reply({episodes}));
-    }
-
 }
 
 export {SeriesController};

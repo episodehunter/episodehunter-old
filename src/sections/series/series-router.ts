@@ -18,13 +18,6 @@ const seriesRouts = [
                 }
             }
         }
-    }, {
-        method: 'GET',
-        path: '/series/upcoming',
-        handler: controller.upcoming,
-        config: {
-            bind: controller
-        }
     }
 ];
 

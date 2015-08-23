@@ -1,17 +1,13 @@
 import {autoInject} from 'autoinject';
 import {SeriesRepository} from './series-repository';
-import {UpcomingRepository} from './upcoming-repository';
 import {Series} from './model/series-model';
-import {UpcomingEpisode} from './model/upcomping-model';
 
 @autoInject
 class ServiesService {
 
-    upcomingRep: UpcomingRepository;
     seriesRep: SeriesRepository;
 
-    constructor(upcomingRep: UpcomingRepository, seriesRep: SeriesRepository) {
-        this.upcomingRep = upcomingRep;
+    constructor(seriesRep: SeriesRepository) {
         this.seriesRep = seriesRep;
     }
 
@@ -49,32 +45,6 @@ class ServiesService {
                     poster: series.poster
                 }
             });
-    }
-
-    upcoming(userId: number): Promise<UpcomingEpisode[]> {
-        return this.upcomingRep.get(userId).then(data => {
-            return data.map(el => {
-                return {
-                    ids: {
-                        id: el.id
-                    },
-                    title: el.title,
-                    season: el.season,
-                    episode: el.episode,
-                    airs: el.airs,
-                    thumbnail: el.thumbnail,
-                    show: {
-                        ids: {
-                            id: el.series_id
-                        },
-                        title: el.series_title,
-                        year: 0,
-                        poster: el.series_poster,
-                        fanart: el.series_fanart
-                    }
-                };
-            });
-        });
     }
 
 }

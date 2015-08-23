@@ -1,7 +1,7 @@
 'use strict';
 
 import {autoInject} from 'autoinject';
-import {database} from '../../lib/db';
+import {database} from '../../../lib/db';
 
 interface UpcompingDatabaseInterface {
     id: number;

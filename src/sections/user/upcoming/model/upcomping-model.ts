@@ -1,4 +1,4 @@
-import {Series} from './series-model';
+import {Series} from '../../../series/model/series-model';
 
 interface UpcomingEpisode {
     ids: {
