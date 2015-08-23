@@ -1,11 +1,5 @@
 # ************************************************************
-# Sequel Pro SQL dump
-# Version 4096
-#
-# http://www.sequelpro.com/
-# http://code.google.com/p/sequel-pro/
-#
-# Värd: 127.0.0.1 (MySQL 5.6.25-0ubuntu0.15.04.1)
+# Host: 127.0.0.1 (MySQL 5.6.25-0ubuntu0.15.04.1)
 # Databas: episodehunter
 # Genereringstid: 2015-08-23 11:07:59 +0000
 # ************************************************************
