@@ -4,7 +4,7 @@
   "description": "Api server for episodehunter.tv",
   "main": "dist/server.js",
   "scripts": {
-    "test": "./node_modules/lab/bin/lab dest/specs --leaks"
+    "test": "node_modules/mocha/bin/mocha dest/specs/integration/ --recursive"
   },
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
