@@ -1,4 +1,5 @@
 import {autoInject} from 'autoinject';
+import {extractYear} from '../../lib/utility/dates';
 import {SeriesRepository} from './series-repository';
 import {Series} from './model/series-model';
 
@@ -29,7 +30,7 @@ class ServiesService {
                         id: series.id
                     },
                     title: series.title,
-                    year: 0,
+                    year: extractYear(series.first),
                     airs: {
                         dayOfWeek: series.dayOfWeek,
                         time: series.time,

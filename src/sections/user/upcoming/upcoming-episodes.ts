@@ -1,4 +1,5 @@
 import {autoInject} from 'autoinject';
+import {extractYear} from '../../../lib/utility/dates';
 import {UpcomingRepository} from './upcoming-repository';
 import {UpcomingEpisode} from './model/upcomping-model';
 
@@ -38,7 +39,7 @@ class UpcomingEpiosdes {
                             id: el.series_id
                         },
                         title: el.series_title,
-                        year: 0,
+                        year: extractYear(el.series_first_aired),
                         poster: el.series_poster,
                         fanart: el.series_fanart
                     }
