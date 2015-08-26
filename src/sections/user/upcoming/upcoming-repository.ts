@@ -2,6 +2,7 @@
 
 import {autoInject} from 'autoinject';
 import {database} from '../../../lib/db';
+import {as} from '../../../lib/utility/database';
 
 interface UpcompingDatabaseInterface {
     id: number;
@@ -24,7 +25,6 @@ class UpcomingRepository {
         let today = new Date().toISOString().slice(0, 10);
         let limit = 100;
         let raw = database.q.raw;
-        let as = (col, newName) => `${col} as ${newName}`;
 
         let model = {
             series: database.model.seriesModel,

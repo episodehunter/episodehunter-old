@@ -2,6 +2,7 @@
 
 import {autoInject} from 'autoinject';
 import {database} from '../../lib/db';
+import {as} from '../../lib/utility/database';
 
 interface SeriesDatabaseInterface {
     id: number;
@@ -28,7 +29,6 @@ class SeriesRepository {
         let limit = 100;
         let raw = database.q.raw;
         let model = database.model.seriesModel;
-        let as = (column, newName) => `${column} as ${newName}`;
 
         return database.q
             .first(
