@@ -24,6 +24,7 @@ class UpcomingRepository {
         let today = new Date().toISOString().slice(0, 10);
         let limit = 100;
         let raw = database.q.raw;
+        let as = (col, newName) => `${col} as ${newName}`;
 
         let model = {
             series: database.model.seriesModel,
@@ -35,16 +36,16 @@ class UpcomingRepository {
             .select(
                 model.episode.id,
                 model.episode.thumbnail,
-                model.episode.title + ' as title',
-                model.series.id + ' as series_id',
-                model.series.title + ' as series_title',
-                model.series.airs.first + ' as series_first_aired',
-                model.series.poster + ' as series_poster',
-                model.series.fanart + ' as series_fanart'
+                as(model.episode.title, 'title'),
+                as(model.series.id, 'series_id'),
+                as(model.series.title, 'series_title'),
+                as(model.series.airs.first, 'series_first_aired'),
+                as(model.series.poster, 'series_poster'),
+                as(model.series.fanart, 'series_fanart')
             )
-            .max(model.episode.seasonNr + ' as season')
-            .min(model.episode.episodeNr + ' as episode')
-            .min(model.episode.firstAired + ' as airs')
+            .max(as(model.episode.seasonNr, 'season'))
+            .min(as(model.episode.episodeNr, 'episode'))
+            .min(as(model.episode.firstAired, 'airs'))
             .from(model.follow.$table)
             .leftJoin(model.series.$table, model.follow.seriesId, model.series.id)
             .leftJoin(model.episode.$table, function() {
