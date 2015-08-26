@@ -60,7 +60,13 @@ class UpcomingRepository {
             })
             .groupBy(model.follow.id)
             .orderBy(model.episode.firstAired)
-            .limit(limit);
+            .limit(limit)
+            .then(epesodes => {
+                if (!epesodes) {
+                    return [];
+                }
+                return epesodes;
+            });
     }
 
 }
