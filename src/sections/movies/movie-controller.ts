@@ -2,6 +2,8 @@
 
 import Hapi = require('hapi');
 import {autoInject} from 'autoinject';
+import {notFound, badImplementation} from 'boom';
+import {int} from '../../lib/utility/type-conversion';
 import {MovieService} from './movie-service';
 
 @autoInject
@@ -13,12 +15,16 @@ class MovieController {
     }
 
     get(request: Hapi.Request, reply: Hapi.IReply) {
-        console.log('Okej, using: ' + request.headers['authorization']);
+        let movieId = int(request.params['id']);
         this.service
-            .getMovie(5)
-            .then(result => {
-                reply(result)
-                .type('application/json');
+            .getMovie(movieId)
+            .then(movie => reply({movie}))
+            .catch(code => {
+                if (code === 404) {
+                    reply(notFound());
+                } else {
+                    reply(badImplementation())
+                }
             });
     }
 
