@@ -2,10 +2,9 @@
 
 import Hapi = require('hapi');
 import {autoInject} from 'autoinject';
-import {ServiesService} from './series-service';
 import {notFound, badImplementation} from 'boom';
-
-let int = (obj): number => obj | 0;
+import {int} from '../../lib/utility/type-conversion';
+import {ServiesService} from './series-service';
 
 @autoInject
 class SeriesController {

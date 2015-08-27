@@ -26,7 +26,6 @@ interface SeriesDatabaseInterface {
 class SeriesRepository {
 
     get(seriesId: number): Promise<SeriesDatabaseInterface> {
-        let limit = 100;
         let raw = database.q.raw;
         let model = database.model.seriesModel;
 
@@ -50,7 +49,6 @@ class SeriesRepository {
             )
             .from(model.$table)
             .where(model.id, '=', seriesId)
-            .limit(limit)
             .then(series => {
                 if (series === undefined) {
                     return Promise.reject(404);
