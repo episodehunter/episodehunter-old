@@ -99,7 +99,7 @@ describe('Series', () => {
                             id: dbRow.id
                         },
                         title: dbRow.title,
-                        year: 0,
+                        year: 2015,
                         airs: {
                             dayOfWeek: dbRow.dayOfWeek,
                             time: dbRow.time,

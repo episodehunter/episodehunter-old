@@ -102,7 +102,7 @@ describe('Series', () => {
                                     id: dbRow[0].series_id
                                 },
                                 title: dbRow[0].series_title,
-                                year: 0,
+                                year: 2004,
                                 poster: dbRow[0].series_poster,
                                 fanart: dbRow[0].series_fanart
                             }
