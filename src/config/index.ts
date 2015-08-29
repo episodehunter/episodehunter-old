@@ -9,6 +9,8 @@ const env = process.env.NODE_ENV;
 const config: configInterface = buildConfig(env);
 
 function buildConfig(env) : configInterface {
+    console.log('Running in', env);
+
     if (env === 'production') {
         return defaultsDeep<Object, configInterface>(productionConfig, defaultConfig);
     } else if (env === 'test') {
