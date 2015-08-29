@@ -1,11 +1,11 @@
 'use strict';
+process.env.NODE_ENV = 'test';
+
 import {server} from '../../server';
 import {Server} from 'hapi';
 
 interface plugin { (options: any): any; attributes: any; }
 interface TestServer extends Server { injectThen(options: any): Promise<any> }
-
-process.env.NODE_ENV = 'test';
 
 let injectThenRegister = <plugin>function (server, options, next) {
     let injectThen = function(options) {
