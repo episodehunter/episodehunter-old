@@ -9,7 +9,7 @@ import {hash} from '../../../lib/bcrypt';
 
 let mockDb = () => {
     let tracker = mockKnex.getTracker();
-    mockKnex.mock(database.q, 'knex@0.7');
+    mockKnex.mock(database.q, 'knex@0.8');
     return tracker;
 };
 
