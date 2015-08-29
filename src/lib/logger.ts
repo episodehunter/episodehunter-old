@@ -2,7 +2,7 @@ import {join, normalize} from 'path';
 import {createLogger} from 'bunyan'
 import {config} from '../config/index';
 
-let logger = createLogger({
+let logger = createLogger(<any>{
     name: config.appName,
     streams: [{
         level: config.logger.level,
