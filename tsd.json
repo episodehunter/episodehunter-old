@@ -9,7 +9,7 @@
       "commit": "8de599097a8acb3c246f9cc152f07b323c5a8b49"
     },
     "node/node.d.ts": {
-      "commit": "8de599097a8acb3c246f9cc152f07b323c5a8b49"
+      "commit": "67605e10f6eb01c9d4a0d13719d804d6dea9e1cb"
     },
     "bluebird/bluebird.d.ts": {
       "commit": "8de599097a8acb3c246f9cc152f07b323c5a8b49"
@@ -34,6 +34,9 @@
     },
     "mocha/mocha.d.ts": {
       "commit": "af81415504b4edce8dac8446d96857f8018c6e9f"
+    },
+    "bunyan/bunyan.d.ts": {
+      "commit": "67605e10f6eb01c9d4a0d13719d804d6dea9e1cb"
     }
   }
 }

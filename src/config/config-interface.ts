@@ -1,4 +1,9 @@
 interface configInterface {
+    appName: string;
+    logger: {
+        level: string;
+        filePath: string;
+    };
     db: {
         client: string;
         connection: {

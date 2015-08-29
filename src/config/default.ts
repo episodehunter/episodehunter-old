@@ -1,6 +1,11 @@
 import {configInterface} from './config-interface';
 
 const config: configInterface = {
+    appName: 'episodehunter-api',
+    logger: {
+        level: 'info',
+        filePath: '../../log/develop.txt'
+    },
     db: {
         client: 'mysql',
         connection: {
