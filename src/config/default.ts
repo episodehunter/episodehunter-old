@@ -15,7 +15,7 @@ const config: configInterface = {
             database: 'episodehunter',
             port: 33060
         },
-        debug: true
+        debug: false
     },
     port: 3000,
     hash: {
