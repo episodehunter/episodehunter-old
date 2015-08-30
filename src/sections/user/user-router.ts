@@ -2,16 +2,32 @@
 
 import {number} from 'joi';
 import {UpcomingController} from './upcoming/upcoming-controller';
+import {WatchedController} from './watched/watched-controller';
 import {dependencyInjection} from '../../lib/ioc';
-let controller = dependencyInjection<UpcomingController>(UpcomingController);
+let upcomingController = dependencyInjection<UpcomingController>(UpcomingController);
+let watchedController = dependencyInjection<WatchedController>(WatchedController);
 
 const userRouts = [
     {
         method: 'GET',
         path: '/user/upcoming/episodes',
-        handler: controller.episodes,
+        handler: upcomingController.episodes,
         config: {
-            bind: controller
+            bind: upcomingController
+        }
+    }, {
+        method: 'GET',
+        path: '/user/watched/movies',
+        handler: watchedController.getMovies,
+        config: {
+            bind: watchedController
+        }
+    }, {
+        method: 'GET',
+        path: '/user/watched/series',
+        handler: watchedController.getSeries,
+        config: {
+            bind: watchedController
         }
     }
 ];
