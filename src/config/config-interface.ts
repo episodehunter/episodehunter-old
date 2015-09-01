@@ -15,10 +15,17 @@ interface configInterface {
         };
         debug: boolean;
     };
-    port: number;
-    hash: {
-        salt: string;
+    redis: {
+        prefix: string;
+        redis: {
+            port: number;
+            host: string;
+        }
     };
+    port: number;
+    // hash: {
+    //     salt: string;
+    // };
     jwt: {
         salt: string;
     };
