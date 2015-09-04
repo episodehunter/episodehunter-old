@@ -1,4 +1,4 @@
-const watchedMovieModel = {
+const watchedMovie = {
     id: 'movie_watched.id',
     userId: 'movie_watched.user_id',
     movieId: 'movie_watched.movie_id',
@@ -8,4 +8,4 @@ const watchedMovieModel = {
     $table: 'movie_watched'
 }
 
-export {watchedMovieModel};
+export {watchedMovie};

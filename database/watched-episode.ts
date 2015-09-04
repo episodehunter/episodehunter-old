@@ -1,4 +1,4 @@
-const watchedEpisodeModel = {
+const watchedEpisode = {
     id: 'tv_watched.movie.id',
     userId: 'tv_watched.user_id',
     showId: 'tv_watched.serie_id',
@@ -10,4 +10,4 @@ const watchedEpisodeModel = {
     $table: 'tv_watched'
 }
 
-export {watchedEpisodeModel};
+export {watchedEpisode};
