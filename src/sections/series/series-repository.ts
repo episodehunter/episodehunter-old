@@ -27,7 +27,7 @@ class SeriesRepository {
 
     get(seriesId: number): Promise<SeriesDatabaseInterface> {
         let raw = database.q.raw;
-        let model = database.model.seriesModel;
+        let model = database.model.series;
 
         return database.q
             .first(

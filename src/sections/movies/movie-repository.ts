@@ -28,7 +28,7 @@ class MovieRepository {
 
     get(movieId: number): Promise<MovieDatabaseInterface> {
         let raw = database.q.raw;
-        let model = database.model.movieModel;
+        let model = database.model.movie;
 
         return database.q
             .first(

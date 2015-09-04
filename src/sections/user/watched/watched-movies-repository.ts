@@ -18,8 +18,8 @@ class WatchedMoviesRepository {
 
     getAll(userId: number): Promise<Array<WatchedMoviesDatabaseInterface>> {
         let model = {
-            movie: database.model.movieModel,
-            watched: database.model.watchedMovieModel
+            movie: database.model.movie,
+            watched: database.model.watchedMovie
         };
 
         return database.q

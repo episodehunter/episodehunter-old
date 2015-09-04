@@ -19,9 +19,9 @@ class WatchedSeriesRepository {
 
     getAll(userId: number): Promise<Array<WatchedSeriesDatabaseInterface>> {
         let model = {
-            episode: database.model.episodeModel,
-            series: database.model.seriesModel,
-            watched: database.model.watchedEpisodeModel
+            episode: database.model.episode,
+            series: database.model.series,
+            watched: database.model.watchedEpisode
         };
 
         return database.q
