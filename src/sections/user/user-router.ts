@@ -1,6 +1,5 @@
 'use strict';
 
-import {number} from 'joi';
 import {UpcomingController} from './upcoming/upcoming-controller';
 import {WatchedController} from './watched/watched-controller';
 import {dependencyInjection} from '../../lib/ioc';
@@ -26,6 +25,13 @@ const userRouts = [
         method: 'GET',
         path: '/user/watched/series',
         handler: watchedController.getSeries,
+        config: {
+            bind: watchedController
+        }
+    }, {
+        method: 'POST',
+        path: '/user/watched/series',
+        handler: watchedController.setSeriesAsWatched,
         config: {
             bind: watchedController
         }

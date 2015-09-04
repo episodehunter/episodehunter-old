@@ -1,6 +1,7 @@
 import {chain, pluck} from 'lodash';
 import {autoInject} from 'autoinject';
 import {extractYear} from '../../../lib/utility/dates';
+import {queue, jobNames} from '../../../lib/queue';
 import {WatchedMovies} from './model/watched-movies';
 import {WatchedSeries} from './model/watched-series';
 import {WatchedMoviesRepository} from './watched-movies-repository';
@@ -64,6 +65,12 @@ class WatchedService {
                     .value();
             });
         }
+
+    setShowsAsWatched(userId: number, shows: WatchedSeries[]) {
+        shows.forEach(show => {
+            queue.create(jobNames.watchedAdd, {userId, show}).save();
+        })
+    }
 
 
 }
