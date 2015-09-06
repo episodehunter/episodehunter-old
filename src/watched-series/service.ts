@@ -22,25 +22,25 @@ function findShowId(show: WatchedShow): Promise<number> {
 function extractEpisodes(show: WatchedShow, showId: number, userId: number): Array<WatchedEpisodeDatabase> {
     let result = [];
 
-    if (!Array.isArray(show.seasons)) {
+    if (!isNumric(userId, showId)) {
         return result;
     }
 
     Object.keys(show.seasons).forEach(season => {
         let episodes = show.seasons[season];
-        if (!isDefined(season) || !Array.isArray(episodes)) {
+        if (!isNumric(season) || !Array.isArray(episodes)) {
             return;
         }
 
         episodes
             .forEach(episode => {
-                if (!isNumric(userId, showId, season, episode)) {
+                if (!isNumric(episode)) {
                     return;
                 }
 
                 result.push({
-                    [watchedEpisode.userId]: int(userId),
-                    [watchedEpisode.showId]: int(showId),
+                    [watchedEpisode.userId]: userId,
+                    [watchedEpisode.showId]: showId,
                     [watchedEpisode.season]: int(season),
                     [watchedEpisode.episode]: int(episode),
                     [watchedEpisode.time]: now()
@@ -53,7 +53,9 @@ function extractEpisodes(show: WatchedShow, showId: number, userId: number): Arr
 
 
 let watchedShowService = {
-    addEpisodesAsWatched
+    addEpisodesAsWatched,
+    findShowId,
+    extractEpisodes
 };
 
 export {watchedShowService};

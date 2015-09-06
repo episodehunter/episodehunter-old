@@ -9,11 +9,11 @@ let parseInteger = val => {
 };
 
 let isNumric = (...args) => {
-    return args.every(val => parseInteger(val) % 1 === 0);
+    return !args.some(val => parseInteger(val) % 1 !== 0);
 };
 
 let isDefined = (...args) => {
-    return args.every(val => (val !== undefined || val !== null));
+    return !args.some(val => (val === undefined || val === null));
 };
 
 export {parseInteger, isNumric, isDefined};
