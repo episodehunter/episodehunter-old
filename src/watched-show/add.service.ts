@@ -1,7 +1,7 @@
 import {WatchedShow, WatchedEpisodeDatabase} from 'eh-domain/model/scrobble/sync';
 import {now, int} from '../lib/utility';
 import {isNumric, isDefined} from '../lib/national-guard';
-import {showRepository as repo} from './repository';
+import {showRepository as repo} from './add.repository';
 import {watchedEpisode} from '../episodehunter-messages/database/watched-episode';
 import {MissingShowError} from '../error/missing-show.error';
 
@@ -52,10 +52,10 @@ function extractEpisodes(show: WatchedShow, showId: number, userId: number): Arr
 }
 
 
-let watchedShowService = {
+let addWatchedShowService = {
     addEpisodesAsWatched,
     findShowId,
     extractEpisodes
 };
 
-export {watchedShowService};
+export {addWatchedShowService};

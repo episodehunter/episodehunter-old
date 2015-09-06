@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {watchedShowService} from '../../watched-show/service';
+import {addWatchedShowService} from '../../watched-show/add.service';
 import {WatchedShow} from 'eh-domain/model/scrobble/sync';
 import {watchedEpisode} from '../../episodehunter-messages/database/watched-episode';
 
@@ -49,7 +49,7 @@ describe('Watched show service', () => {
             }];
 
             // Act
-            let episodes = watchedShowService.extractEpisodes(show, showId, userId);
+            let episodes = addWatchedShowService.extractEpisodes(show, showId, userId);
 
             // Assert
             assert.isArray(episodes);
@@ -83,7 +83,7 @@ describe('Watched show service', () => {
             }];
 
             // Act
-            let episodes = watchedShowService.extractEpisodes(show, showId, userId);
+            let episodes = addWatchedShowService.extractEpisodes(show, showId, userId);
 
             // Assert
             assert.isArray(episodes);
@@ -109,7 +109,7 @@ describe('Watched show service', () => {
             };
 
             // Act
-            let episodes = watchedShowService.extractEpisodes(show, showId, userId);
+            let episodes = addWatchedShowService.extractEpisodes(show, showId, userId);
 
             // Assert
             assert.isArray(episodes);
@@ -134,7 +134,7 @@ describe('Watched show service', () => {
             };
 
             // Act
-            let episodes = watchedShowService.extractEpisodes(show, showId, userId);
+            let episodes = addWatchedShowService.extractEpisodes(show, showId, userId);
 
             // Assert
             assert.isArray(episodes);
