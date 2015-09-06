@@ -1,5 +1,6 @@
 import {WatchedShow, WatchedEpisodeDatabase} from 'eh-domain/model/scrobble/sync';
 import {series} from '../episodehunter-messages/database/series';
+import {watchedEpisode} from '../episodehunter-messages/database/watched-episode';
 import {database} from '../lib/database';
 import {isNumric} from '../lib/national-guard';
 import {logger} from '../lib/logger';
@@ -17,7 +18,7 @@ let rejectIfNoResult = data => {
 }
 
 function getShowIdByTvdbId(tvdbId: number): Promise<number> {
-    if (!isNumric(series.tvdbId)) {
+    if (!isNumric(tvdbId)) {
         return Promise.reject('Invalid tvdbId');
     }
 
@@ -26,11 +27,12 @@ function getShowIdByTvdbId(tvdbId: number): Promise<number> {
         .from(series.$table)
         .where(series.tvdbId, tvdbId)
         .catch(catchDbError)
-        .then(rejectIfNoResult);
+        .then(rejectIfNoResult)
+        .then(result => result.id);
 }
 
 function getShowIdByImdbId(imdbId: string): Promise<number> {
-    if (!isNumric(series.imdbId)) {
+    if (!isNumric(imdbId)) {
         return Promise.reject('Invalid imdbId');
     }
 
@@ -39,11 +41,12 @@ function getShowIdByImdbId(imdbId: string): Promise<number> {
         .from(series.$table)
         .where(series.imdbId, imdbId)
         .catch(catchDbError)
-        .then(rejectIfNoResult);
+        .then(rejectIfNoResult)
+        .then(result => result.id);
 }
 
 function getShowById(id: number): Promise<number> {
-    if (!isNumric(series.id)) {
+    if (!isNumric(id)) {
         return Promise.reject('Invalid id');
     }
 
@@ -52,13 +55,18 @@ function getShowById(id: number): Promise<number> {
         .from(series.$table)
         .where(series.id, id)
         .catch(catchDbError)
-        .then(rejectIfNoResult);
+        .then(rejectIfNoResult)
+        .then(result => result.id);
 }
 
 function addEpisodesAsWatched(watchedEpisodes: Array<WatchedEpisodeDatabase>): Promise<void> {
+    if (!Array.isArray(watchedEpisodes) || watchedEpisodes.length === 0) {
+        return Promise.reject('Invalid data to insert');
+    }
+
     return database
         .insert(watchedEpisodes)
-        .into(series.$table)
+        .into(watchedEpisode.$table)
         .catch(catchDbError);
 }
 
