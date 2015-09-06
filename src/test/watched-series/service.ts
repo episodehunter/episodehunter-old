@@ -1,9 +1,9 @@
 import {assert} from 'chai';
-import {watchedShowService} from '../../watched-series/service';
+import {watchedShowService} from '../../watched-show/service';
 import {WatchedShow} from 'eh-domain/model/scrobble/sync';
 import {watchedEpisode} from '../../episodehunter-messages/database/watched-episode';
 
-describe('Watched series service', () => {
+describe('Watched show service', () => {
     let orginalDateNow = Date.now;
     let timeMock = 1441528727000;
 

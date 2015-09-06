@@ -3,7 +3,7 @@ import {queue, Job} from './lib/queue';
 import {logger} from './lib/logger';
 import {scrobble} from './episodehunter-messages/queue/scrobble';
 import {episodeHandler} from './episodehunter-messages/queue/episode-handler';
-import {watchedShowService} from './watched-series/service';
+import {watchedShowService} from './watched-show/service';
 import {MissingShowError} from './error/missing-show.error';
 
 queue.process(scrobble.sync.watched.show.add, 1, (job: Job, done) => {
