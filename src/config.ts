@@ -1,7 +1,7 @@
 const config = {
     appName: 'episodehunter-scrobbler',
     logger: {
-        level: 'info',
+        level: 'debug',
         filePath: `../../log/episodehunter-scrobbler.txt`
     },
     db: {
