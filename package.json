@@ -11,6 +11,7 @@
     "bunyan": "^1.4.0",
     "knex": "^0.8.6",
     "kue": "^0.9.4",
+    "lodash": "^3.10.1",
     "mysql": "^2.9.0"
   },
   "devDependencies": {
