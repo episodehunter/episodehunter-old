@@ -1,0 +1,59 @@
+import {WatchedShow, WatchedEpisodeDatabase} from 'eh-domain/model/scrobble/sync';
+import {now, int} from '../lib/utility';
+import {isNumric, isDefined} from '../lib/national-guard';
+import {showRepository as repo} from './repository';
+import {watchedEpisode} from '../episodehunter-messages/database/watched-episode';
+import {MissingShowError} from '../error/missing-show.error';
+
+function addEpisodesAsWatched(show: WatchedShow, userId: number) {
+    return findShowId(show)
+        .then(id => repo.addEpisodesAsWatched(extractEpisodes(show, id, userId)));
+}
+
+function findShowId(show: WatchedShow): Promise<number> {
+    return repo.getShowById(show.ids.id)
+        .catch(() => repo.getShowIdByTvdbId(show.ids.tvdbId))
+        .catch(() => repo.getShowIdByImdbId(show.ids.imdbId))
+        .catch(() => {
+            return Promise.reject(new MissingShowError('Can not find show id'));
+        });
+}
+
+function extractEpisodes(show: WatchedShow, showId: number, userId: number): Array<WatchedEpisodeDatabase> {
+    let result = [];
+
+    if (!Array.isArray(show.seasons)) {
+        return result;
+    }
+
+    Object.keys(show.seasons).forEach(season => {
+        let episodes = show.seasons[season];
+        if (!isDefined(season) || !Array.isArray(episodes)) {
+            return;
+        }
+
+        episodes
+            .forEach(episode => {
+                if (!isNumric(userId, showId, season, episode)) {
+                    return;
+                }
+
+                result.push({
+                    [watchedEpisode.userId]: int(userId),
+                    [watchedEpisode.showId]: int(showId),
+                    [watchedEpisode.season]: int(season),
+                    [watchedEpisode.episode]: int(episode),
+                    [watchedEpisode.time]: now()
+                });
+            });
+    });
+
+    return result;
+}
+
+
+let watchedShowService = {
+    addEpisodesAsWatched
+};
+
+export {watchedShowService};

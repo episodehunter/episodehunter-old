@@ -1,0 +1,17 @@
+{
+  "name": "episodehunter-scrobler",
+  "version": "1.0.0",
+  "main": "service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
+  "license": "MIT",
+  "dependencies": {
+    "bunyan": "^1.4.0",
+    "knex": "^0.8.6",
+    "kue": "^0.9.4",
+    "mysql": "^2.9.0"
+  },
+  "devDependencies": {}
+}
