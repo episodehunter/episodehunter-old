@@ -1,5 +1,5 @@
 import {WatchedShow} from 'eh-domain/model/scrobble/sync';
-import {queue, Job} from './lib/queue';
+import {queue, Job, addToQueue} from './lib/queue';
 import {logger} from './lib/logger';
 import {scrobble} from './episodehunter-messages/queue/scrobble';
 import {episodeHandler} from './episodehunter-messages/queue/episode-handler';
@@ -25,8 +25,12 @@ queue.process(scrobble.sync.watched.show.add, 1, (job: Job, done) => {
             if (error instanceof MissingShowError) {
                 // The show is missing
                 // Add it and try agin later
-                queue.create(episodeHandler.show.add, watchedShow.ids);
-                done(error);
+                logger.debug(error.message);
+                addToQueue(episodeHandler.show.add, watchedShow.ids, {
+                    attempts: 3,
+                    backoff: {delay: 60000, type: 'fixed'}
+                });
+                done(error.message);
             } else {
                 // Something bad has happened
                 // There's blood everywhere
