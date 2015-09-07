@@ -4,7 +4,6 @@ import {logger} from './lib/logger';
 import {scrobble} from './episodehunter-messages/queue/scrobble';
 import {episodeHandler} from './episodehunter-messages/queue/episode-handler';
 import {addWatchedShowService} from './watched-show/add.service';
-import {getWatchedShowService} from './watched-show/get.service';
 import {MissingShowError} from './error/missing-show.error';
 
 queue.process(scrobble.sync.watched.show.add, 1, (job: Job, done) => {
@@ -51,7 +50,7 @@ queue.process(scrobble.sync.watched.show.get, 10, (job: Job, done) => {
     }
 
     let userId: number = job.data.userId;
-    getWatchedShowService.getWatchedShows(userId)
+    addWatchedShowService.getWatchedShows(userId)
         .then(data => done(undefined, data))
         .catch(error => {
             logger.error(error);
