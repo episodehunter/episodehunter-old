@@ -1,6 +1,6 @@
 declare module 'eh-domain/model/scrobble/sync' {
 
-    interface WatchedMovie {
+    export interface WatchedMovie {
         ids: {
             id: number;
             theMoveDb: number;
@@ -9,6 +9,14 @@ declare module 'eh-domain/model/scrobble/sync' {
         year: number;
         title: string;
         orginalTitle: string;
+    }
+
+    export interface WatchedMovieDatabase {
+        id?: number;
+        user_id: number;
+        movie_id: number;
+        time: number;
+        type: number;
     }
 
 }
