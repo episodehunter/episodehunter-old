@@ -1,30 +1,27 @@
-import {WatchedShow, WatchedEpisodeDatabase} from 'eh-domain/model/scrobble/sync';
-
-import {isNumric, isDefined} from '../lib/national-guard';
-import {showRepository as repo} from './add.repository';
-import {watchedEpisode} from '../episodehunter-messages/database/watched-episode';
 import {chain, pluck} from 'lodash';
+import {WatchedShow} from 'eh-domain/model/scrobble/sync';
+import * as setRepo from './set-watched.repository';
+import * as getRepo from './get-watched.repository';
 import {extractYear} from '../lib/utility';
-import {getWatchedEpisodes} from './get.repository';
-
 import {MissingShowError} from '../error/missing-show.error';
 
-function addEpisodesAsWatched(show: WatchedShow, userId: number) {
+
+function setEpisodesAsWatched(show: WatchedShow, userId: number) {
     return findShowId(show)
-        .then(id => repo.addShowAsWatched(show, id, userId));
+        .then(id => setRepo.setShowAsWatched(show, id, userId));
 }
 
 function findShowId(show: WatchedShow): Promise<number> {
-    return repo.getShowById(show.ids.id)
-        .catch(() => repo.getShowIdByTvdbId(show.ids.tvdbId))
-        .catch(() => repo.getShowIdByImdbId(show.ids.imdbId))
+    return setRepo.getShowById(show.ids.id)
+        .catch(() => setRepo.getShowIdByTvdbId(show.ids.tvdbId))
+        .catch(() => setRepo.getShowIdByImdbId(show.ids.imdbId))
         .catch(() => {
             return Promise.reject(new MissingShowError('Can not find show id'));
         });
 }
 
-function getWatchedShows(userId: number) {
-    return getWatchedEpisodes(userId)
+function getWatchedEpisodes(userId: number) {
+    return getRepo.getWatchedEpisodes(userId)
         .then(data => {
             return <any>chain(data)
                 .groupBy('show_id')
@@ -47,11 +44,4 @@ function getWatchedShows(userId: number) {
         });
 }
 
-
-let addWatchedShowService = {
-    addEpisodesAsWatched,
-    findShowId,
-    getWatchedShows
-};
-
-export {addWatchedShowService};
+export {setEpisodesAsWatched, getWatchedEpisodes};

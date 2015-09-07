@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {addWatchedShowService} from '../../watched-show/add.service';
+import {extractEpisodes} from '../../watched-episodes/set-watched.repository';
 import {WatchedShow} from 'eh-domain/model/scrobble/sync';
 import {watchedEpisode} from '../../episodehunter-messages/database/watched-episode';
 
@@ -39,17 +39,19 @@ describe('Watched show service', () => {
                 [watchedEpisode.showId]: showId,
                 [watchedEpisode.season]: 1,
                 [watchedEpisode.episode]: 1,
-                [watchedEpisode.time]: 1441528727
+                [watchedEpisode.time]: 1441528727,
+                [watchedEpisode.type]: 1
             }, {
                 [watchedEpisode.userId]: userId,
                 [watchedEpisode.showId]: showId,
                 [watchedEpisode.season]: 2,
                 [watchedEpisode.episode]: 2,
-                [watchedEpisode.time]: 1441528727
+                [watchedEpisode.time]: 1441528727,
+                [watchedEpisode.type]: 1
             }];
 
             // Act
-            let episodes = addWatchedShowService.extractEpisodes(show, showId, userId);
+            let episodes = extractEpisodes(show, showId, userId);
 
             // Assert
             assert.isArray(episodes);
@@ -79,11 +81,12 @@ describe('Watched show service', () => {
                 [watchedEpisode.showId]: showId,
                 [watchedEpisode.season]: 1,
                 [watchedEpisode.episode]: 1,
-                [watchedEpisode.time]: 1441528727
+                [watchedEpisode.time]: 1441528727,
+                [watchedEpisode.type]: 1
             }];
 
             // Act
-            let episodes = addWatchedShowService.extractEpisodes(show, showId, userId);
+            let episodes = extractEpisodes(show, showId, userId);
 
             // Assert
             assert.isArray(episodes);
@@ -109,7 +112,7 @@ describe('Watched show service', () => {
             };
 
             // Act
-            let episodes = addWatchedShowService.extractEpisodes(show, showId, userId);
+            let episodes = extractEpisodes(show, showId, userId);
 
             // Assert
             assert.isArray(episodes);
@@ -134,7 +137,7 @@ describe('Watched show service', () => {
             };
 
             // Act
-            let episodes = addWatchedShowService.extractEpisodes(show, showId, userId);
+            let episodes = extractEpisodes(show, showId, userId);
 
             // Assert
             assert.isArray(episodes);

@@ -1,23 +1,10 @@
 import {WatchedShow, WatchedEpisodeDatabase} from 'eh-domain/model/scrobble/sync';
-import {series} from '../episodehunter-messages/database/series';
-import {watchedEpisode} from '../episodehunter-messages/database/watched-episode';
-import {database} from '../lib/database';
-import {isNumric} from '../lib/national-guard';
-import {logger} from '../lib/logger';
-import {now, int} from '../lib/utility';
+import {series, watchedEpisode} from '../episodehunter-messages/database/index';
 import {scrobbleTypes} from '../episodehunter-messages/constant/scrobble-types';
+import {database} from '../lib/database';
+import {catchDbError, rejectIfNoResult} from '../lib/error-handler';
+import {now, int, isNumric} from '../lib/utility';
 
-let catchDbError = error => {
-    logger.fatal(error);
-    throw error;
-}
-
-let rejectIfNoResult = data => {
-    if (data === undefined || data === null) {
-        return Promise.reject(undefined);
-    }
-    return data;
-}
 
 function getShowIdByTvdbId(tvdbId: number): Promise<number> {
     if (!isNumric(tvdbId)) {
@@ -61,7 +48,7 @@ function getShowById(id: number): Promise<number> {
         .then(result => result.id);
 }
 
-function addEpisodesAsWatched(watchedEpisodes: Array<WatchedEpisodeDatabase>): Promise<void> {
+function setEpisodesAsWatched(watchedEpisodes: Array<WatchedEpisodeDatabase>): Promise<void> {
     if (!Array.isArray(watchedEpisodes) || watchedEpisodes.length === 0) {
         return Promise.reject('Invalid data to insert');
     }
@@ -72,8 +59,8 @@ function addEpisodesAsWatched(watchedEpisodes: Array<WatchedEpisodeDatabase>): P
         .catch(catchDbError);
 }
 
-function addShowAsWatched(watchedShow: WatchedShow, showId: number, userId: number): Promise<void> {
-    return addEpisodesAsWatched(
+function setShowAsWatched(watchedShow: WatchedShow, showId: number, userId: number): Promise<void> {
+    return setEpisodesAsWatched(
         extractEpisodes(watchedShow, showId, userId)
     );
 }
@@ -111,20 +98,11 @@ function extractEpisodes(show: WatchedShow, showId: number, userId: number): Arr
     return result;
 }
 
-
-const showRepository = {
-    getShowIdByImdbId,
-    getShowIdByTvdbId,
-    getShowById,
-    addEpisodesAsWatched,
-    extractEpisodes,
-    addShowAsWatched
-};
-
 export {
-    showRepository,
+    setShowAsWatched,
     getShowIdByImdbId,
     getShowIdByTvdbId,
     getShowById,
-    addEpisodesAsWatched
+    setEpisodesAsWatched,
+    extractEpisodes
 };

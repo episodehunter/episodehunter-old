@@ -2,9 +2,8 @@ import {WatchedMovie, WatchedMovieDatabase} from 'eh-domain/model/scrobble/sync'
 import {movie} from '../episodehunter-messages/database/movie';
 import {watchedMovie} from '../episodehunter-messages/database/watched-movie';
 import {database} from '../lib/database';
-import {isNumric} from '../lib/national-guard';
 import {logger} from '../lib/logger';
-import {now} from '../lib/utility';
+import {now, isNumric} from '../lib/utility';
 import {scrobbleTypes} from '../episodehunter-messages/constant/scrobble-types';
 
 let catchDbError = error => {
