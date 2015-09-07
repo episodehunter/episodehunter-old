@@ -32,7 +32,7 @@ function getShowIdByTvdbId(tvdbId: number): Promise<number> {
 }
 
 function getShowIdByImdbId(imdbId: string): Promise<number> {
-    if (!isNumric(imdbId)) {
+    if (typeof imdbId === 'string') {
         return Promise.reject('Invalid imdbId');
     }
 
