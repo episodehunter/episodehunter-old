@@ -4,6 +4,8 @@ import {watchedEpisode} from '../episodehunter-messages/database/watched-episode
 import {database} from '../lib/database';
 import {isNumric} from '../lib/national-guard';
 import {logger} from '../lib/logger';
+import {now, int} from '../lib/utility';
+import {scrobbleTypes} from '../episodehunter-messages/constant/scrobble-types';
 
 let catchDbError = error => {
     logger.fatal(error);
@@ -70,11 +72,53 @@ function addEpisodesAsWatched(watchedEpisodes: Array<WatchedEpisodeDatabase>): P
         .catch(catchDbError);
 }
 
+function addShowAsWatched(watchedShow: WatchedShow, showId: number, userId: number): Promise<void> {
+    return addEpisodesAsWatched(
+        extractEpisodes(watchedShow, showId, userId)
+    );
+}
+
+function extractEpisodes(show: WatchedShow, showId: number, userId: number): Array<WatchedEpisodeDatabase> {
+    let result = [];
+
+    if (!isNumric(userId, showId)) {
+        return result;
+    }
+
+    Object.keys(show.seasons).forEach(season => {
+        let episodes = show.seasons[season];
+        if (!isNumric(season) || !Array.isArray(episodes)) {
+            return;
+        }
+
+        episodes
+            .forEach(episode => {
+                if (!isNumric(episode)) {
+                    return;
+                }
+
+                result.push({
+                    [watchedEpisode.userId]: userId,
+                    [watchedEpisode.showId]: showId,
+                    [watchedEpisode.season]: int(season),
+                    [watchedEpisode.episode]: int(episode),
+                    [watchedEpisode.time]: now(),
+                    [watchedEpisode.type]: scrobbleTypes.xbmcSync
+                });
+            });
+    });
+
+    return result;
+}
+
+
 const showRepository = {
     getShowIdByImdbId,
     getShowIdByTvdbId,
     getShowById,
-    addEpisodesAsWatched
+    addEpisodesAsWatched,
+    extractEpisodes,
+    addShowAsWatched
 };
 
 export {
