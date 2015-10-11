@@ -1,9 +1,9 @@
 import {WatchedShow, WatchedEpisodeDatabase} from 'eh-domain/model/scrobble/sync';
 import {series, watchedEpisode} from '../episodehunter-messages/database/index';
-import {scrobbleTypes} from '../episodehunter-messages/constant/scrobble-types';
 import {database} from '../lib/database';
 import {catchDbError, rejectIfNoResult} from '../lib/error-handler';
-import {now, int, isNumric} from '../lib/utility';
+import {isNumric} from '../lib/utility';
+import {extractEpisodesFromGivenShow} from './transformer';
 
 
 function getShowIdByTvdbId(tvdbId: number): Promise<number> {
@@ -61,41 +61,8 @@ function setEpisodesAsWatched(watchedEpisodes: Array<WatchedEpisodeDatabase>): P
 
 function setShowAsWatched(watchedShow: WatchedShow, showId: number, userId: number): Promise<void> {
     return setEpisodesAsWatched(
-        extractEpisodes(watchedShow, showId, userId)
+        extractEpisodesFromGivenShow(watchedShow, showId, userId)
     );
-}
-
-function extractEpisodes(show: WatchedShow, showId: number, userId: number): Array<WatchedEpisodeDatabase> {
-    let result = [];
-
-    if (!isNumric(userId, showId)) {
-        return result;
-    }
-
-    Object.keys(show.seasons).forEach(season => {
-        let episodes = show.seasons[season];
-        if (!isNumric(season) || !Array.isArray(episodes)) {
-            return;
-        }
-
-        episodes
-            .forEach(episode => {
-                if (!isNumric(episode)) {
-                    return;
-                }
-
-                result.push({
-                    [watchedEpisode.userId]: userId,
-                    [watchedEpisode.showId]: showId,
-                    [watchedEpisode.season]: int(season),
-                    [watchedEpisode.episode]: int(episode),
-                    [watchedEpisode.time]: now(),
-                    [watchedEpisode.type]: scrobbleTypes.xbmcSync
-                });
-            });
-    });
-
-    return result;
 }
 
 export {
@@ -103,6 +70,5 @@ export {
     getShowIdByImdbId,
     getShowIdByTvdbId,
     getShowById,
-    setEpisodesAsWatched,
-    extractEpisodes
+    setEpisodesAsWatched
 };

@@ -1,9 +1,9 @@
 import {assert} from 'chai';
-import {extractEpisodes} from '../../watched-episodes/set-watched.repository';
+import {extractEpisodesFromGivenShow} from '../../watched-episodes/transformer';
 import {WatchedShow} from 'eh-domain/model/scrobble/sync';
 import {watchedEpisode} from '../../episodehunter-messages/database/watched-episode';
 
-describe('Watched show service', () => {
+describe('Show transformer', () => {
     let orginalDateNow = Date.now;
     let timeMock = 1441528727000;
 
@@ -15,7 +15,7 @@ describe('Watched show service', () => {
         Date.now = orginalDateNow;
     });
 
-    describe('extractEpisodes', () => {
+    describe('extractEpisodesFromGivenShow', () => {
 
         it(`Should extract episodes from a show`, () => {
             // Arrange
@@ -51,7 +51,7 @@ describe('Watched show service', () => {
             }];
 
             // Act
-            let episodes = extractEpisodes(show, showId, userId);
+            let episodes = extractEpisodesFromGivenShow(show, showId, userId);
 
             // Assert
             assert.isArray(episodes);
@@ -86,7 +86,7 @@ describe('Watched show service', () => {
             }];
 
             // Act
-            let episodes = extractEpisodes(show, showId, userId);
+            let episodes = extractEpisodesFromGivenShow(show, showId, userId);
 
             // Assert
             assert.isArray(episodes);
@@ -112,7 +112,7 @@ describe('Watched show service', () => {
             };
 
             // Act
-            let episodes = extractEpisodes(show, showId, userId);
+            let episodes = extractEpisodesFromGivenShow(show, showId, userId);
 
             // Assert
             assert.isArray(episodes);
@@ -137,7 +137,7 @@ describe('Watched show service', () => {
             };
 
             // Act
-            let episodes = extractEpisodes(show, showId, userId);
+            let episodes = extractEpisodesFromGivenShow(show, showId, userId);
 
             // Assert
             assert.isArray(episodes);
