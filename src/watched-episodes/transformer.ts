@@ -64,7 +64,7 @@ function transformEpisodesFromDB(data: Array<any>) {
                     .value()
             };
         })
-        .value()
+        .value();
 }
 
 export {
