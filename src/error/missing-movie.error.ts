@@ -1,5 +1,5 @@
 function MissingMovieError(message?: string) {
-    this.name = 'MissingShowError';
+    this.name = 'MissingMovieError';
     this.message = message || 'Can not find movie';
     this.stack = (new Error())['stack'];
 }
