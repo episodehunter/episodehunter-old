@@ -21,7 +21,7 @@ function getShowIdByTvdbId(tvdbId: number): Promise<number> {
 }
 
 function getShowIdByImdbId(imdbId: string): Promise<number> {
-    if (typeof imdbId === 'string') {
+    if (typeof imdbId !== 'string') {
         return Promise.reject('Invalid imdbId');
     }
 
