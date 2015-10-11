@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {extractEpisodesFromGivenShow} from '../../watched-episodes/transformer';
+import {extractEpisodesFromGivenShow, transformEpisodesFromDB} from '../../watched-episodes/transformer';
 import {WatchedShow} from 'eh-domain/model/scrobble/sync';
 import {watchedEpisode} from '../../episodehunter-messages/database/watched-episode';
 
@@ -14,6 +14,85 @@ describe('Show transformer', () => {
     after(() => {
         Date.now = orginalDateNow;
     });
+
+    describe('transformEpisodesFromDB', () => {
+
+       it('should extract a show object from watched shows', () => {
+
+           // Arrange
+           let watchedEpisodes = [
+               {
+                   show_id: 2,
+                   show_tvdb_id: 5,
+                   show_imdb_id: 'tt12345',
+                   show_title: 'Mr. Robot',
+                   show_first_aired: '2015-05-23',
+                   season: 1,
+                   episode: 1
+               }, {
+                   show_id: 2,
+                   show_tvdb_id: 5,
+                   show_imdb_id: 'tt12345',
+                   show_title: 'Mr. Robot',
+                   show_first_aired: '2015-05-23',
+                   season: 1,
+                   episode: 2
+               }, {
+                   show_id: 2,
+                   show_tvdb_id: 5,
+                   show_imdb_id: 'tt12345',
+                   show_title: 'Mr. Robot',
+                   show_first_aired: '2015-05-23',
+                   season: 2,
+                   episode: 1
+               }, {
+                   show_id: 3,
+                   show_tvdb_id: 6,
+                   show_imdb_id: 'tt12346',
+                   show_title: 'Dexter',
+                   show_first_aired: '2003-05-23',
+                   season: 1,
+                   episode: 1
+               }
+           ];
+
+           // Act
+           let shows = transformEpisodesFromDB(watchedEpisodes);
+
+           // Assert
+           assert.isArray(shows);
+           assert.lengthOf(shows, 2);
+           assert.deepEqual(shows[0], {
+               ids: {
+                   id: 2,
+                   tvdb: 5,
+                   imdb: 'tt12345'
+               },
+               year: 2015,
+               title: 'Mr. Robot',
+               seasons: {
+                   1: [1, 2],
+                   2: [1]
+               }
+           });
+           assert.deepEqual(shows[1], {
+               ids: {
+                   id: 3,
+                   tvdb: 6,
+                   imdb: 'tt12346'
+               },
+               year: 2003,
+               title: 'Dexter',
+               seasons: {
+                   1: [1]
+               }
+           });
+
+       });
+
+    })
+
+
 
     describe('extractEpisodesFromGivenShow', () => {
 
