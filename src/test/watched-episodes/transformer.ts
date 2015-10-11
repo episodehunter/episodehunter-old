@@ -1,6 +1,6 @@
 import {assert} from 'chai';
-import {extractEpisodesFromGivenShow, transformEpisodesFromDB} from '../../watched-episodes/transformer';
 import {WatchedShow} from 'eh-domain/model/scrobble/sync';
+import {extractEpisodesFromGivenShow, transformEpisodesFromDB} from '../../watched-episodes/transformer';
 import {watchedEpisode} from '../../episodehunter-messages/database/watched-episode';
 
 describe('Show transformer', () => {
@@ -15,7 +15,7 @@ describe('Show transformer', () => {
         Date.now = orginalDateNow;
     });
 
-    describe('transformEpisodesFromDB', () => {
+    describe('Transform episodes from DB', () => {
 
        it('should extract a show object from watched shows', () => {
 
@@ -90,9 +90,7 @@ describe('Show transformer', () => {
 
        });
 
-    })
-
-
+   });
 
     describe('extractEpisodesFromGivenShow', () => {
 
