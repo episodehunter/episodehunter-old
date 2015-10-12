@@ -1,0 +1,22 @@
+{
+  "name": "episodehunter-show-handler",
+  "version": "1.0.0",
+  "main": "",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha dest/test/ --recursive"
+  },
+  "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
+  "license": "MIT",
+  "dependencies": {
+    "bunyan": "^1.4.0",
+    "knex": "^0.8.6",
+    "kue": "^0.9.4",
+    "lodash": "^3.10.1",
+    "mysql": "^2.9.0"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "mocha": "^2.3.0",
+    "mock-knex": "^0.2.2"
+  }
+}
