@@ -1,7 +1,14 @@
-import {createQueue, Job} from 'kue';
+import {Queue, createQueue, Job} from 'kue';
 import {config} from '../config';
 
-const queue = createQueue(config.redis);
+let queue: Queue = undefined;
+
+function connect() {
+    if (queue === undefined) {
+        queue = createQueue(config.redis);
+    }
+    return queue;
+}
 
 function addToQueue(jobName: string, payload: any, options: any = {}): void {
     const job = queue.create(jobName, payload);
