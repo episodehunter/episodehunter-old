@@ -1,7 +1,7 @@
 import {ShowIds} from 'eh-domain/model/handler/new';
 import {episode as episodeTable} from '../episodehunter-messages/database/episode';
 import {series as showTable} from '../episodehunter-messages/database/series';
-import {TvdbEpisode, TvdbShow} from '../thetvdb/tvdb-show.model';
+import {TvdbEpisode, TvdbShow} from '../thetvdb/tvdb.model';
 
 
 function transformEpisodesForDBinsert(showId: ShowIds, tvdbEpisodes: TvdbEpisode[]) {

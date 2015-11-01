@@ -1,10 +1,10 @@
 import {createQueue, Job} from 'kue';
 import {config} from '../config';
 
-let queue = createQueue(config.redis);
+const queue = createQueue(config.redis);
 
 function addToQueue(jobName: string, payload: any, options: any = {}): void {
-    let job = queue.create(jobName, payload);
+    const job = queue.create(jobName, payload);
 
     if (options.removeOnComplete !== false) {
         job.removeOnComplete(true);

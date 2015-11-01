@@ -25,4 +25,5 @@ const config = {
     tvdbAPIkey: ''
 }
 
+export default config;
 export {config};
