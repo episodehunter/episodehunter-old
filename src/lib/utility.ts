@@ -22,6 +22,15 @@ let isDefined = (...args) => {
     return !args.some(val => (val === undefined || val === null));
 };
 
+export default {
+    as,
+    extractYear,
+    int,
+    isDefined,
+    isNumric,
+    now,
+    parseInteger
+};
 export {
     as,
     extractYear,

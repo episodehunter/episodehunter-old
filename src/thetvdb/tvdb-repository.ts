@@ -3,7 +3,7 @@ const got = require('got');
 import config from '../config';
 import {TvdbShow} from './tvdb.model';
 import tvDbFactory from './tvdb-model.factory';
-import parseXmlString from '../lib/xml-parser';
+import xmlParser from '../lib/xml-parser';
 
 const MIRROR = 'http://thetvdb.com';
 
@@ -21,7 +21,7 @@ class TvDbRepository {
                 if (!body) {
                     return Promise.reject('Bad response from server');
                 }
-                return parseXmlString(body);
+                return xmlParser.parseXmlString(body);
             })
             .then(({Data}) => tvDbFactory(Data));
     }

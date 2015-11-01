@@ -1,7 +1,6 @@
 import {Parser} from 'xml2js';
 import {inject} from 'autoinject';
 
-
 const parser = new Parser({explicitArray: false});
 
 function parseXmlString(xmlString: string) {
@@ -16,5 +15,5 @@ function parseXmlString(xmlString: string) {
     });
 }
 
-export default parseXmlString;
+export default {parseXmlString};
 export {parseXmlString};

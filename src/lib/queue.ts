@@ -21,4 +21,5 @@ function addToQueue(jobName: string, payload: any, options: any = {}): void {
     job.save();
 }
 
-export {queue, Job, addToQueue};
+export default {connect, Job, addToQueue};
+export {connect, Job, addToQueue};

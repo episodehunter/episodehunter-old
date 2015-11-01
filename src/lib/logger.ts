@@ -16,4 +16,5 @@ let logger = createLogger(<any>{
     }]
 });
 
+export default logger;
 export {logger};
