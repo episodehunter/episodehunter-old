@@ -17,13 +17,13 @@ class TvDbRepository {
     getShow(tvdbid: number): Promise<TvdbShow> {
         const url = `${MIRROR}/api/${config.tvdbAPIkey}/series/${tvdbid}/all/en.xml`;
         return this.got(url)
-            .then(({xmlBody}) => {
-                if (!xmlBody) {
+            .then(({body}) => {
+                if (!body) {
                     return Promise.reject('Bad response from server');
                 }
-                return parseXmlString(xmlBody);
+                return parseXmlString(body);
             })
-            .then(tvDbFactory);
+            .then(({Data}) => tvDbFactory(Data));
     }
 
 }

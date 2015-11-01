@@ -1,10 +1,11 @@
+import {int} from '../lib/utility';
 import {TvdbShowResponse} from './typings/tvdb-show-response';
 import {TvdbShow} from './tvdb.model';
 
 function tvDbFactory(response: TvdbShowResponse) {
     let show = new TvdbShow();
     let series = response.Series;
-    show.id = series.id;
+    show.id = int(series.id);
     show.imdb = series.IMDB_ID;
     show.name = series.SeriesName;
     show.airs = {
@@ -16,7 +17,7 @@ function tvDbFactory(response: TvdbShowResponse) {
     show.language = series.Language;
     show.network = series.Network;
     show.overview = series.Overview;
-    show.runtime = series.Runtime;
+    show.runtime = int(series.Runtime);
     show.status = series.Status;
     show.fanart = series.fanart;
     show.poster = series.poster;
@@ -25,10 +26,10 @@ function tvDbFactory(response: TvdbShowResponse) {
     if (response.Episode) {
         let pushEpisode = episode => {
             show.episodes.push({
-                id: episode.id,
+                id: int(episode.id),
                 name: episode.EpisodeName,
-                seasonNumber: episode.SeasonNumber,
-                episodeNumber: episode.EpisodeNumber,
+                seasonNumber: int(episode.SeasonNumber),
+                episodeNumber: int(episode.EpisodeNumber),
                 firstAired: episode.FirstAired,
                 overview: episode.Overview,
                 thumbnail: episode.filename
