@@ -1,4 +1,3 @@
-import {TvdbShowResponse} from './typings/tvdb-show-response';
 
 class TvdbEpisode {
     id: number;

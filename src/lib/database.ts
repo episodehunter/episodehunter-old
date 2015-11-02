@@ -1,5 +1,5 @@
 import {config} from '../config';
-import Knex = require('knex');
+const Knex = require('knex');
 
 let knex = undefined;
 

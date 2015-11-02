@@ -3,7 +3,6 @@ import {episode as episodeTable} from '../episodehunter-messages/database/episod
 import {series as showTable} from '../episodehunter-messages/database/series';
 import {TvdbEpisode, TvdbShow} from '../thetvdb/tvdb.model';
 
-
 function transformEpisodesForDBinsert(showId: ShowIds, tvdbEpisodes: TvdbEpisode[]) {
     let result = [];
     tvdbEpisodes.forEach(episode => {
@@ -37,3 +36,6 @@ function transformShowForDbInsert(show: TvdbShow) {
         [showTable.status]: show.status
     };
 }
+
+export default {transformEpisodesForDBinsert, transformShowForDbInsert};
+export {transformEpisodesForDBinsert, transformShowForDbInsert};

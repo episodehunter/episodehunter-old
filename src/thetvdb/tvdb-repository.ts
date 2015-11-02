@@ -19,7 +19,7 @@ class TvDbRepository {
         return this.got(url)
             .then(({body}) => {
                 if (!body) {
-                    return Promise.reject('Bad response from server');
+                    return Promise.reject<string>('Bad response from server');
                 }
                 return xmlParser.parseXmlString(body);
             })

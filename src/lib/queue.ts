@@ -1,4 +1,4 @@
-import {Queue, createQueue, Job} from 'kue';
+import {Queue, createQueue} from 'kue';
 import {config} from '../config';
 
 let queue: Queue = undefined;
@@ -28,5 +28,5 @@ function addToQueue(jobName: string, payload: any, options: any = {}): void {
     job.save();
 }
 
-export default {connect, Job, addToQueue};
-export {connect, Job, addToQueue};
+export default {connect, addToQueue};
+export {connect, addToQueue};

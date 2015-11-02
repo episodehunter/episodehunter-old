@@ -3,7 +3,7 @@ import {inject} from 'autoinject';
 
 const parser = new Parser({explicitArray: false});
 
-function parseXmlString(xmlString: string) {
+function parseXmlString(xmlString: string): Promise<string> {
     return new Promise((resolve, reject) => {
         parser.parseString(xmlString, (err, result) => {
             if (err) {
