@@ -4,6 +4,10 @@ import ShowDbReposetory from './show-db.repository';
 import transformer from './thetvdb.transformer';
 
 class ShowService {
+    /**
+     * TODO: Add interface and inject this property
+     */
+    logger;
     theTvDbRepo: TvDbRepository;
     showDbRepo: ShowDbReposetory;
 
@@ -12,12 +16,15 @@ class ShowService {
         this.showDbRepo = showDbRepo;
     }
 
-    async addNewShow(ids: ShowIds) {
+    async addNewShow(ids: ShowIds): Promise<string|any[]> {
         const id = ids.tvdbId;
 
-        var k = await this.showDbRepo
-            .getShowIdByTvdbId(ids.tvdbId)
-            .catch(() => this.theTvDbRepo.getShow(ids.tvdbId))
+        if (await this.showDbRepo.serieExistWithTvdbId(id)) {
+            this.logger.info(`Show alrady exist, the tv db: ${id}`);
+            return;
+        }
+
+        return await this.theTvDbRepo.getShow(ids.tvdbId)
             .then(this.insertTheTvDbModelInToDb)
             .then(this.insertTheTvDbEpisodesInToDb);
     }

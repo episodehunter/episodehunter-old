@@ -17,9 +17,12 @@ q.process(showIngestor.add, 1, (job, done) => {
 
     const showController = dependencyInjection<ShowController>(ShowController);
 
-    showController.addNewShow(job.data.ids)
-        .then(data => done(undefined, data))
-        .catch(error => done(error));
+    try {
+        showController.addNewShow(job.data.ids);
+        done();
+    } catch (error) {
+        done(error);
+    }
 });
 
 logger.info('Hello friend');

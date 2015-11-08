@@ -12,7 +12,7 @@ class ShowDbReposetory {
         this.db = db.connect();
     }
 
-    getShowIdByTvdbId(tvdbId: number): Promise<number|string> {
+    serieExistWithTvdbId(tvdbId: number): Promise<boolean|string> {
         if (!util.isNumric(tvdbId)) {
             return Promise.reject<string>('Invalid tvdbId');
         }
@@ -22,8 +22,12 @@ class ShowDbReposetory {
             .from(series.$table)
             .where(series.tvdbId, tvdbId)
             .catch(errorHandler.catchDbError)
-            .then(errorHandler.rejectIfNoResult)
-            .then(result => result.id);
+            .then(result => {
+                if (result && result.id) {
+                    return true;
+                }
+                return false;
+            });
     }
 
     insertNewShow(show) {
