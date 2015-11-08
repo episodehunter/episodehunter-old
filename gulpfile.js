@@ -16,11 +16,11 @@ gulp.task('typescript', () =>  {
         .pipe(sourcemaps.init())
         .pipe(ts(tsProject))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('.tmp'));
+        .pipe(gulp.dest('.temp'));
 });
 
 gulp.task('build', ['typescript'], () => {
-    return gulp.src('.tmp/**/*.js')
+    return gulp.src('.temp/**/*.js')
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(babel({
             presets: ['es2015']
