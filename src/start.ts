@@ -15,7 +15,7 @@ q.process(showIngestor.add, 1, (job, done) => {
         return;
     }
 
-    const showController = dependencyInjection<ShowController>(ShowController);
+    const showController: ShowController = dependencyInjection(ShowController);
 
     try {
         showController.addNewShow(job.data.ids);
