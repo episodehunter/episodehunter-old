@@ -38,3 +38,6 @@ gulp.task('copy-test-data', function () {
 gulp.task('build:watch', ['build'], () => {
     gulp.watch('src/**/*.ts', ['build']);
 });
+
+gulp.task('setup', ['build', 'copy-test-data']);
+gulp.task('default', ['setup']);
