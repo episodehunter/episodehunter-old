@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "",
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha dest/tests/ --recursive",
     "setup": "npm install && tsd reinstall && tsd link && gulp build && echo 'Nice!'",
+    "test": "node_modules/mocha/bin/mocha dist/tests/ --recursive",
     "test:watch": "node_modules/mocha/bin/mocha dest/tests/ --recursive --watch",
     "test:debug": "node_modules/mocha/bin/mocha dest/tests/ --recursive --debug-brk"
   },
