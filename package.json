@@ -5,8 +5,8 @@
   "scripts": {
     "setup": "npm install && tsd reinstall && tsd link && gulp setup && echo 'Nice!'",
     "test": "node_modules/mocha/bin/mocha dist/tests/ --recursive",
-    "test:watch": "node_modules/mocha/bin/mocha dest/tests/ --recursive --watch",
-    "test:debug": "node_modules/mocha/bin/mocha dest/tests/ --recursive --debug-brk"
+    "test:watch": "node_modules/mocha/bin/mocha dist/tests/ --recursive --watch",
+    "test:debug": "node_modules/mocha/bin/mocha dist/tests/ --recursive --debug-brk"
   },
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
