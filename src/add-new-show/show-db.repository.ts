@@ -36,9 +36,9 @@ class ShowDbReposetory {
             .into(series.$table);
     }
 
-    insertNewEpisodes(episodes) {
+    insertNewEpisodes(episodes): Promise<any[]|string> {
         if (!Array.isArray(episodes)) {
-            throw new Error('Episodes must be of type array');
+            return Promise.reject<string>('Episodes must be of type array');
         }
 
         let result = [];

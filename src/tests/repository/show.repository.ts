@@ -25,55 +25,83 @@ describe('Show DB repository', () => {
         tracker.uninstall();
     });
 
-    it('Should make a select when searching for the-tv-db id', () => {
-        // Arrange
-        const id = 7;
-        tracker.on('query', query => query.response({id}));
+    describe('Searching for show', () => {
 
-        // Act and assert
-        return repo.serieExistWithTvdbId(id)
-            .then(result => {
-                assert.strictEqual(tracker.queries.count(), 1);
+        it('Should make exact one db call', () => {
+            // Arrange
+            const id = 7;
+            tracker.on('query', query => {
+                query.response({id});
             });
+
+            // Act
+            return repo.serieExistWithTvdbId(id)
+                .then(result => {
+                    assert.strictEqual(tracker.queries.count(), 1);
+                });
+        });
+
+        it('Should return true if match was found', () => {
+            // Arrange
+            const id = 7;
+            tracker.on('query', query => query.response({id}));
+
+            // Act and assert
+            return repo.serieExistWithTvdbId(id)
+                .then(result => {
+                    assert.strictEqual(result, true);
+                });
+        });
+
+        it('Should return false if not match was found', () => {
+            // Arrange
+            const id = 7;
+            tracker.on('query', query => query.response(undefined));
+
+            // Act and assert
+            return repo.serieExistWithTvdbId(id)
+                .then(result => {
+                    assert.strictEqual(result, false);
+                });
+        });
+
+        it('Should not reject even if no match', () => {
+            // Arrange
+            const id = 7;
+            tracker.on('query', query => query.response(undefined));
+
+            // Act and assert
+            return repo.serieExistWithTvdbId(id);
+        });
     });
 
-    it('Should return true if match was found', done => {
-        // Arrange
-        const id = 7;
-        tracker.on('query', query => query.response({id}));
+    describe('Insert show', () => {
 
-        // Act and assert
-        repo.serieExistWithTvdbId(id)
-            .then(result => {
-                assert.strictEqual(result, true);
-                done();
+        it('Should make three inserts', () => {
+            // Arrange
+            const episodes = Array(120).fill({
+                'serie_name': 'Lost'
             });
-    });
+            tracker.on('query', query => query.response(undefined));
 
-    it('Should return false if not match was found', done => {
-        // Arrange
-        const id = 7;
-        tracker.on('query', query => query.response(undefined));
+            // Act
+            return repo.insertNewEpisodes(episodes)
+                .then(() => {
+                    assert.strictEqual(tracker.queries.count(), 3);
+                });
+        });
 
-        // Act and assert
-        repo.serieExistWithTvdbId(id)
-            .then(result => {
-                assert.strictEqual(result, false);
-                done();
-            });
-    });
+        it('Should reject if passing non-array', done => {
+            // Arrange
+            const episodes = undefined;
 
-    it('Should not reject even if no match', done => {
-        // Arrange
-        const id = 7;
-        tracker.on('query', query => query.response(undefined));
+            // Act
+            repo.insertNewEpisodes(episodes)
+                .catch(() => {
+                    done();
+                });
+        });
 
-        // Act and assert
-        repo.serieExistWithTvdbId(id)
-            .then(result => {
-                assert.strictEqual(tracker.queries.count(), 1);
-                done();
-            });
     });
 
 });
