@@ -1,6 +1,6 @@
 import {assert} from 'chai';
-import tvDbFactory from '../../thetvdb/tvdb-model.factory';
-import TvdbShow from '../../thetvdb/tvdb.model';
+import tvDbFactory from '../../../thetvdb/tvdb-model.factory';
+import TvdbShow from '../../../thetvdb/tvdb.model';
 
 describe('The TV DB model factory', () => {
 
