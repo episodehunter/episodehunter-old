@@ -31,20 +31,46 @@ describe('Show DB repository', () => {
         tracker.on('query', query => query.response({id}));
 
         // Act and assert
-        return repo.getShowIdByTvdbId(id)
+        return repo.serieExistWithTvdbId(id)
             .then(result => {
                 assert.strictEqual(tracker.queries.count(), 1);
             });
     });
 
-    it('Should reject if no match', done => {
+    it('Should return true if match was found', done => {
+        // Arrange
+        const id = 7;
+        tracker.on('query', query => query.response({id}));
+
+        // Act and assert
+        repo.serieExistWithTvdbId(id)
+            .then(result => {
+                assert.strictEqual(result, true);
+                done();
+            });
+    });
+
+    it('Should return false if not match was found', done => {
         // Arrange
         const id = 7;
         tracker.on('query', query => query.response(undefined));
 
         // Act and assert
-        repo.getShowIdByTvdbId(id)
-            .catch(result => {
+        repo.serieExistWithTvdbId(id)
+            .then(result => {
+                assert.strictEqual(result, false);
+                done();
+            });
+    });
+
+    it('Should not reject even if no match', done => {
+        // Arrange
+        const id = 7;
+        tracker.on('query', query => query.response(undefined));
+
+        // Act and assert
+        repo.serieExistWithTvdbId(id)
+            .then(result => {
                 assert.strictEqual(tracker.queries.count(), 1);
                 done();
             });
