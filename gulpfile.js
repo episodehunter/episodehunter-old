@@ -11,7 +11,8 @@ let tsProject = ts.createProject('tsconfig.json', {
 gulp.task('typescript', () =>  {
     return gulp.src([
         'src/typings/typings.d.ts',
-        'src/**/*.ts'
+        'src/**/*.ts',
+        '!src/tests/testdata/*'
     ])
         .pipe(sourcemaps.init())
         .pipe(ts(tsProject))
@@ -29,3 +30,8 @@ gulp.task('build', ['typescript'], () => {
 });
 
 gulp.task('default', ['build']);
+gulp.task('copy-test-data', function () {
+    return gulp
+        .src('src/tests/testdata/*.js')
+        .pipe(gulp.dest('dist/tests/testdata'));
+});
