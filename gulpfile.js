@@ -29,9 +29,12 @@ gulp.task('build', ['typescript'], () => {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('default', ['build']);
 gulp.task('copy-test-data', function () {
     return gulp
         .src('src/tests/testdata/*.js')
         .pipe(gulp.dest('dist/tests/testdata'));
+});
+
+gulp.task('build:watch', ['build'], () => {
+    gulp.watch('src/**/*.ts', ['build']);
 });
