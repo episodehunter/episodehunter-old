@@ -1,3 +1,5 @@
+'use strict';
+
 import {Parser} from 'xml2js';
 import {inject} from 'autoinject';
 

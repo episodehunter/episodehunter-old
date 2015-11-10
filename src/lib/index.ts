@@ -1,4 +1,5 @@
-import {database} from './database';
+'use strict';
+
 import errorHandler from './error-handler';
 import {logger} from './logger';
 import queue from './queue';

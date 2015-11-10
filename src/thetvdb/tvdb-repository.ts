@@ -1,3 +1,5 @@
+'use strict';
+
 import {inject} from 'autoinject';
 const got = require('got');
 import config from '../config';

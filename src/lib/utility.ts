@@ -1,3 +1,5 @@
+'use strict';
+
 let now = () => Math.floor(Date.now() / 1000);
 let int = val => parseInt(val, 10);
 let as = (column, newName) => `${column} as ${newName}`;

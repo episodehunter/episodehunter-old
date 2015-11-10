@@ -1,3 +1,5 @@
+'use strict';
+
 import {ShowIds} from 'eh-domain/model/handler/new';
 import ShowService from './new-show.service';
 

@@ -1,3 +1,5 @@
+'use strict';
+
 import {join, normalize} from 'path';
 import {createLogger} from 'bunyan'
 import {config} from '../config';

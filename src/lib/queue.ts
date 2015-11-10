@@ -1,3 +1,5 @@
+'use strict';
+
 import {Queue, createQueue} from 'kue';
 import {config} from '../config';
 

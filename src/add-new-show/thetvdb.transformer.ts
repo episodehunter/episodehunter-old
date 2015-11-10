@@ -1,3 +1,5 @@
+'use strict';
+
 import {ShowIds} from 'eh-domain/model/handler/new';
 import {episode as episodeTable} from '../episodehunter-messages/database/episode';
 import {series as showTable} from '../episodehunter-messages/database/series';

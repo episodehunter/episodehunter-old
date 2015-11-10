@@ -1,3 +1,5 @@
+'use strict';
+
 import {logger} from '../lib/logger';
 
 let catchDbError = error => {

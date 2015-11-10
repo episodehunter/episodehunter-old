@@ -1,3 +1,5 @@
+'use strict';
+
 import {assert} from 'chai';
 import tvDbFactory from '../../../thetvdb/tvdb-model.factory';
 import TvdbShow from '../../../thetvdb/tvdb.model';

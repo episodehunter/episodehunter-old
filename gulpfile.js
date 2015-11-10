@@ -24,8 +24,12 @@ gulp.task('build', ['typescript'], () => {
     return gulp.src('.temp/**/*.js')
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(babel({
-            presets: ['es2015']
+            plugins: [
+                'transform-es2015-parameters',
+                'transform-es2015-destructuring'
+            ]
         }))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist'));
 });
 

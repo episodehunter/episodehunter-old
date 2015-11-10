@@ -1,3 +1,5 @@
+'use strict';
+
 import {assert} from 'chai';
 const Knex = require('knex');
 const mockKnex = require('mock-knex');

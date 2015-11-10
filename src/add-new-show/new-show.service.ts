@@ -1,3 +1,6 @@
+'use strict';
+
+
 import {ShowIds} from 'eh-domain/model/handler/new';
 import TvDbRepository from '../thetvdb/tvdb-repository';
 import ShowDbReposetory from './show-db.repository';

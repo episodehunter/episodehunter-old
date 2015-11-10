@@ -1,4 +1,5 @@
-import {inject} from 'autoinject';
+'use strict';
+
 import {series} from '../episodehunter-messages/database/series';
 import {episode as episodeTable} from '../episodehunter-messages/database/episode';
 import {database} from '../lib/database';

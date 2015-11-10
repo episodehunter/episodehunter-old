@@ -1,3 +1,5 @@
+'use strict';
+
 import {int} from '../lib/utility';
 import {TvdbShowResponse} from './typings/tvdb-show-response';
 import {TvdbShow} from './tvdb.model';
