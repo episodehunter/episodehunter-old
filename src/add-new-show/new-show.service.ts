@@ -28,15 +28,17 @@ class ShowService {
         }
 
         return await this.theTvDbRepo.getShow(ids.tvdbId)
-            .then(this.insertTheTvDbModelInToDb)
-            .then(this.insertTheTvDbEpisodesInToDb);
+            .then(show => this.insertTheTvDbModelInToDb(show))
+            .then(({showId, show}) => this.insertTheTvDbEpisodesInToDb({showId, show}));
     }
 
     insertTheTvDbModelInToDb(show) {
-        const showId = this.showDbRepo.insertNewShow(
+        return this.showDbRepo.insertNewShow(
             transformer.transformShowForDbInsert(show)
-        );
-        return {showId, show};
+        )
+        .then(showId => {
+            return {showId, show}
+        });
     }
 
     insertTheTvDbEpisodesInToDb({showId, show}) {
