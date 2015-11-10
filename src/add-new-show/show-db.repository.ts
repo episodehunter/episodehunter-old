@@ -47,7 +47,8 @@ class ShowDbReposetory {
             result.push(
                 this.db.insert(
                     episodes.splice(0, 50)
-                ).into(episodeTable.$table)
+                )
+                .into(episodeTable.$table)
             )
         }
 
