@@ -10,15 +10,15 @@ import xmlParser from '../lib/xml-parser';
 const MIRROR = 'http://thetvdb.com';
 
 class TvDbRepository {
-    got;
+    httpGet;
 
-    constructor(@inject(got) got) {
-        this.got = got;
+    constructor(httpGet = k) {
+        this.httpGet = httpGet;
     }
 
     getShow(tvdbid: number): Promise<TvdbShow> {
         const url = `${MIRROR}/api/${config.tvdbAPIkey}/series/${tvdbid}/all/en.xml`;
-        return this.got(url)
+        return this.httpGet(url)
             .then(({body}) => {
                 if (!body) {
                     return Promise.reject<string>('Bad response from server');
