@@ -1,5 +1,6 @@
 'use strict';
 
+import database from './database';
 import errorHandler from './error-handler';
 import {logger} from './logger';
 import queue from './queue';
