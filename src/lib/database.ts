@@ -12,4 +12,5 @@ function connect() {
     return knex;
 }
 
-export {knex as database};
+export default {connect};
+export {connect};
