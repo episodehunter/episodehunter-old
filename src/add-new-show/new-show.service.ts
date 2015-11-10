@@ -1,11 +1,13 @@
 'use strict';
 
-
+import {autoInject} from 'autoinject';
 import {ShowIds} from 'eh-domain/model/handler/new';
 import TvDbRepository from '../thetvdb/tvdb-repository';
 import ShowDbReposetory from './show-db.repository';
 import transformer from './thetvdb.transformer';
 
+
+@autoInject
 class ShowService {
     /**
      * TODO: Add interface and inject this property

@@ -1,8 +1,11 @@
 'use strict';
 
+import {autoInject} from 'autoinject';
 import {ShowIds} from 'eh-domain/model/handler/new';
 import ShowService from './new-show.service';
 
+
+@autoInject
 class ShowController {
     showService: ShowService;
 
