@@ -1,6 +1,6 @@
 'use strict';
 
-
+import './lib/polyfill';
 import {dependencyInjection} from 'autoinject';
 import queue from './lib/queue';
 import {logger} from './lib/logger';
