@@ -2,6 +2,7 @@
 
 import {autoInject} from 'autoinject';
 import {ShowIds} from 'eh-domain/model/handler/new';
+import logger from '../lib/logger';
 import TvDbRepository from '../thetvdb/tvdb-repository';
 import ShowDbReposetory from './show-db.repository';
 import transformer from './thetvdb.transformer';
@@ -9,10 +10,7 @@ import transformer from './thetvdb.transformer';
 
 @autoInject
 class ShowService {
-    /**
-     * TODO: Add interface and inject this property
-     */
-    logger;
+
     theTvDbRepo: TvDbRepository;
     showDbRepo: ShowDbReposetory;
 
@@ -25,7 +23,7 @@ class ShowService {
         const id = ids.tvdbId;
 
         if (await this.showDbRepo.serieExistWithTvdbId(id)) {
-            this.logger.info(`Show alrady exist, the tv db: ${id}`);
+            logger.info(`Show alrady exist, the tv db: ${id}`);
             return;
         }
 
