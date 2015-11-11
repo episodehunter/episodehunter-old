@@ -14,7 +14,7 @@ describe('The TV DB Repository', () => {
 
     beforeEach(() => {
         gotMock.reset();
-        repo = new TvDbRepository(gotMock);
+        repo = new TvDbRepository(<any>gotMock);
     });
 
     it('Should make a http call', () => {
