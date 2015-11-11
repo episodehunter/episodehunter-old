@@ -24,8 +24,13 @@ let isDefined = (...args) => {
     return !args.some(val => (val === undefined || val === null));
 };
 
+let currentUnixtime = () => {
+    return ((new Date()).getTime() / 1000) | 0;
+};
+
 export default {
     as,
+    currentUnixtime,
     extractYear,
     int,
     isDefined,
@@ -35,6 +40,7 @@ export default {
 };
 export {
     as,
+    currentUnixtime,
     extractYear,
     int,
     isDefined,

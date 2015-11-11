@@ -4,6 +4,7 @@ import {ShowIds} from 'eh-domain/model/handler/new';
 import {episode as episodeTable} from '../episodehunter-messages/database/episode';
 import {series as showTable} from '../episodehunter-messages/database/series';
 import {TvdbEpisode, TvdbShow} from '../thetvdb/tvdb.model';
+import utility from '../lib/utility';
 
 function transformEpisodesForDBinsert(showId: ShowIds, tvdbEpisodes: TvdbEpisode[]) {
     let result = [];
@@ -16,7 +17,8 @@ function transformEpisodesForDBinsert(showId: ShowIds, tvdbEpisodes: TvdbEpisode
             [episodeTable.season]: episode.seasonNumber,
             [episodeTable.episode]: episode.episodeNumber,
             [episodeTable.firstAired]: episode.firstAired,
-            [episodeTable.overview]: episode.overview
+            [episodeTable.overview]: episode.overview,
+            [episodeTable.lastupdate]: utility.currentUnixtime()
         });
     });
     return result;
@@ -35,7 +37,8 @@ function transformShowForDbInsert(show: TvdbShow) {
         [showTable.network]: show.network,
         [showTable.overview]: show.overview,
         [showTable.runtime]: show.runtime,
-        [showTable.status]: show.status
+        [showTable.status]: show.status,
+        [showTable.lastupdate]: utility.currentUnixtime()
     };
 }
 
