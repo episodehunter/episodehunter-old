@@ -33,7 +33,7 @@ function transformShowForDbInsert(show: TvdbShow) {
         [showTable.airs.time]: show.airs.time,
         [showTable.airs.first]: show.airs.first,
         [showTable.genre]: show.genre,
-        [showTable.language]: show.genre,
+        [showTable.language]: show.language,
         [showTable.network]: show.network,
         [showTable.overview]: show.overview,
         [showTable.runtime]: show.runtime,
