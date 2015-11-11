@@ -9,6 +9,7 @@ var episode = {
     firstAired: 'tv_episode.first_aired',
     overview: 'tv_episode.overview',
     image: 'tv_episode.image',
+    lastupdate: 'tv_episode.lastupdated',
 
     $table: 'tv_episode'
 };
