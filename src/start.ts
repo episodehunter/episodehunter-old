@@ -4,7 +4,7 @@ import './lib/polyfill';
 import {dependencyInjection} from 'autoinject';
 // import queue from './lib/queue';
 import {logger} from './lib/logger';
-import ShowController from './add-new-show/new-show.controller';
+import ShowController from './controller';
 import showIngestor from './episodehunter-messages/queue/show-ingestor';
 
 function dumpError(err) {

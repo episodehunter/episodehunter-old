@@ -1,10 +1,10 @@
 'use strict';
 
 import {ShowIds} from 'eh-domain/model/handler/new';
-import {episode as episodeTable} from '../episodehunter-messages/database/episode';
-import {series as showTable} from '../episodehunter-messages/database/series';
-import {TvdbEpisode, TvdbShow} from '../thetvdb/tvdb.model';
-import utility from '../lib/utility';
+import {episode as episodeTable} from './episodehunter-messages/database/episode';
+import {series as showTable} from './episodehunter-messages/database/series';
+import {TvdbEpisode, TvdbShow} from './thetvdb/tvdb.model';
+import utility from './lib/utility';
 
 function transformEpisodesForDBinsert(showId: ShowIds, tvdbEpisodes: TvdbEpisode[]) {
     let result = [];

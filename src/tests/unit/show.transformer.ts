@@ -4,7 +4,7 @@ import {assert} from 'chai';
 import {ShowIds} from 'eh-domain/model/handler/new';
 import {series as showTable} from '../../episodehunter-messages/database/series';
 import {episode as episodeTable} from '../../episodehunter-messages/database/episode';
-import transformer from '../../add-new-show/thetvdb.transformer';
+import transformer from '../../thetvdb.transformer';
 import {TvdbShow, TvdbEpisode} from '../../thetvdb/tvdb.model';
 
 describe('Show transformer', () => {

@@ -2,7 +2,7 @@
 
 import {autoInject} from 'autoinject';
 import {ShowIds} from 'eh-domain/model/handler/new';
-import ShowService from './new-show.service';
+import ShowService from './service';
 
 
 @autoInject

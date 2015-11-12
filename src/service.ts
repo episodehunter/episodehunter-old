@@ -2,9 +2,9 @@
 
 import {autoInject} from 'autoinject';
 import {ShowIds} from 'eh-domain/model/handler/new';
-import logger from '../lib/logger';
-import TvDbRepository from '../thetvdb/tvdb-repository';
-import ShowDbReposetory from './show-db.repository';
+import logger from './lib/logger';
+import TvDbRepository from './thetvdb/tvdb-repository';
+import ShowDbReposetory from './database.repository';
 import transformer from './thetvdb.transformer';
 
 

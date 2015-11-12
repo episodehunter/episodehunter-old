@@ -1,9 +1,9 @@
 'use strict';
 
-import {series} from '../episodehunter-messages/database/series';
-import {episode as episodeTable} from '../episodehunter-messages/database/episode';
-import database from '../lib/database';
-import {util, errorHandler} from '../lib/index';
+import {series} from './episodehunter-messages/database/series';
+import {episode as episodeTable} from './episodehunter-messages/database/episode';
+import database from './lib/database';
+import {util, errorHandler} from './lib/index';
 
 
 class ShowDbReposetory {
