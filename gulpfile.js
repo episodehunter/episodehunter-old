@@ -8,7 +8,7 @@ let tsProject = ts.createProject('tsconfig.json', {
     typescript: require('typescript')
 });
 
-gulp.task('typescript', () =>  {
+gulp.task('build', () =>  {
     return gulp.src([
         'src/typings/typings.d.ts',
         'src/**/*.ts',
@@ -16,20 +16,13 @@ gulp.task('typescript', () =>  {
     ])
         .pipe(sourcemaps.init())
         .pipe(ts(tsProject))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('.temp'));
-});
-
-gulp.task('build', ['typescript'], () => {
-    return gulp.src('.temp/**/*.js')
-        .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(babel({
             plugins: [
                 'transform-es2015-parameters',
                 'transform-es2015-destructuring'
             ]
         }))
-        .pipe(sourcemaps.write())
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist'));
 });
 
