@@ -86,7 +86,7 @@ describe('Show DB repository', () => {
             tracker.on('query', query => query.response(undefined));
 
             // Act
-            return repo.insertNewEpisodes(episodes)
+            return repo.insertEpisodes(episodes)
                 .then(() => {
                     assert.strictEqual(tracker.queries.count(), 3);
                 });
@@ -97,7 +97,7 @@ describe('Show DB repository', () => {
             const episodes = undefined;
 
             // Act
-            repo.insertNewEpisodes(episodes)
+            repo.insertEpisodes(episodes)
                 .catch(() => {
                     done();
                 });
