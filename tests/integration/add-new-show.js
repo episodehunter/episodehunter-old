@@ -19,7 +19,7 @@ describe('Add trueblood', () => {
     const db = database.connect();
 
     before(async () => {
-        // Set db in known state
+        // Set db in a known state
         await db(series.$table)
             .where(series.tvdbId, tvdbId)
             .del();
