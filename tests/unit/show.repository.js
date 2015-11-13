@@ -3,17 +3,17 @@
 import {assert} from 'chai';
 const Knex = require('knex');
 const mockKnex = require('mock-knex');
-import ShowDbReposetory from '../../src/database.repository';
+import ShowDbReposetory from '../../dist/database.repository';
 
 
 describe('Show DB repository', () => {
     let mock;
     let tracker;
-    let repo: ShowDbReposetory;
+    let repo;
 
     before(() => {
         tracker = mockKnex.getTracker();
-        let db = Knex(<any>{});
+        let db = Knex({});
         mockKnex.mock(db, 'knex@0.8');
 
         repo = new ShowDbReposetory({connect: () => db});

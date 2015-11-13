@@ -11,9 +11,7 @@ let tsProject = ts.createProject('tsconfig.json', {
 gulp.task('build', () =>  {
     return gulp.src([
         'src/typings/typings.d.ts',
-        'src/**/*.ts',
-        'tests/**/*.ts',
-        '!tests/testdata/*'
+        'src/**/*.ts'
     ])
         .pipe(sourcemaps.init())
         .pipe(ts(tsProject))

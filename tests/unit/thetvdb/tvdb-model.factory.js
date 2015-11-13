@@ -1,8 +1,8 @@
 'use strict';
 
 import {assert} from 'chai';
-import tvDbFactory from '../../../dist/src/thetvdb/tvdb-model.factory';
-import TvdbShow from '../../../dist/src/thetvdb/tvdb.model';
+import tvDbFactory from '../../../dist/thetvdb/tvdb-model.factory';
+import TvdbShow from '../../../dist/thetvdb/tvdb.model';
 
 describe('The TV DB model factory', () => {
 

@@ -1,11 +1,10 @@
 'use strict';
 
 import {assert} from 'chai';
-import {ShowIds} from 'eh-domain/model/handler/new';
-import {series as showTable} from '../../src/episodehunter-messages/database/series';
-import {episode as episodeTable} from '../../src/episodehunter-messages/database/episode';
-import transformer from '../../src/thetvdb.transformer';
-import {TvdbShow, TvdbEpisode} from '../../src/thetvdb/tvdb.model';
+import {series as showTable} from '../../dist/episodehunter-messages/database/series';
+import {episode as episodeTable} from '../../dist/episodehunter-messages/database/episode';
+import transformer from '../../dist/thetvdb.transformer';
+import {TvdbShow, TvdbEpisode} from '../../dist/thetvdb/tvdb.model';
 
 describe('Show transformer', () => {
     const orgGetTime = Date.prototype.getTime;
@@ -22,7 +21,7 @@ describe('Show transformer', () => {
 
         it('Should transform a show model to a db model', () => {
             // Arrange
-            const show: TvdbShow = {
+            const show = {
                 id: 1,
                 imdb: 'tt12345',
                 name: 'True Blood',
@@ -66,7 +65,7 @@ describe('Show transformer', () => {
 
         it('Should transform episodes model to a db model', () => {
             // Arrange
-            const episodes: TvdbEpisode[] = [{
+            const episodes = [{
                 id: 1,
                 name: 'Hello',
                 seasonNumber: 1,
@@ -76,7 +75,7 @@ describe('Show transformer', () => {
                 thumbnail: 'thumbnail.jpg'
             }];
 
-            const ids: ShowIds = {
+            const ids = {
                 id: 2,
                 tvdbId: 12345,
                 imdbId: 'tt12345'

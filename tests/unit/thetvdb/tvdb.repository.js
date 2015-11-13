@@ -2,19 +2,19 @@
 
 import {assert} from 'chai';
 import {spy} from 'simple-spy';
-import config from '../../../src/config';
+import config from '../../../dist/config';
 import {trueblood} from '../../testdata/trueblood';
-import TvDbRepository from '../../../src/thetvdb/tvdb-repository';
-import {TvdbShow} from '../../../src/thetvdb/tvdb.model';
+import TvDbRepository from '../../../dist/thetvdb/tvdb-repository';
+import {TvdbShow} from '../../../dist/thetvdb/tvdb.model';
 
 describe('The TV DB Repository', () => {
 
     const gotMock = spy(() => Promise.resolve({body: trueblood}));
-    let repo: TvDbRepository;
+    let repo;
 
     beforeEach(() => {
         gotMock.reset();
-        repo = new TvDbRepository(<any>gotMock);
+        repo = new TvDbRepository(gotMock);
     });
 
     it('Should make a http call', () => {
