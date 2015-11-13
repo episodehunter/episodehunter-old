@@ -4,9 +4,11 @@
   "main": "",
   "scripts": {
     "setup": "npm install && tsd reinstall && tsd link && gulp setup && echo 'Nice!'",
-    "test": "mocha tests/unit --compilers js:babel-core/register --recursive",
-    "test:integration": "mocha tests/integration --compilers js:babel-core/register --recursive",
-    "test:watch": "mocha tests/unit --compilers js:babel-core/register --recursive --watch",
+
+    "test": "mocha tests/unit --compilers js:babel-core/register --recursive --reporter spec",
+    "test:all": "mocha tests --compilers js:babel-core/register --recursive --reporter nyan",
+    "test:integration": "mocha tests/integration --compilers js:babel-core/register --recursive --reporter spec",
+    "test:watch": "mocha tests/unit --compilers js:babel-core/register --recursive --dot",
     "test:debug": "mocha tests/unit --compilers js:babel-core/register --recursive --debug-brk"
   },
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
