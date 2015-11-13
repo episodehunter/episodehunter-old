@@ -22,23 +22,25 @@ function dumpError(err) {
   }
 }
 
-async function addShow(job, done) {
-    // logger.debug('Getting job', job.data);
-
+function addShow(job): Promise<any> {
     if (!job || !job.data || !job.data.ids) {
-        let error = `Invalid job data: jobId: ${job.id}`;
-        logger.error(error);
-        done(new Error(error));
-        return;
+        return Promise.reject(`Invalid job data: jobId: ${job.id}`);
     }
 
     const showController: ShowController = dependencyInjection(ShowController);
+    return showController.addNewShow(job.data.ids);
+}
 
-    try {
-        done(undefined, await showController.addNewShow(job.data.ids));
-    } catch (error) {
-        done(error);
-    }
+function processJob(fun, job, done) {
+    logger.debug('Getting job', job.data);
+
+    fun(job)
+        .then(result => {
+            done(undefined, result);
+        })
+        .catch(err => {
+            done(err)
+        });
 }
 
 // function main() {
@@ -51,7 +53,7 @@ async function addShow(job, done) {
 if (require.main === module) {
     // main();
 
-    addShow({
+    processJob(addShow, {
         data: {
             ids: {
                 tvdbId: 82283

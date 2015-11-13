@@ -4,14 +4,15 @@
   "main": "",
   "scripts": {
     "setup": "npm install && tsd reinstall && tsd link && gulp setup && echo 'Nice!'",
-    "test": "node_modules/mocha/bin/mocha dist/tests/unit --recursive",
-    "test:watch": "node_modules/mocha/bin/mocha dist/tests/unit --recursive --watch",
-    "test:debug": "node_modules/mocha/bin/mocha dist/tests/unit --recursive --debug-brk"
+    "test": "mocha tests/unit --compilers js:babel-core/register --recursive",
+    "test:integration": "mocha tests/integration --compilers js:babel-core/register --recursive",
+    "test:watch": "mocha tests/unit --compilers js:babel-core/register --recursive --watch",
+    "test:debug": "mocha tests/unit --compilers js:babel-core/register --recursive --debug-brk"
   },
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
   "dependencies": {
-    "autoinject": "^0.6.2",
+    "autoinject": "^0.6.3",
     "bunyan": "^1.4.0",
     "got": "^4.2.0",
     "knex": "^0.8.6",
@@ -22,7 +23,10 @@
     "xml2js": "^0.4.12"
   },
   "devDependencies": {
+    "babel-core": "^6.1.20",
+    "babel-plugin-transform-async-to-generator": "^6.1.18",
     "babel-plugin-transform-es2015-destructuring": "^6.0.18",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.1.20",
     "babel-plugin-transform-es2015-parameters": "^6.0.18",
     "chai": "^3.2.0",
     "gulp": "^3.9.0",

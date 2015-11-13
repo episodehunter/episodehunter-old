@@ -9,16 +9,10 @@ import xmlParser from '../lib/xml-parser';
 
 const MIRROR = 'http://thetvdb.com';
 
-
-import {trueblood} from '../../tests/testdata/trueblood';
-let k = () => {
-    return Promise.resolve({body: trueblood});
-}
-
 class TvDbRepository {
     httpGet;
 
-    constructor(httpGet = k) {
+    constructor(httpGet = got) {
         this.httpGet = httpGet;
     }
 

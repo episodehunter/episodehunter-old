@@ -21,6 +21,14 @@
         "es6": true,
         "node": true
     },
+    "globals": {
+        "before": true,
+        "after": true,
+        "beforeEach": true,
+        "afterEach": true,
+        "describe": true,
+        "it": true
+    },
     "ext": ["ts"],
     "parser": "babel-eslint",
     "extends": "eslint:recommended"
