@@ -3,7 +3,7 @@
 import {assert} from 'chai';
 const Knex = require('knex');
 const mockKnex = require('mock-knex');
-import ShowDbReposetory from '../../database.repository';
+import ShowDbReposetory from '../../src/database.repository';
 
 
 describe('Show DB repository', () => {

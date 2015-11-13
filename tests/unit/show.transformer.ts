@@ -2,10 +2,10 @@
 
 import {assert} from 'chai';
 import {ShowIds} from 'eh-domain/model/handler/new';
-import {series as showTable} from '../../episodehunter-messages/database/series';
-import {episode as episodeTable} from '../../episodehunter-messages/database/episode';
-import transformer from '../../thetvdb.transformer';
-import {TvdbShow, TvdbEpisode} from '../../thetvdb/tvdb.model';
+import {series as showTable} from '../../src/episodehunter-messages/database/series';
+import {episode as episodeTable} from '../../src/episodehunter-messages/database/episode';
+import transformer from '../../src/thetvdb.transformer';
+import {TvdbShow, TvdbEpisode} from '../../src/thetvdb/tvdb.model';
 
 describe('Show transformer', () => {
     const orgGetTime = Date.prototype.getTime;

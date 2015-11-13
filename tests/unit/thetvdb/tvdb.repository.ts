@@ -2,10 +2,10 @@
 
 import {assert} from 'chai';
 import {spy} from 'simple-spy';
-import config from '../../../config';
+import config from '../../../src/config';
 import {trueblood} from '../../testdata/trueblood';
-import TvDbRepository from '../../../thetvdb/tvdb-repository';
-import {TvdbShow} from '../../../thetvdb/tvdb.model';
+import TvDbRepository from '../../../src/thetvdb/tvdb-repository';
+import {TvdbShow} from '../../../src/thetvdb/tvdb.model';
 
 describe('The TV DB Repository', () => {
 

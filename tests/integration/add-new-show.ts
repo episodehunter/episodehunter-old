@@ -1,9 +1,9 @@
 'use strict';
 
 import {assert} from 'chai';
-import {addShow} from '../../start';
-import {series} from '../../episodehunter-messages/database/series';
-import database from '../../lib/database';
+import {addShow} from '../../src/start';
+import {series} from '../../src/episodehunter-messages/database/series';
+import database from '../../src/lib/database';
 
 
 describe('Add trueblood', () => {

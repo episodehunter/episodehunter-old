@@ -1,8 +1,8 @@
 'use strict';
 
 import {assert} from 'chai';
-import tvDbFactory from '../../../thetvdb/tvdb-model.factory';
-import TvdbShow from '../../../thetvdb/tvdb.model';
+import tvDbFactory from '../../../dist/src/thetvdb/tvdb-model.factory';
+import TvdbShow from '../../../dist/src/thetvdb/tvdb.model';
 
 describe('The TV DB model factory', () => {
 
@@ -15,7 +15,7 @@ describe('The TV DB model factory', () => {
         };
 
         // Act
-        const result = tvDbFactory(<any>data);
+        const result = tvDbFactory(data);
 
         // Assert
         assert.instanceOf(result, TvdbShow);
@@ -47,7 +47,7 @@ describe('The TV DB model factory', () => {
         };
 
         // Act
-        const result = tvDbFactory(<any>data);
+        const result = tvDbFactory(data);
 
         // Assert
         assert.lengthOf(result.episodes, 2);
@@ -59,7 +59,7 @@ describe('The TV DB model factory', () => {
         // Arrange
         const data = {
             Series: {
-                id: 1,
+                id: 1
             },
             Episode: {
                 id: 1,
@@ -73,7 +73,7 @@ describe('The TV DB model factory', () => {
         };
 
         // Act
-        const result = tvDbFactory(<any>data);
+        const result = tvDbFactory(data);
 
         // Assert
         assert.lengthOf(result.episodes, 1);
@@ -89,7 +89,7 @@ describe('The TV DB model factory', () => {
         };
 
         // Act
-        const result = tvDbFactory(<any>data);
+        const result = tvDbFactory(data);
 
         // Assert
         assert.lengthOf(result.episodes, 0);

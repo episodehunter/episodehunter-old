@@ -12,7 +12,8 @@ gulp.task('build', () =>  {
     return gulp.src([
         'src/typings/typings.d.ts',
         'src/**/*.ts',
-        '!src/tests/testdata/*'
+        'tests/**/*.ts',
+        '!tests/testdata/*'
     ])
         .pipe(sourcemaps.init())
         .pipe(ts(tsProject))
@@ -28,7 +29,7 @@ gulp.task('build', () =>  {
 
 gulp.task('copy-test-data', function () {
     return gulp
-        .src('src/tests/testdata/*.js')
+        .src('tests/testdata/*.js')
         .pipe(gulp.dest('dist/tests/testdata'));
 });
 
