@@ -2,25 +2,9 @@
 
 import './lib/polyfill';
 import {dependencyInjection} from 'autoinject';
-// import queue from './lib/queue';
 import {logger} from './lib/logger';
 import ShowController from './controller';
 import showIngestor from './episodehunter-messages/queue/show-ingestor';
-
-function dumpError(err) {
-  if (typeof err === 'object') {
-    if (err.message) {
-      console.log('\nMessage: ' + err.message)
-    }
-    if (err.stack) {
-      console.log('\nStacktrace:')
-      console.log('====================')
-      console.log(err.stack);
-    }
-  } else {
-    console.log('dumpError :: argument is not an object', err);
-  }
-}
 
 function addShow(job): Promise<any> {
     if (!job || !job.data || !job.data.ids) {
@@ -38,8 +22,9 @@ function processJob(fun, job, done) {
         .then(result => {
             done(undefined, result);
         })
-        .catch(err => {
-            done(err)
+        .catch(error => {
+            logger.fatal(error);
+            done(error);
         });
 }
 
@@ -60,7 +45,7 @@ if (require.main === module) {
             }
         }
     }, (err, suc) => {
-        console.log('error', dumpError(err));
+        console.log('error', err);
         console.log('suc', suc);
     })
 }

@@ -7,7 +7,6 @@ import ShowDbReposetory from '../../dist/database.repository';
 
 
 describe('Show DB repository', () => {
-    let mock;
     let tracker;
     let repo;
 
@@ -38,7 +37,7 @@ describe('Show DB repository', () => {
 
             // Act
             return repo.serieExistWithTvdbId(id)
-                .then(result => {
+                .then(() => {
                     assert.strictEqual(tracker.queries.count(), 1);
                 });
         });
