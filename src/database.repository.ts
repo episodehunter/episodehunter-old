@@ -5,7 +5,7 @@ import {ShowIds} from 'eh-domain/model/handler/new';
 import {series} from './episodehunter-messages/database/series';
 import {episode as episodeTable} from './episodehunter-messages/database/episode';
 import database from './lib/database';
-import {TvdbShow} from './thetvdb/tvdb.model';
+import {TvdbShow, TvdbEpisode} from './thetvdb/tvdb.model';
 import transformer from './thetvdb.transformer';
 
 
@@ -35,6 +35,14 @@ class ShowDbReposetory {
             .update(
                 transformer.transformShowForDbInsert(show)
             );
+    }
+
+    getEpisodeIdByTvdbId(tvdbId: number): Promise<number> {
+        return this.db
+            .first(episodeTable.id)
+            .from(episodeTable.$table)
+            .where(episodeTable.tvdbId, tvdbId)
+            .then(result => result ? result.id : undefined);
     }
 
     insertShowWithEpisodes(show: TvdbShow) {

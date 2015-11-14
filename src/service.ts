@@ -1,7 +1,7 @@
 'use strict';
 
 import {autoInject} from 'autoinject';
-import {ShowIds} from 'eh-domain/model/handler/new';
+import {ShowIds, EpisodesIds} from 'eh-domain/model/handler/new';
 import logger from './lib/logger';
 import TvDbRepository from './thetvdb/tvdb-repository';
 import ShowDbReposetory from './database.repository';
@@ -43,6 +43,19 @@ class ShowService {
         const newShow = await this.theTvDbRepo.getShow(tvdbId);
 
         return await this.showDbRepo.updateShow(id, newShow);
+    }
+
+    async updateEpisode(ids: EpisodesIds) {
+        const {tvdbId} = ids;
+
+        const id = this.showDbRepo.getEpisodeIdByTvdbId(tvdbId);
+        if (id === undefined) {
+            logger.info(`Can't find episode with tv db id ${tvdbId} in the database`);
+        }
+
+        const newEpisode = await this.theTvDbRepo.getEpisode(tvdbId);
+
+        // Do something
     }
 
 }
