@@ -15,6 +15,15 @@ function addShow(job): Promise<any> {
     return showController.addNewShow(job.data.ids);
 }
 
+function updateShow(job): Promise<number|string> {
+    if (!job || !job.data || !job.data.ids) {
+        return Promise.reject<string>(`Invalid job data: jobId: ${job.id}`);
+    }
+
+    const showController: ShowController = dependencyInjection(ShowController);
+    return showController.updateShow(job.data.ids);
+}
+
 function processJob(fun, job, done) {
     logger.debug('Getting job', job.data);
 
@@ -50,4 +59,4 @@ if (require.main === module) {
     })
 }
 
-export {addShow};
+export {addShow, updateShow};

@@ -18,6 +18,11 @@ class ShowController {
             .addNewShow(ids);
     }
 
+    updateShow(ids: ShowIds) {
+        return this.showService
+            .updateShow(ids);
+    }
+
 }
 
 export {ShowController};

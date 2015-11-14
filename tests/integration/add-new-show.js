@@ -29,10 +29,6 @@ describe('Add trueblood', () => {
             .del();
     });
 
-    after(() => {
-        db.destroy();
-    });
-
     it('Should add trueblood from mock data', async () => {
         // Arrange
         const job = {

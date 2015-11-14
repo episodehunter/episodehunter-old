@@ -27,8 +27,22 @@ class ShowService {
         }
 
         return await this.theTvDbRepo
-            .getShow(ids.tvdbId)
+            .getShow(tvdbId)
             .then(show => this.showDbRepo.insertShowWithEpisodes(show));
+    }
+
+    async updateShow(ids: ShowIds) {
+        const {tvdbId} = ids;
+
+        const id = await this.showDbRepo.getShowIdByTvdbId(tvdbId);
+        if (id === undefined) {
+            logger.info(`Can't find show with tv db id ${tvdbId} in the database`);
+            return;
+        }
+
+        const newShow = await this.theTvDbRepo.getShow(tvdbId);
+
+        return await this.showDbRepo.updateShow(id, newShow);
     }
 
 }

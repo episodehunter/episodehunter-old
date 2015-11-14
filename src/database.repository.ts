@@ -5,7 +5,7 @@ import {ShowIds} from 'eh-domain/model/handler/new';
 import {series} from './episodehunter-messages/database/series';
 import {episode as episodeTable} from './episodehunter-messages/database/episode';
 import database from './lib/database';
-import {util, errorHandler} from './lib/index';
+import {TvdbShow} from './thetvdb/tvdb.model';
 import transformer from './thetvdb.transformer';
 
 
@@ -16,25 +16,28 @@ class ShowDbReposetory {
         this.db = db.connect();
     }
 
-    serieExistWithTvdbId(tvdbId: number): Promise<boolean|string> {
-        if (!util.isNumric(tvdbId)) {
-            return Promise.reject<string>('Invalid tvdbId');
-        }
+    serieExistWithTvdbId(tvdbId: number): Promise<boolean> {
+        return this.getShowIdByTvdbId(tvdbId)
+            .then(id => !!id);
+    }
 
+    getShowIdByTvdbId(tvdbId: number): Promise<number> {
         return this.db
             .first(series.id)
             .from(series.$table)
             .where(series.tvdbId, tvdbId)
-            .catch(errorHandler.catchDbError)
-            .then(result => {
-                if (result && result.id) {
-                    return true;
-                }
-                return false;
-            });
+            .then(result => result ? result.id : undefined);
     }
 
-    insertShowWithEpisodes(show) {
+    updateShow(id: number, show: TvdbShow) {
+        return this.db(series.$table)
+            .where(series.id, id)
+            .update(
+                transformer.transformShowForDbInsert(show)
+            );
+    }
+
+    insertShowWithEpisodes(show: TvdbShow) {
         return this.db.transaction(trx => {
             return this.insertShow(
                 transformer.transformShowForDbInsert(show),
@@ -54,13 +57,13 @@ class ShowDbReposetory {
         });
     }
 
-    insertShow(show, engine = this.db) {
+    insertShow(show, engine: any = this.db) {
         return engine
             .insert(show)
             .into(series.$table);
     }
 
-    insertEpisodes(episodes, engine = this.db): Promise<any[]|string> {
+    insertEpisodes(episodes, engine: any = this.db): Promise<any[]|string> {
         if (!Array.isArray(episodes)) {
             return Promise.reject<string>('Episodes must be of type array');
         }
