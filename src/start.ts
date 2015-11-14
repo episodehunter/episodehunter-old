@@ -24,22 +24,24 @@ function updateShow(job): Promise<number|string> {
     return showController.updateShow(job.data.ids);
 }
 
-function processJob(fun, job, done) {
-    logger.debug('Getting job', job.data);
+function processJob(fun) {
+    return (job, done) => {
+        logger.debug('Getting job', job.data);
 
-    fun(job)
-        .then(result => {
-            done(undefined, result);
-        })
-        .catch(error => {
-            logger.fatal(error);
-            done(error);
-        });
+        fun(job)
+            .then(result => {
+                done(undefined, result);
+            })
+            .catch(error => {
+                logger.fatal(error);
+                done(error);
+            });
+    };
 }
 
 function main() {
     const q = queue.connect();
-    q.process(showIngest.add, 1, addShow);
+    q.process(showIngest.add, 1, processJob(addShow));
 
     logger.info('Hello friend');
 }
