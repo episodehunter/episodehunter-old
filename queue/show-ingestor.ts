@@ -1,6 +1,6 @@
-const showIngestor = {
+const showIngest = {
     add: 'show-ingestor.add'
 };
 
-export {showIngestor};
-export default showIngestor;
+export {showIngest};
+export default showIngest;

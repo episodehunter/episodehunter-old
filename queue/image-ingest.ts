@@ -1,4 +1,4 @@
-const imageIngestor = {
+const imageIngest = {
     addOrUpdate: {
         show: {
             fanart: 'image-ingestor.add-or-update.show.fanart',
@@ -8,5 +8,5 @@ const imageIngestor = {
     }
 };
 
-export {imageIngestor};
-export default imageIngestor;
+export {imageIngest};
+export default imageIngest;
