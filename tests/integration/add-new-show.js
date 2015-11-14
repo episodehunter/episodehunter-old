@@ -1,6 +1,7 @@
 'use strict';
 
 import {assert} from 'chai';
+import {createQueue} from 'kue';
 import {addShow} from '../../dist/start';
 import {series} from '../../dist/episodehunter-messages/database/series';
 import {episode} from '../../dist/episodehunter-messages/database/episode';
@@ -8,14 +9,14 @@ import database from '../../dist/lib/database';
 import TvDbRepository from '../../dist/thetvdb/tvdb-repository';
 import {trueblood} from '../testdata/trueblood';
 
-const queue = require('kue').createQueue();
+const queue = createQueue();
 
 let httpGetMock = () => {
     return Promise.resolve({body: trueblood});
 };
 TvDbRepository.inject = [httpGetMock];
 
-describe('Add trueblood', () => {
+describe('Add true blood', () => {
 
     const tvdbId = 82283;
     const db = database.connect();
@@ -43,7 +44,7 @@ describe('Add trueblood', () => {
             .del();
     });
 
-    it('Should add trueblood from mock data', async () => {
+    it('Should add true blood from mock data', async () => {
         // Arrange
         const job = {
             id: 1,
@@ -53,7 +54,7 @@ describe('Add trueblood', () => {
         };
 
         // Act
-        const sucess = await addShow(job);
+        const success = await addShow(job);
 
         // Assert
         const show = await db(series.$table)
@@ -63,7 +64,7 @@ describe('Add trueblood', () => {
             .count(`${episode.id} as count`)
             .where(episode.seriesTvdbId, tvdbId);
 
-        assert.isTrue(sucess);
+        assert.isTrue(success);
         assert.isNumber(show.id);
         assert.strictEqual(episodes[0].count, 94);
     });
@@ -94,13 +95,13 @@ describe('Add trueblood', () => {
             });
 
         // Act
-        const sucess = await addShow(job);
+        const success = await addShow(job);
 
         // Assert
-        assert(sucess === undefined);
+        assert(success === undefined);
     });
 
-    it('Should request to download images when adding trueblood from mock data', async () => {
+    it('Should request to download images when adding true blood from mock data', async () => {
         // Arrange
         const job = {
             id: 1,
@@ -110,10 +111,10 @@ describe('Add trueblood', () => {
         };
 
         // Act
-        const sucess = await addShow(job);
+        const success = await addShow(job);
 
         // Assert
-        assert.isTrue(sucess);
+        assert.isTrue(success);
         assert.strictEqual(queue.testMode.jobs.length, 96);
     });
 
