@@ -1,8 +1,8 @@
 'use strict';
 
 import {autoInject} from 'autoinject';
-import {ShowIds} from 'eh-domain/model/handler/new';
-import ShowService from './service';
+import {ShowIds} from 'eh-domain/model/ingest/new';
+import ShowService from './show.service';
 
 
 @autoInject

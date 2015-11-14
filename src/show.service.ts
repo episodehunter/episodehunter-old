@@ -1,7 +1,7 @@
 'use strict';
 
 import {autoInject} from 'autoinject';
-import {ShowIds, EpisodesIds} from 'eh-domain/model/handler/new';
+import {ShowIds, EpisodesIds} from 'eh-domain/model/ingest/new';
 import logger from './lib/logger';
 import TvDbRepository from './thetvdb/tvdb-repository';
 import ShowDbReposetory from './database.repository';

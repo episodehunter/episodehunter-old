@@ -1,8 +1,8 @@
 'use strict';
 
 import Knex from 'knex';
-import {ShowIds} from 'eh-domain/model/handler/new';
-import {series} from './episodehunter-messages/database/series';
+import {ShowIds} from 'eh-domain/model/ingest/new';
+import {show as showTable} from './episodehunter-messages/database/show';
 import {episode as episodeTable} from './episodehunter-messages/database/episode';
 import database from './lib/database';
 import {TvdbShow, TvdbEpisode} from './thetvdb/tvdb.model';
@@ -23,15 +23,15 @@ class ShowDbReposetory {
 
     getShowIdByTvdbId(tvdbId: number): Promise<number> {
         return this.db
-            .first(series.id)
-            .from(series.$table)
-            .where(series.tvdbId, tvdbId)
+            .first(showTable.id)
+            .from(showTable.$table)
+            .where(showTable.tvdbId, tvdbId)
             .then(result => result ? result.id : undefined);
     }
 
     updateShow(id: number, show: TvdbShow) {
-        return this.db(series.$table)
-            .where(series.id, id)
+        return this.db(showTable.$table)
+            .where(showTable.id, id)
             .update(
                 transformer.transformShowForDbInsert(show)
             );
@@ -69,7 +69,7 @@ class ShowDbReposetory {
     insertShow(show, engine: any = this.db) {
         return engine
             .insert(show)
-            .into(series.$table);
+            .into(showTable.$table);
     }
 
     insertEpisodes(episodes, engine: any = this.db): Promise<any[]|string> {
