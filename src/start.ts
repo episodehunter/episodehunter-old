@@ -2,7 +2,7 @@
 
 import './lib/polyfill';
 import {dependencyInjection} from 'autoinject';
-import {logger, queue} from './lib';
+import {logger, queue} from './lib/index';
 import ShowController from './controller';
 import showIngestor from './episodehunter-messages/queue/show-ingestor';
 

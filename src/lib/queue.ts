@@ -13,6 +13,9 @@ function connect() {
 }
 
 function addToQueue(jobName: string, payload: any, options: any = {}): void {
+    if (queue === undefined) {
+        connect();
+    }
     const job = queue.create(jobName, payload);
 
     if (options.removeOnComplete !== false) {

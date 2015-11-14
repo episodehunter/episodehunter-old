@@ -8,6 +8,8 @@ import database from '../../dist/lib/database';
 import TvDbRepository from '../../dist/thetvdb/tvdb-repository';
 import {trueblood} from '../testdata/trueblood';
 
+const queue = require('kue').createQueue();
+
 let httpGetMock = () => {
     return Promise.resolve({body: trueblood});
 };
@@ -17,6 +19,18 @@ describe('Add trueblood', () => {
 
     const tvdbId = 82283;
     const db = database.connect();
+
+    before(() => {
+        queue.testMode.enter();
+    });
+
+    after(() => {
+        queue.testMode.exit();
+    });
+
+    afterEach(() => {
+        queue.testMode.clear();
+    });
 
     beforeEach(async () => {
         // Set db in a known state
@@ -39,7 +53,7 @@ describe('Add trueblood', () => {
         };
 
         // Act
-        const ids = await addShow(job);
+        const sucess = await addShow(job);
 
         // Assert
         const show = await db(series.$table)
@@ -49,7 +63,7 @@ describe('Add trueblood', () => {
             .count(`${episode.id} as count`)
             .where(episode.seriesTvdbId, tvdbId);
 
-        assert.isArray(ids);
+        assert.isTrue(sucess);
         assert.isNumber(show.id);
         assert.strictEqual(episodes[0].count, 94);
     });
@@ -80,10 +94,27 @@ describe('Add trueblood', () => {
             });
 
         // Act
-        const ids = await addShow(job);
+        const sucess = await addShow(job);
 
         // Assert
-        assert(ids === undefined);
+        assert(sucess === undefined);
+    });
+
+    it('Should request to download images when adding trueblood from mock data', async () => {
+        // Arrange
+        const job = {
+            id: 1,
+            data: {
+                ids: {tvdbId}
+            }
+        };
+
+        // Act
+        const sucess = await addShow(job);
+
+        // Assert
+        assert.isTrue(sucess);
+        assert.strictEqual(queue.testMode.jobs.length, 96);
     });
 
 });

@@ -62,7 +62,8 @@ class ShowDbReposetory {
                     trx
                 )
             });
-        });
+        })
+        .then(() => show);
     }
 
     insertShow(show, engine: any = this.db) {
