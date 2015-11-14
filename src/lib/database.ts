@@ -1,7 +1,7 @@
 'use strict';
 
 import {config} from '../config';
-const Knex = require('knex');
+import Knex from 'knex';
 
 let knex = undefined;
 
