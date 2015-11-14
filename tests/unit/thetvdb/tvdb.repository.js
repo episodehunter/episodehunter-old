@@ -22,7 +22,7 @@ describe('The TV DB Repository', () => {
         const tvdbid = 123;
 
         // Act
-        repo.getShow(tvdbid);
+        repo.getShowAndEpisode(tvdbid);
 
         // Assert
         assert.equal(gotMock.callCount, 1);
@@ -35,7 +35,7 @@ describe('The TV DB Repository', () => {
         const tvdbid = 123;
 
         // Act and assert
-        return repo.getShow(tvdbid)
+        return repo.getShowAndEpisode(tvdbid)
             .then(model => {
                 assert.instanceOf(model, TvdbShow);
             });
@@ -46,7 +46,7 @@ describe('The TV DB Repository', () => {
         const tvdbid = 123;
 
         // Act and assert
-        return repo.getShow(tvdbid)
+        return repo.getShowAndEpisode(tvdbid)
             .then(model => {
                 assert.strictEqual(model.id, 82283, 'id');
                 assert.strictEqual(model.imdb, 'tt0844441', 'imdb');
@@ -70,7 +70,7 @@ describe('The TV DB Repository', () => {
         const tvdbid = 123;
 
         // Act and assert
-        return repo.getShow(tvdbid)
+        return repo.getShowAndEpisode(tvdbid)
             .then(model => {
                 const episode = model.episodes[0];
                 assert.lengthOf(model.episodes, 94);

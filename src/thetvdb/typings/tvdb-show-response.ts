@@ -67,4 +67,8 @@ interface TvdbShowResponse {
     Episode: _TvdbEpisode[];
 }
 
-export {TvdbShowResponse, _TvdbEpisode};
+interface TvdbEpisodeResponse {
+    Episode: _TvdbEpisode;
+}
+
+export {TvdbShowResponse, TvdbEpisodeResponse, _TvdbEpisode};

@@ -27,7 +27,7 @@ class ShowService {
         }
 
         return await this.theTvDbRepo
-            .getShow(tvdbId)
+            .getShowAndEpisode(tvdbId)
             .then(show => this.showDbRepo.insertShowWithEpisodes(show));
     }
 

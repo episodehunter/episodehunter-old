@@ -15,7 +15,7 @@ describe('The TV DB model factory', () => {
         };
 
         // Act
-        const result = tvDbFactory(data);
+        const result = tvDbFactory.tvdbShowFactory(data);
 
         // Assert
         assert.instanceOf(result, TvdbShow);
@@ -47,7 +47,7 @@ describe('The TV DB model factory', () => {
         };
 
         // Act
-        const result = tvDbFactory(data);
+        const result = tvDbFactory.tvdbShowFactory(data);
 
         // Assert
         assert.lengthOf(result.episodes, 2);
@@ -73,7 +73,7 @@ describe('The TV DB model factory', () => {
         };
 
         // Act
-        const result = tvDbFactory(data);
+        const result = tvDbFactory.tvdbShowFactory(data);
 
         // Assert
         assert.lengthOf(result.episodes, 1);
@@ -89,7 +89,7 @@ describe('The TV DB model factory', () => {
         };
 
         // Act
-        const result = tvDbFactory(data);
+        const result = tvDbFactory.tvdbShowFactory(data);
 
         // Assert
         assert.lengthOf(result.episodes, 0);

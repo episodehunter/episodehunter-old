@@ -16,16 +16,32 @@ class TvDbRepository {
         this.httpGet = httpGet;
     }
 
-    getShow(tvdbid: number): Promise<TvdbShow> {
-        const url = `${MIRROR}/api/${config.tvdbAPIkey}/series/${tvdbid}/all/en.xml`;
+    getShowAndEpisode(tvdbId: number): Promise<TvdbShow> {
+        const url = `${MIRROR}/api/${config.tvdbAPIkey}/series/${tvdbId}/all/en.xml`;
+        return this.makeCall(url)
+            .then(({Data}) => tvDbFactory.tvdbShowFactory(Data));
+    }
+
+    getShow(tvdbId: number): Promise<TvdbShow> {
+        const url = `${MIRROR}/api/${config.tvdbAPIkey}/series/${tvdbId}/en.xml`;
+        return this.makeCall(url)
+            .then(({Data}) => tvDbFactory.tvdbShowFactory(Data));
+    }
+
+    getEpisode(tvdbId: number) {
+        const url = `${MIRROR}/api/${config.tvdbAPIkey}/episodes/${tvdbId}/en.xml`;
+        return this.makeCall(url)
+            .then(({Data}) => tvDbFactory.tvdbEpisodeFactory(Data));
+    }
+
+    makeCall(url: string) {
         return this.httpGet(url)
             .then(({body}) => {
                 if (!body) {
                     return Promise.reject<string>('Bad response from server');
                 }
                 return xmlParser.parseXmlString(body);
-            })
-            .then(({Data}) => tvDbFactory(Data));
+            });
     }
 
 }

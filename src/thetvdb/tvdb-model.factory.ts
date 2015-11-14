@@ -1,12 +1,26 @@
 'use strict';
 
 import {int} from '../lib/utility';
-import {TvdbShowResponse} from './typings/tvdb-show-response';
-import {TvdbShow} from './tvdb.model';
+import {TvdbShowResponse, TvdbEpisodeResponse} from './typings/tvdb-show-response';
+import {TvdbShow, TvdbEpisode} from './tvdb.model';
 
-function tvDbFactory(response: TvdbShowResponse) {
-    let show = new TvdbShow();
-    let series = response.Series;
+function tvdbEpisodeFactory(response: TvdbEpisodeResponse) {
+    const episode = new TvdbEpisode();
+    const _episode = response.Episode;
+    episode.id = int(_episode.id);
+    episode.name = _episode.EpisodeName;
+    episode.seasonNumber = int(_episode.SeasonNumber);
+    episode.episodeNumber = int(_episode.EpisodeNumber);
+    episode.firstAired = _episode.FirstAired;
+    episode.overview = _episode.Overview;
+    episode.thumbnail = _episode.filename;
+
+    return episode;
+}
+
+function tvdbShowFactory(response: TvdbShowResponse) {
+    const show = new TvdbShow();
+    const series = response.Series;
     show.id = int(series.id);
     show.imdb = series.IMDB_ID;
     show.name = series.SeriesName;
@@ -26,7 +40,7 @@ function tvDbFactory(response: TvdbShowResponse) {
     show.episodes = [];
 
     if (response.Episode) {
-        let pushEpisode = episode => {
+        const pushEpisode = episode => {
             show.episodes.push({
                 id: int(episode.id),
                 name: episode.EpisodeName,
@@ -49,5 +63,5 @@ function tvDbFactory(response: TvdbShowResponse) {
     return show;
 }
 
-export default tvDbFactory;
-export {tvDbFactory};
+export default {tvdbShowFactory, tvdbEpisodeFactory};
+export {tvdbShowFactory, tvdbEpisodeFactory};
