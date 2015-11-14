@@ -1,4 +1,4 @@
-declare module 'eh-domain/model/handler/new' {
+declare module 'eh-domain/model/ingest/new' {
 
     export interface ShowIds {
         id: number;

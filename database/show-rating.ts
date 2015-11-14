@@ -1,4 +1,4 @@
-const seriesRating = {
+const showRating = {
     id: 'tv_rating.id',
     userId: 'tv_rating.user_id',
     showId: 'tv_rating.show_id',
@@ -7,4 +7,4 @@ const seriesRating = {
     $table: 'tv_rating'
 };
 
-export {seriesRating};
+export {showRating};

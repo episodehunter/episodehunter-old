@@ -1,4 +1,4 @@
-const series = {
+const show = {
     id: 'tv_show.id',
     tvdbId: 'tv_show.tvdb_id',
     imdbId: 'tv_show.imdb_id',
@@ -21,4 +21,4 @@ const series = {
     $table: 'tv_show'
 };
 
-export {series};
+export {show};
