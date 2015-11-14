@@ -4,7 +4,7 @@ import './lib/polyfill';
 import {dependencyInjection} from 'autoinject';
 import {logger, queue} from './lib/index';
 import ShowController from './controller';
-import showIngestor from './episodehunter-messages/queue/show-ingestor';
+import showIngest from './episodehunter-messages/queue/show-ingestor';
 
 function addShow(job): Promise<any> {
     if (!job || !job.data || !job.data.ids) {
@@ -39,7 +39,7 @@ function processJob(fun, job, done) {
 
 function main() {
     const q = queue.connect();
-    q.process(showIngestor.add, 1, addShow);
+    q.process(showIngest.add, 1, addShow);
 
     logger.info('Hello friend');
 }

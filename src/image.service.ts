@@ -2,11 +2,11 @@
 
 import {TvdbShow} from './thetvdb/tvdb.model';
 import queue from './lib/queue';
-import imageIngestor from './episodehunter-messages/queue/image-ingestor';
+import imageIngest from './episodehunter-messages/queue/image-ingest';
 
 function requestDownload(show: TvdbShow) {
     if (show.fanart) {
-        queue.addToQueue(imageIngestor.addOrUpdate.show.fanart, {
+        queue.addToQueue(imageIngest.addOrUpdate.show.fanart, {
             filename: show.fanart
         }, {
             attempts: 2
@@ -14,7 +14,7 @@ function requestDownload(show: TvdbShow) {
     }
 
     if (show.poster) {
-        queue.addToQueue(imageIngestor.addOrUpdate.show.poster, {
+        queue.addToQueue(imageIngest.addOrUpdate.show.poster, {
             filename: show.poster
         }, {
             attempts: 2
@@ -23,7 +23,7 @@ function requestDownload(show: TvdbShow) {
 
     show.episodes.forEach(episode => {
         if (episode.thumbnail) {
-            queue.addToQueue(imageIngestor.addOrUpdate.show.episode, {
+            queue.addToQueue(imageIngest.addOrUpdate.show.episode, {
                 filename: episode.thumbnail
             }, {
                 attempts: 2

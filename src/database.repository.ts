@@ -9,7 +9,7 @@ import {TvdbShow, TvdbEpisode} from './thetvdb/tvdb.model';
 import transformer from './thetvdb.transformer';
 
 
-class ShowDbReposetory {
+class ShowDbRepository {
     db: Knex;
 
     constructor(db = database) {
@@ -92,5 +92,5 @@ class ShowDbReposetory {
 
 }
 
-export default ShowDbReposetory;
-export {ShowDbReposetory};
+export default ShowDbRepository;
+export {ShowDbRepository};
