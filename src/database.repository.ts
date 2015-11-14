@@ -1,5 +1,6 @@
 'use strict';
 
+import Knex from 'knex';
 import {ShowIds} from 'eh-domain/model/handler/new';
 import {series} from './episodehunter-messages/database/series';
 import {episode as episodeTable} from './episodehunter-messages/database/episode';
@@ -9,7 +10,7 @@ import transformer from './thetvdb.transformer';
 
 
 class ShowDbReposetory {
-    db;
+    db: Knex;
 
     constructor(db = database) {
         this.db = db.connect();
