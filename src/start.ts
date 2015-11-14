@@ -2,7 +2,7 @@
 
 import './lib/polyfill';
 import {dependencyInjection} from 'autoinject';
-import {logger} from './lib/logger';
+import {logger, queue} from './lib';
 import ShowController from './controller';
 import showIngestor from './episodehunter-messages/queue/show-ingestor';
 
@@ -37,26 +37,15 @@ function processJob(fun, job, done) {
         });
 }
 
-// function main() {
-//     const q = queue.connect();
-//     q.process(showIngestor.add, 1, addShow);
-//
-//     logger.info('Hello friend');
-// }
+function main() {
+    const q = queue.connect();
+    q.process(showIngestor.add, 1, addShow);
+
+    logger.info('Hello friend');
+}
 
 if (require.main === module) {
-    // main();
-
-    processJob(addShow, {
-        data: {
-            ids: {
-                tvdbId: 82283
-            }
-        }
-    }, (err, suc) => {
-        console.log('error', err);
-        console.log('suc', suc);
-    })
+    main();
 }
 
 export {addShow, updateShow};
