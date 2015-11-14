@@ -6,4 +6,10 @@ declare module 'eh-domain/model/handler/new' {
         imdbId: string;
     }
 
+    export interface EpisodesIds {
+        id: number;
+        tvdbId: number;
+        tvdbShowId: number;
+    }
+
 }
