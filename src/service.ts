@@ -5,11 +5,7 @@ import {ShowIds, EpisodesIds} from 'eh-domain/model/handler/new';
 import logger from './lib/logger';
 import TvDbRepository from './thetvdb/tvdb-repository';
 import ShowDbReposetory from './database.repository';
-
-import {TvdbShow} from './thetvdb/tvdb.model';
-import queue from './lib/queue';
-import imageIngestor from './episodehunter-messages/queue/image-ingestor';
-
+import imageService from './image.service';
 
 @autoInject
 class ShowService {
@@ -33,37 +29,7 @@ class ShowService {
         return await this.theTvDbRepo
             .getShowAndEpisode(tvdbId)
             .then(show => this.showDbRepo.insertShowWithEpisodes(show))
-            .then(show => this.requestImageDownload(show));
-    }
-
-    requestImageDownload(show: TvdbShow) {
-        if (show.fanart) {
-            queue.addToQueue(imageIngestor.addOrUpdate.show.fanart, {
-                filename: show.fanart
-            }, {
-                attempts: 2
-            });
-        }
-
-        if (show.poster) {
-            queue.addToQueue(imageIngestor.addOrUpdate.show.poster, {
-                filename: show.poster
-            }, {
-                attempts: 2
-            });
-        }
-
-        show.episodes.forEach(episode => {
-            if (episode.thumbnail) {
-                queue.addToQueue(imageIngestor.addOrUpdate.show.episode, {
-                    filename: episode.thumbnail
-                }, {
-                    attempts: 2
-                });
-            }
-        });
-
-        return true;
+            .then(imageService.requestDownload);
     }
 
     async updateShow(ids: ShowIds) {
