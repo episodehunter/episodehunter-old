@@ -28,7 +28,7 @@ const config = {
         tvdb: {
             imageBaseUrl: 'http://thetvdb.com/banners/'
         },
-        moviedbApi: {
+        moviedb: {
             apiKey: ''
         },
         savePath: {
