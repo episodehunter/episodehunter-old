@@ -28,10 +28,15 @@ let currentUnixtime = () => {
     return ((new Date()).getTime() / 1000) | 0;
 };
 
+const generateRandomName = () => {
+    return '_' + Math.random().toString(36).substr(2, 20);
+};
+
 export default {
     as,
     currentUnixtime,
     extractYear,
+    generateRandomName,
     int,
     isDefined,
     isNumric,
@@ -42,6 +47,7 @@ export {
     as,
     currentUnixtime,
     extractYear,
+    generateRandomName,
     int,
     isDefined,
     isNumric,

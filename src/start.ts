@@ -2,31 +2,45 @@
 
 import './lib/polyfill';
 import {dependencyInjection} from 'autoinject';
-import {logger, queue} from './lib/index';
-import ShowController from './controller';
-import showIngest from './episodehunter-messages/queue/show-ingestor';
+import queue from './lib/queue';
+import logger from './lib/logger';
+import imageIngest from './episodehunter-messages/queue/image-ingest';
+import EpisodeImageService from './episode-images.service';
+import MovieImageService from './movie-images.service';
+import ShowImageService from './show-images.service';
 
-function addShow(job): Promise<any> {
-    if (!job || !job.data || !job.data.ids) {
-        return Promise.reject(`Invalid job data: jobId: ${job.id}`);
-    }
 
-    const showController: ShowController = dependencyInjection(ShowController);
-    return showController.addNewShow(job.data.ids);
+function addOrUpdateShowFanart(job): Promise<any> {
+    const showImageService: ShowImageService = dependencyInjection(ShowImageService);
+    return showImageService.getOrUpdateShowFanart(job.data);
 }
 
-function updateShow(job): Promise<number|string> {
-    if (!job || !job.data || !job.data.ids) {
-        return Promise.reject<string>(`Invalid job data: jobId: ${job.id}`);
-    }
+function addOrUpdateShowPoster(job): Promise<any> {
+    const showImageService: ShowImageService = dependencyInjection(ShowImageService);
+    return showImageService.getOrUpdateShowPoster(job.data);
+}
 
-    const showController: ShowController = dependencyInjection(ShowController);
-    return showController.updateShow(job.data.ids);
+function addOrUpdateMovieFanart(job): Promise<any> {
+    const movieImageService: MovieImageService = dependencyInjection(MovieImageService);
+    return movieImageService.getOrUpdateMovieFanart(job.data);
+}
+
+function addOrUpdateMoviePoster(job): Promise<any> {
+    const movieImageService: MovieImageService = dependencyInjection(MovieImageService);
+    return movieImageService.getOrUpdateMoviePoster(job.data);
+}
+
+function addOrUpdateEpisodeImage(job): Promise<any> {
+    const episodeImageService: EpisodeImageService = dependencyInjection(EpisodeImageService);
+    return episodeImageService.getOrUpdateEpisodeImage(job.data);
 }
 
 function processJob(fun) {
     return (job, done) => {
         logger.debug('Getting job', job.data);
+        if (!job || !job.data) {
+            done(`Invalid job data: jobId: ${job.id}`);
+        }
 
         fun(job)
             .then(result => {
@@ -41,13 +55,30 @@ function processJob(fun) {
 
 function main() {
     const q = queue.connect();
-    q.process(showIngest.add, 1, processJob(addShow));
+    q.process(imageIngest.addOrUpdate.show.fanart, 1, processJob(addOrUpdateShowFanart));
+    q.process(imageIngest.addOrUpdate.show.poster, 1, processJob(addOrUpdateShowPoster));
+    q.process(imageIngest.addOrUpdate.movie.fanart, 1, processJob(addOrUpdateMovieFanart));
+    q.process(imageIngest.addOrUpdate.movie.poster, 1, processJob(addOrUpdateMoviePoster));
+    q.process(imageIngest.addOrUpdate.episode, 1, processJob(addOrUpdateEpisodeImage));
 
     logger.info('Hello friend');
 }
 
 if (require.main === module) {
-    main();
+    //main();
+    const job = {
+        id: 1,
+        data: {
+            ids: {
+                tvdbId: 121361,
+            },
+            fileName: 'fanart/original/121361-83.jpg'
+        }
+    };
+    processJob(addOrUpdateShowFanart)(job, (err, suc) => {
+        console.log('err', err);
+        console.log('suc', suc);
+    })
 }
 
-export {addShow, updateShow};
+export {addOrUpdateShowFanart};
