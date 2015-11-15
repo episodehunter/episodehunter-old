@@ -23,6 +23,25 @@ const config = {
             port: 6379,
             host: '127.0.0.1'
         }
+    },
+    image: {
+        tvdb: {
+            imageBaseUrl: 'http://thetvdb.com/banners/'
+        },
+        moviedb: {
+            apiKey: ''
+        },
+        savePath: {
+            show: {
+                fanart: './tmp-folder/show/fanart/',
+                poster: './tmp-folder/show/poster/',
+                episode: './tmp-folder/show/episode/'
+            },
+            movie: {
+                fanart: './tmp-folder/movie/fanart/',
+                poster: './tmp-folder/movie/poster/',
+            }
+        }
     }
 };
 
