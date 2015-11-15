@@ -4,7 +4,6 @@
   "main": "",
   "scripts": {
     "setup": "npm install && tsd reinstall && tsd link && gulp setup && echo 'Nice!'",
-
     "test": "mocha tests/unit --compilers js:babel-core/register --recursive --reporter spec",
     "test:all": "mocha tests --compilers js:babel-core/register --recursive --reporter nyan",
     "test:integration": "mocha tests/integration --compilers js:babel-core/register --recursive --reporter spec",
@@ -16,6 +15,7 @@
   "dependencies": {
     "autoinject": "^0.6.3",
     "bunyan": "^1.4.0",
+    "gm": "^1.21.1",
     "got": "^4.2.0",
     "knex": "^0.8.6",
     "kue": "^0.9.4",
