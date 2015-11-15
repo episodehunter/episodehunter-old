@@ -81,4 +81,4 @@ if (require.main === module) {
     })
 }
 
-export {addOrUpdateShowFanart};
+export {addOrUpdateShowFanart, addOrUpdateShowPoster, addOrUpdateMovieFanart, addOrUpdateMoviePoster, addOrUpdateEpisodeImage};
