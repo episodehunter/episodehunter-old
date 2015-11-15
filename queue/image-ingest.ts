@@ -1,9 +1,13 @@
 const imageIngest = {
     addOrUpdate: {
         show: {
-            fanart: 'image-ingestor.add-or-update.show.fanart',
-            poster: 'image-ingestor.add-or-update.show.poster',
-            episode: 'image-ingestor.add-or-update.show.episode'
+            fanart: 'image-ingest.add-or-update.show.fanart',
+            poster: 'image-ingest.add-or-update.show.poster'
+        },
+        episode: 'image-ingest.add-or-update.show.episode',
+        movie: {
+            fanart: 'image-ingest.add-or-update.movie.fanart',
+            poster: 'image-ingest.add-or-update.movie.poster',
         }
     }
 };
