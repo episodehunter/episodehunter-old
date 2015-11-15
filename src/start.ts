@@ -65,20 +65,13 @@ function main() {
 }
 
 if (require.main === module) {
-    //main();
-    const job = {
-        id: 1,
-        data: {
-            ids: {
-                tvdbId: 121361,
-            },
-            fileName: 'fanart/original/121361-83.jpg'
-        }
-    };
-    processJob(addOrUpdateShowFanart)(job, (err, suc) => {
-        console.log('err', err);
-        console.log('suc', suc);
-    })
+    main();
 }
 
-export {addOrUpdateShowFanart, addOrUpdateShowPoster, addOrUpdateMovieFanart, addOrUpdateMoviePoster, addOrUpdateEpisodeImage};
+export {
+    addOrUpdateShowFanart,
+    addOrUpdateShowPoster,
+    addOrUpdateMovieFanart,
+    addOrUpdateMoviePoster,
+    addOrUpdateEpisodeImage
+};
