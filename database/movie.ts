@@ -15,8 +15,9 @@ const movie = {
     overview: 'movie.overview',
     poster: 'movie.poster',
     fanart: 'movie.fanart',
+    lastUpdate: 'movie.last_update',
 
     $table: 'movie'
-}
+};
 
 export {movie};
