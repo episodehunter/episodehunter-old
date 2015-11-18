@@ -1,7 +1,6 @@
 const movieIngest = {
-    movie: {
-        add: 'movie-ingest.add'
-    }
+    add: 'movie-ingest.add'
 };
 
 export {movieIngest};
+export default movieIngest;
