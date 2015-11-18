@@ -1,5 +1,5 @@
 const showIngest = {
-    add: 'show-ingestor.add'
+    add: 'show-ingest.add'
 };
 
 export {showIngest};
