@@ -8,7 +8,13 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "sourceMap": true,
-        "outDir": "./dest"
+        "outDir": "./dist"
     },
+    "exclude": [
+        ".tmp",
+        "dist",
+        "log",
+        "node_modules"
+    ],
     "compileOnSave": false
 }

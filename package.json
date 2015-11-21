@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "service.js",
   "scripts": {
-    "test": "mocha dest/test/ --recursive"
+    "test": "mocha dist/test/ --recursive"
   },
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
