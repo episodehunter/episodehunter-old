@@ -13,7 +13,7 @@ function transformMoviesFromDB(data: Array<any>) {
             },
             year: extractYear(movie.release_date),
             title: movie.orginal_title,
-            orginalTitle: movie.title
+            originalTitle: movie.title
         };
     });
 }
