@@ -1,6 +1,5 @@
 'use strict';
 
-import {inject} from 'autoinject';
 const got = require('got');
 import config from '../config';
 import {movieDbModelFactory} from './moviedb-model.factory';
@@ -49,7 +48,7 @@ class MovieDbRepository {
         })
         .then(({body}) => {
             if (!body) {
-                return Promise.reject<string>('Bad response from server. Body is ' + body);
+                return Promise.reject('Bad response from server. Body is ' + body);
             }
             return body;
         });

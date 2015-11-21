@@ -1,6 +1,5 @@
 'use strict';
 
-import {int} from '../lib/utility';
 import {MovieDbMovieResponse} from './typings/moviedb-movie-response';
 import {MovieDbMovie} from './moviedb.model';
 

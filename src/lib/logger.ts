@@ -1,10 +1,10 @@
 'use strict';
 
 import {join, normalize} from 'path';
-import {createLogger} from 'bunyan'
+import {createLogger} from 'bunyan';
 import {config} from '../config';
 
-let logger = createLogger(<any>{
+let logger = createLogger({
     name: config.appName,
     streams: [{
         level: config.logger.level,
