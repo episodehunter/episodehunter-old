@@ -17,80 +17,80 @@ describe('Show transformer', () => {
 
     describe('Transform episodes from DB', () => {
 
-       it('should extract a show object from watched shows', () => {
+        it('should extract a show object from watched shows', () => {
 
-           // Arrange
-           let watchedEpisodes = [
-               {
-                   show_id: 2,
-                   show_tvdb_id: 5,
-                   show_imdb_id: 'tt12345',
-                   show_title: 'Mr. Robot',
-                   show_first_aired: '2015-05-23',
-                   season: 1,
-                   episode: 1
-               }, {
-                   show_id: 2,
-                   show_tvdb_id: 5,
-                   show_imdb_id: 'tt12345',
-                   show_title: 'Mr. Robot',
-                   show_first_aired: '2015-05-23',
-                   season: 1,
-                   episode: 2
-               }, {
-                   show_id: 2,
-                   show_tvdb_id: 5,
-                   show_imdb_id: 'tt12345',
-                   show_title: 'Mr. Robot',
-                   show_first_aired: '2015-05-23',
-                   season: 2,
-                   episode: 1
-               }, {
-                   show_id: 3,
-                   show_tvdb_id: 6,
-                   show_imdb_id: 'tt12346',
-                   show_title: 'Dexter',
-                   show_first_aired: '2003-05-23',
-                   season: 1,
-                   episode: 1
-               }
-           ];
+            // Arrange
+            let watchedEpisodes = [
+                {
+                    show_id: 2,
+                    show_tvdb_id: 5,
+                    show_imdb_id: 'tt12345',
+                    show_title: 'Mr. Robot',
+                    show_first_aired: '2015-05-23',
+                    season: 1,
+                    episode: 1
+                }, {
+                    show_id: 2,
+                    show_tvdb_id: 5,
+                    show_imdb_id: 'tt12345',
+                    show_title: 'Mr. Robot',
+                    show_first_aired: '2015-05-23',
+                    season: 1,
+                    episode: 2
+                }, {
+                    show_id: 2,
+                    show_tvdb_id: 5,
+                    show_imdb_id: 'tt12345',
+                    show_title: 'Mr. Robot',
+                    show_first_aired: '2015-05-23',
+                    season: 2,
+                    episode: 1
+                }, {
+                    show_id: 3,
+                    show_tvdb_id: 6,
+                    show_imdb_id: 'tt12346',
+                    show_title: 'Dexter',
+                    show_first_aired: '2003-05-23',
+                    season: 1,
+                    episode: 1
+                }
+            ];
 
-           // Act
-           let shows = transformEpisodesFromDB(watchedEpisodes);
+            // Act
+            let shows = transformEpisodesFromDB(watchedEpisodes);
 
-           // Assert
-           assert.isArray(shows);
-           assert.lengthOf(shows, 2);
-           assert.deepEqual(shows[0], {
-               ids: {
-                   id: 2,
-                   tvdb: 5,
-                   imdb: 'tt12345'
-               },
-               year: 2015,
-               title: 'Mr. Robot',
-               seasons: {
-                   1: [1, 2],
-                   2: [1]
-               }
-           });
-           assert.deepEqual(shows[1], {
-               ids: {
-                   id: 3,
-                   tvdb: 6,
-                   imdb: 'tt12346'
-               },
-               year: 2003,
-               title: 'Dexter',
-               seasons: {
-                   1: [1]
-               }
-           });
+            // Assert
+            assert.isArray(shows);
+            assert.lengthOf(shows, 2);
+            assert.deepEqual(shows[0], {
+                ids: {
+                    id: 2,
+                    tvdb: 5,
+                    imdb: 'tt12345'
+                },
+                year: 2015,
+                title: 'Mr. Robot',
+                seasons: {
+                    1: [1, 2],
+                    2: [1]
+                }
+            });
+            assert.deepEqual(shows[1], {
+                ids: {
+                    id: 3,
+                    tvdb: 6,
+                    imdb: 'tt12346'
+                },
+                year: 2003,
+                title: 'Dexter',
+                seasons: {
+                    1: [1]
+                }
+            });
 
-       });
+        });
 
-   });
+    });
 
     describe('extractEpisodesFromGivenShow', () => {
 
@@ -150,7 +150,7 @@ describe('Show transformer', () => {
                 year: 2015,
                 title: 'mr. robot',
                 seasons: {
-                    '1': [1, '2d'],
+                    '1': [1, '2d']
                 }
             };
             let expected = [{
@@ -184,7 +184,7 @@ describe('Show transformer', () => {
                 year: 2015,
                 title: 'mr. robot',
                 seasons: {
-                    '1': [1],
+                    '1': [1]
                 }
             };
 
@@ -209,7 +209,7 @@ describe('Show transformer', () => {
                 year: 2015,
                 title: 'mr. robot',
                 seasons: {
-                    '1': [1],
+                    '1': [1]
                 }
             };
 

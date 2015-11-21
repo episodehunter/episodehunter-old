@@ -1,5 +1,5 @@
 import {expect, assert} from 'chai';
-import {MissingShowError} from '../../error/missing-show.error'
+import {MissingShowError} from '../../error/missing-show.error';
 
 describe('Error', () => {
 
@@ -7,7 +7,7 @@ describe('Error', () => {
 
         it('Should throw an valid error', () => {
             // Arrange
-            let fn = () => { throw new MissingShowError() };
+            let fn = () => { throw new MissingShowError(); };
 
             // Assert
             expect(fn).to.throw(MissingShowError);

@@ -1,6 +1,6 @@
 import {WatchedShow} from 'eh-domain/model/scrobble/sync';
-import * as setRepo from './set-watched.repository';
-import * as getRepo from './get-watched.repository';
+import setRepo from './set-watched.repository';
+import getRepo from './get-watched.repository';
 import {MissingShowError} from '../error/missing-show.error';
 import {transformEpisodesFromDB} from './transformer';
 

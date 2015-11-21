@@ -1,7 +1,6 @@
 import {movie} from '../episodehunter-messages/database/movie';
 import {watchedMovie} from '../episodehunter-messages/database/watched-movie';
 import {database} from '../lib/database';
-import {as} from '../lib/utility';
 
 interface WatchedMoviesDatabaseInterface {
     id: number;

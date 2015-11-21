@@ -47,7 +47,7 @@ function extractEpisodesFromGivenShow(show: WatchedShow, showId: number, userId:
  * @return {}
  */
 function transformEpisodesFromDB(data: Array<any>) {
-    return <any>chain(data)
+    return chain(data)
         .groupBy('show_id')
         .map(series => {
             return {

@@ -1,5 +1,5 @@
 import {expect, assert} from 'chai';
-import {MissingMovieError} from '../../error/missing-movie.error'
+import {MissingMovieError} from '../../error/missing-movie.error';
 
 describe('Error', () => {
 
@@ -7,7 +7,7 @@ describe('Error', () => {
 
         it('Should throw an valid error', () => {
             // Arrange
-            let fn = () => { throw new MissingMovieError() };
+            let fn = () => { throw new MissingMovieError(); };
 
             // Assert
             expect(fn).to.throw(MissingMovieError);
