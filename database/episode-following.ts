@@ -4,6 +4,6 @@ const episodeFollowing = {
     showId: 'tv_follow.show_id',
 
     $table: 'tv_follow'
-}
+};
 
 export {episodeFollowing};

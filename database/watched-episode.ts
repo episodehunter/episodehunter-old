@@ -8,6 +8,6 @@ const watchedEpisode = {
     type: 'tv_watched.type',
 
     $table: 'tv_watched'
-}
+};
 
 export {watchedEpisode};

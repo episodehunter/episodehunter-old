@@ -5,6 +5,6 @@ const tvNetwork = {
     validate: 'tv_network.validate',
 
     $table: 'tv_network'
-}
+};
 
 export {tvNetwork};

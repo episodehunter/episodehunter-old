@@ -6,6 +6,6 @@ const watchedMovie = {
     type: 'movie_watched.type',
 
     $table: 'movie_watched'
-}
+};
 
 export {watchedMovie};

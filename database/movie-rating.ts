@@ -5,6 +5,6 @@ const movieRating = {
     rating: 'movie_rating.rating',
 
     $table: 'movie_rating'
-}
+};
 
 export {movieRating};

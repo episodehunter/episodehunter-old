@@ -8,9 +8,9 @@ const scrobble = {
             movie: {
                 add: 'scrobble.sync.watched.movie.add',
                 get: 'scrobble.sync.watched.movie.get'
-            },
+            }
         }
     }
-}
+};
 
 export {scrobble};

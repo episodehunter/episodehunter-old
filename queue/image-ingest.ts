@@ -7,7 +7,7 @@ const imageIngest = {
         episode: 'image-ingest.add-or-update.show.episode',
         movie: {
             fanart: 'image-ingest.add-or-update.movie.fanart',
-            poster: 'image-ingest.add-or-update.movie.poster',
+            poster: 'image-ingest.add-or-update.movie.poster'
         }
     }
 };
