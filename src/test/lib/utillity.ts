@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {extractYear, parseInteger, isNumric, isDefined} from '../../lib/utility';
+import {as, extractYear, int, isDefined, isNumric, now, parseInteger} from '../../lib/utility';
 
 describe('Utillity', () => {
 
@@ -24,6 +24,16 @@ describe('Utillity', () => {
 
             assert.strictEqual(result, 0);
         });
+
+        it(`Should return a unix timestamp`, () => {
+            // Act
+            const timestamp = now();
+
+            // Assert
+            assert.isNumber(timestamp);
+            assert(timestamp > 1448128744, 'The timestamp should be larger then the timestamp when I wrote this test case');
+            assert(timestamp < 2000000000, 'The timestamp should smaller then the year 2033');
+        })
     });
 
     describe('parseInteger', () => {
@@ -114,9 +124,57 @@ describe('Utillity', () => {
         });
     });
 
+    describe('isNumric', () => {
+
+        it(`Should return false for non-numric value`, () => {
+            // Arrange
+            const val = 'Hello';
+
+            // Act
+            const result = isNumric(val);
+
+            assert.isFalse(result);
+        });
+
+        it(`Should return true for numric value`, () => {
+            // Arrange
+            const val = '5';
+
+            // Act
+            const result = isNumric(val);
+
+            assert.isTrue(result);
+        });
+
+        it(`Should return true for int`, () => {
+            // Arrange
+            const val = 5;
+
+            // Act
+            const result = isNumric(val);
+
+            assert.isTrue(result);
+        });
+    });
+
+    describe('as', () => {
+
+        it(`Should build an as string`, () => {
+            // Arrange
+            const column = 'column';
+            const newName = 'newName';
+
+            // Act
+            const result = as(column, newName);
+
+            // Act
+            assert.strictEqual(result, 'column as newName');
+        })
+    });
+
     describe('isDefined', () => {
 
-        it(`Should return false undefined`, () => {
+        it(`Should return false for undefined`, () => {
             // Arrange
             let val;
 
