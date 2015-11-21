@@ -4,12 +4,6 @@ import * as getRepo from './get-watched.repository';
 import {MissingShowError} from '../error/missing-show.error';
 import {transformEpisodesFromDB} from './transformer';
 
-
-function setEpisodesAsWatched(show: WatchedShow, userId: number) {
-    return findShowId(show)
-        .then(id => setRepo.setShowAsWatched(show, id, userId));
-}
-
 function findShowId(show: WatchedShow): Promise<number> {
     return setRepo.getShowById(show.ids.id)
         .catch(() => setRepo.getShowIdByTvdbId(show.ids.tvdbId))
@@ -17,6 +11,11 @@ function findShowId(show: WatchedShow): Promise<number> {
         .catch(() => {
             return Promise.reject(new MissingShowError('Can not find show id'));
         });
+}
+
+function setEpisodesAsWatched(show: WatchedShow, userId: number) {
+    return findShowId(show)
+        .then(id => setRepo.setShowAsWatched(show, id, userId));
 }
 
 function getWatchedEpisodes(userId: number) {
