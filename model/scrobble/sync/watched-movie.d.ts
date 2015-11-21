@@ -8,7 +8,7 @@ declare module 'eh-domain/model/scrobble/sync' {
         };
         year: number;
         title: string;
-        orginalTitle: string;
+        originalTitle: string;
     }
 
     export interface WatchedMovieDatabase {
