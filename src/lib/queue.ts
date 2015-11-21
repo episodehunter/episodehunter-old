@@ -1,10 +1,22 @@
-import {createQueue, Job} from 'kue';
+'use strict';
+
+import {Queue, createQueue} from 'kue';
 import {config} from '../config';
 
-let queue = createQueue(config.redis);
+let queue: Queue = undefined;
+
+function connect() {
+    if (queue === undefined) {
+        queue = createQueue(config.redis);
+    }
+    return queue;
+}
 
 function addToQueue(jobName: string, payload: any, options: any = {}): void {
-    let job = queue.create(jobName, payload);
+    if (queue === undefined) {
+        connect();
+    }
+    const job = queue.create(jobName, payload);
 
     if (options.removeOnComplete !== false) {
         job.removeOnComplete(true);
@@ -21,4 +33,5 @@ function addToQueue(jobName: string, payload: any, options: any = {}): void {
     job.save();
 }
 
-export {queue, Job, addToQueue};
+export default {connect, addToQueue};
+export {connect, addToQueue};

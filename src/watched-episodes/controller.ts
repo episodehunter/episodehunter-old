@@ -35,3 +35,4 @@ function getWatched(userId: number) {
 }
 
 export {setWatched, getWatched};
+export default {setWatched, getWatched};

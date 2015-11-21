@@ -39,3 +39,4 @@ function getWatchedMoviesFromDb(userId: number): Promise<Array<WatchedMoviesData
 }
 
 export {getWatchedMoviesFromDb};
+export default {getWatchedMoviesFromDb};

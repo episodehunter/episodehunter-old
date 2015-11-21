@@ -1,70 +1,62 @@
-import {queue, Job} from './lib/queue';
+import queue from './lib/queue';
 import {logger} from './lib/logger';
+import {envKeys} from './config';
 import {scrobble} from './episodehunter-messages/queue/scrobble';
-import * as episodeController from './watched-episodes/controller';
-import * as movieController from './watched-movies/controller';
+import episodeController from './watched-episodes/controller';
+import movieController from './watched-movies/controller';
 
+function setShowAsWatched(data) {
+    return episodeController.setWatched(data.show, data.userId);
+}
 
-queue.process(scrobble.sync.watched.show.add, 1, (job: Job, done) => {
-    logger.debug('Getting job', job.data);
-    if (!job || !job.data || !job.data.show || !job.data.userId) {
-        let error = 'Invalid job data: jobId: ' + job.id;
-        logger.error(error);
-        done(new Error(error));
-        return;
-    }
+function getWatchedShows(data) {
+    return episodeController.getWatched(data.userId);
+}
 
-    episodeController.setWatched(job.data.show, job.data.userId)
-        .then(data => done(undefined, data))
-        .catch(error => done(error));
-});
+function setMovieAsWatched(data) {
+    return movieController.setWatched(data.movie, data.userId);
+}
 
-queue.process(scrobble.sync.watched.show.get, 10, (job: Job, done) => {
-    logger.debug('Getting job', job.data);
-    if (!job || !job.data || !job.data.userId) {
-        let error = 'Invalid job data: jobId: ' + job.id;
-        logger.error(error);
-        done(new Error(error));
-        return;
-    }
+function getWatchedMovies(data) {
+    return movieController.getWatched(data.userId);
+}
 
-    episodeController.getWatched(job.data.userId)
-        .then(data => done(undefined, data))
-        .catch(error => done(error));
-});
+function processJob(fun) {
+    return (job, done) => {
+        logger.debug('Getting job', job.data);
+        if (!job || !job.data || !job.data.userId) {
+            return Promise.reject(`Invalid job data: jobId: ${job.id}`);
+        }
 
-queue.process(scrobble.sync.watched.movie.add, 1, (job: Job, done) => {
-    logger.debug('Getting job', job.data);
-    let data = job.data.movie;
-    let userId = job.data.userId;
+        fun(job)
+            .then(result => {
+                done(undefined, result);
+            })
+            .catch(error => {
+                logger.fatal(error);
+                done(error);
+            });
+    };
+}
 
-    if (!data || !userId) {
-        let error = 'Invalid job data: jobId: ' + job.id;
-        logger.error(error);
-        done(new Error(error));
-        return;
-    }
+function main() {
+    envKeys.forEach(key => {
+        if (process.env[key] === undefined) {
+            throw new Error(`${key} is not defined`);
+        }
+    });
 
-    movieController.setWatched(data, userId)
-        .then(result => done(undefined, result))
-        .catch(error => done(error));
-});
+    const q = queue.connect();
+    q.process(scrobble.sync.watched.show.add, 1, processJob(setShowAsWatched));
+    q.process(scrobble.sync.watched.show.get, 10, processJob(getWatchedShows));
+    q.process(scrobble.sync.watched.movie.add, 1, processJob(setMovieAsWatched));
+    q.process(scrobble.sync.watched.movie.get, 10, processJob(getWatchedMovies));
 
-queue.process(scrobble.sync.watched.movie.get, 10, (job: Job, done) => {
-    logger.debug('Getting job', job.data);
-    let data = job.data.movie;
-    let userId = job.data.userId;
+    logger.info('Hello friend');
+}
 
-    if (!data || !userId) {
-        let error = 'Invalid job data: jobId: ' + job.id;
-        logger.error(error);
-        done(new Error(error));
-        return;
-    }
+if (require.main === module) {
+    main();
+}
 
-    movieController.getWatched(job.data.userId)
-        .then(data => done(undefined, data))
-        .catch(error => done(error));
-});
-
-logger.info('Hello friend');
+export {setShowAsWatched, getWatchedShows, setMovieAsWatched, getWatchedMovies};

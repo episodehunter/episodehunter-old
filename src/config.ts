@@ -1,3 +1,6 @@
+
+const envKeys = [];
+
 const config = {
     appName: 'episodehunter-scrobbler',
     logger: {
@@ -24,4 +27,4 @@ const config = {
     }
 };
 
-export {config};
+export {config, envKeys};

@@ -71,3 +71,8 @@ export {
     extractEpisodesFromGivenShow,
     transformEpisodesFromDB
 };
+
+export default {
+    extractEpisodesFromGivenShow,
+    transformEpisodesFromDB
+};

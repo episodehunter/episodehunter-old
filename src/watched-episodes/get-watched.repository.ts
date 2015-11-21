@@ -42,3 +42,4 @@ function getWatchedEpisodes(userId: number): Promise<WatchedSeriesDatabaseInterf
 }
 
 export {getWatchedEpisodes};
+export default {getWatchedEpisodes};

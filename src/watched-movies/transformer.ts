@@ -18,6 +18,5 @@ function transformMoviesFromDB(data: Array<any>) {
     });
 }
 
-export {
-    transformMoviesFromDB
-};
+export {transformMoviesFromDB};
+export default {transformMoviesFromDB};

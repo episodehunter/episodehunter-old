@@ -71,3 +71,10 @@ export {
     getShowById,
     setEpisodesAsWatched
 };
+export default {
+    setShowAsWatched,
+    getShowIdByImdbId,
+    getShowIdByTvdbId,
+    getShowById,
+    setEpisodesAsWatched
+};

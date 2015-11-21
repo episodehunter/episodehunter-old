@@ -24,3 +24,4 @@ function findMovieId(movie: WatchedMovie): Promise<number> {
 }
 
 export {setMovieAsWatched, getWatchedMovies};
+export default {setMovieAsWatched, getWatchedMovies};
