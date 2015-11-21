@@ -1,5 +1,7 @@
 'use strict';
 
+const envKeys = ['MOVIE_DB_API'];
+
 const config = {
     appName: 'episodehunter-movie-ingest',
     logger: {
@@ -24,8 +26,8 @@ const config = {
             host: '127.0.0.1'
         }
     },
-    movieDbApi: ''
+    movieDbApi: process.env.MOVIE_DB_API
 };
 
 export default config;
-export {config};
+export {config, envKeys};
