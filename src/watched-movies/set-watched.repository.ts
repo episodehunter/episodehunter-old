@@ -4,19 +4,8 @@ import {watchedMovie} from '../episodehunter-messages/database/watched-movie';
 import {database} from '../lib/database';
 import {logger} from '../lib/logger';
 import {now, isNumric} from '../lib/utility';
+import {catchDbError, rejectIfNoResult} from '../lib/error-handler';
 import {scrobbleTypes} from '../episodehunter-messages/constant/scrobble-types';
-
-let catchDbError = error => {
-    logger.fatal(error);
-    throw error;
-}
-
-let rejectIfNoResult = data => {
-    if (data === undefined || data === null) {
-        return Promise.reject(undefined);
-    }
-    return data;
-}
 
 function getMovieIdByTheMoveDbId(theMoveDbId: number): Promise<number> {
     if (!isNumric(theMoveDbId)) {

@@ -5,7 +5,6 @@ import {catchDbError, rejectIfNoResult} from '../lib/error-handler';
 import {isNumric} from '../lib/utility';
 import {extractEpisodesFromGivenShow} from './transformer';
 
-
 function getShowIdByTvdbId(tvdbId: number): Promise<number> {
     if (!isNumric(tvdbId)) {
         return Promise.reject('Invalid tvdbId');

@@ -12,7 +12,7 @@ interface WatchedSeriesDatabaseInterface {
     season: number;
 }
 
-function getWatchedEpisodes(userId: number): Promise<Array<WatchedSeriesDatabaseInterface>> {
+function getWatchedEpisodes(userId: number): Promise<WatchedSeriesDatabaseInterface[]> {
     let model = {
         episode: episode,
         series: series,

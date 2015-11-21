@@ -5,7 +5,6 @@ import {episodeHandler} from '../episodehunter-messages/queue/episode-handler';
 import {setEpisodesAsWatched, getWatchedEpisodes} from '../watched-episodes/service';
 import {MissingShowError} from '../error/missing-show.error';
 
-
 function setWatched(watchedShow: WatchedShow, userId: number) {
     return setEpisodesAsWatched(watchedShow, userId)
         .catch(error => {
