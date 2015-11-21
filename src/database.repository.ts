@@ -31,7 +31,8 @@ class MovieDbRepository {
             .where(movieTable.id, id)
             .update(
                 transformer.transformMovieForDbInsert(movie)
-            );
+            )
+            .then(() => movie);
     }
 
     insertMovie(movie: MovieDbMovie) {

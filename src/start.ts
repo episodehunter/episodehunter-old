@@ -11,6 +11,11 @@ function addMovie(job): Promise<any> {
     return movieService.addNewMovie(job.data.ids);
 }
 
+function updateMovie(job): Promise<any> {
+    const movieService: MovieService = dependencyInjection(MovieService);
+    return movieService.updateMovie(job.data.ids);
+}
+
 function processJob(fun) {
     return (job, done) => {
         logger.debug('Getting job', job.data);
@@ -32,6 +37,7 @@ function processJob(fun) {
 function main() {
     const q = queue.connect();
     q.process(movieIngest.add, 1, processJob(addMovie));
+    q.process(movieIngest.update, 1, processJob(updateMovie));
 
     logger.info('Hello friend');
 }
@@ -40,4 +46,4 @@ if (require.main === module) {
     main();
 }
 
-export {addMovie};
+export {addMovie, updateMovie};

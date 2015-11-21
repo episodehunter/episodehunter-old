@@ -32,6 +32,20 @@ class MovieService {
             .then(imageService.requestDownload);
     }
 
+    async updateMovie(ids: MovieIds): Promise<any> {
+        const {tmdbId} = ids;
+
+        const movieId = await this.db.getMovieIdByMovieDbId(tmdbId);
+        if (!movieId) {
+            return Promise.reject('Movie do not exist');
+        }
+
+        return this.movieDbRepo
+            .getMovie(tmdbId)
+            .then(movie => this.db.updateMovie(movieId, movie))
+            .then(imageService.requestDownload);
+    }
+
 }
 
 export {MovieService};
