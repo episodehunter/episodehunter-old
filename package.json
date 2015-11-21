@@ -4,7 +4,6 @@
   "main": "",
   "scripts": {
     "setup": "npm install && tsd reinstall && tsd link && gulp setup && echo 'Nice!'",
-
     "test": "mocha tests/unit --compilers js:babel-core/register --recursive --reporter spec",
     "test:all": "mocha tests --compilers js:babel-core/register --recursive --reporter nyan",
     "test:integration": "mocha tests/integration --compilers js:babel-core/register --recursive --reporter spec",
@@ -33,6 +32,7 @@
     "gulp-babel": "^6.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-typescript": "^2.9.2",
+    "lodash": "^3.10.1",
     "mocha": "^2.3.0",
     "mock-knex": "^0.2.2",
     "simple-spy": "^1.0.3"
