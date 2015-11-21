@@ -26,7 +26,10 @@ const config = {
             host: '127.0.0.1'
         }
     },
-    movieDbApi: process.env.MOVIE_DB_API
+    theMovieDb: {
+        url: 'https://api.themoviedb.org/3/movie/',
+        api: process.env.MOVIE_DB_API
+    }
 };
 
 export default config;

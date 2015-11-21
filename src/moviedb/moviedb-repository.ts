@@ -6,8 +6,8 @@ import config from '../config';
 import {movieDbModelFactory} from './moviedb-model.factory';
 import MovieDbMovie from './moviedb.model';
 
-const baseUrl = 'https://api.themoviedb.org/3/movie/';
-const apiKey = '';
+const baseUrl = config.theMovieDb.url;
+const apiKey = config.theMovieDb.api;
 
 class MovieDbRepository {
     httpGet;
