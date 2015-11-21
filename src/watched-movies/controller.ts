@@ -1,5 +1,5 @@
 import {WatchedMovie} from 'eh-domain/model/scrobble/sync';
-import {movieHandler} from '../episodehunter-messages/queue/movie-handler';
+import {movieIngest} from '../episodehunter-messages/queue/movie-ingest';
 import {addToQueue} from '../lib/queue';
 import {logger} from '../lib/logger';
 import {MissingMovieError} from '../error/missing-movie.error';
@@ -13,7 +13,7 @@ function setWatched(watchedMovie: WatchedMovie, userId: number) {
                 // The movie is missing
                 // Add it and try agin later
                 logger.debug(error.message);
-                addToQueue(movieHandler.movie.add, watchedMovie.ids, {
+                addToQueue(movieIngest.add, watchedMovie.ids, {
                     attempts: 3,
                     backoff: {delay: 60000, type: 'fixed'}
                 });

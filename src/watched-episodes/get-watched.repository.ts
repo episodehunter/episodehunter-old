@@ -1,4 +1,4 @@
-import {series, episode, watchedEpisode} from '../episodehunter-messages/database/index';
+import {show, episode, watchedEpisode} from '../episodehunter-messages/database/index';
 import {database} from '../lib/database';
 import {as} from '../lib/utility';
 
@@ -15,7 +15,7 @@ interface WatchedSeriesDatabaseInterface {
 function getWatchedEpisodes(userId: number): Promise<WatchedSeriesDatabaseInterface[]> {
     let model = {
         episode: episode,
-        series: series,
+        series: show,
         watched: watchedEpisode
     };
 

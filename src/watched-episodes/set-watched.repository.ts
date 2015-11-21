@@ -1,5 +1,5 @@
 import {WatchedShow, WatchedEpisodeDatabase} from 'eh-domain/model/scrobble/sync';
-import {series, watchedEpisode} from '../episodehunter-messages/database/index';
+import {show, watchedEpisode} from '../episodehunter-messages/database/index';
 import {database} from '../lib/database';
 import {catchDbError, rejectIfNoResult} from '../lib/error-handler';
 import {isNumric} from '../lib/utility';
@@ -11,9 +11,9 @@ function getShowIdByTvdbId(tvdbId: number): Promise<number> {
     }
 
     return database
-        .first(series.id)
-        .from(series.$table)
-        .where(series.tvdbId, tvdbId)
+        .first(show.id)
+        .from(show.$table)
+        .where(show.tvdbId, tvdbId)
         .catch(catchDbError)
         .then(rejectIfNoResult)
         .then(result => result.id);
@@ -25,9 +25,9 @@ function getShowIdByImdbId(imdbId: string): Promise<number> {
     }
 
     return database
-        .first(series.id)
-        .from(series.$table)
-        .where(series.imdbId, imdbId)
+        .first(show.id)
+        .from(show.$table)
+        .where(show.imdbId, imdbId)
         .catch(catchDbError)
         .then(rejectIfNoResult)
         .then(result => result.id);
@@ -39,9 +39,9 @@ function getShowById(id: number): Promise<number> {
     }
 
     return database
-        .first(series.id)
-        .from(series.$table)
-        .where(series.id, id)
+        .first(show.id)
+        .from(show.$table)
+        .where(show.id, id)
         .catch(catchDbError)
         .then(rejectIfNoResult)
         .then(result => result.id);
