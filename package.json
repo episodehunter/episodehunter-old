@@ -1,0 +1,40 @@
+{
+  "name": "episodehunter-movie-ingest",
+  "version": "1.0.0",
+  "main": "",
+  "scripts": {
+    "setup": "npm install && tsd reinstall && tsd link && gulp setup && echo 'Nice!'",
+
+    "test": "mocha tests/unit --compilers js:babel-core/register --recursive --reporter spec",
+    "test:all": "mocha tests --compilers js:babel-core/register --recursive --reporter nyan",
+    "test:integration": "mocha tests/integration --compilers js:babel-core/register --recursive --reporter spec",
+    "test:watch": "mocha tests/unit --compilers js:babel-core/register --recursive --dot",
+    "test:debug": "mocha tests/unit --compilers js:babel-core/register --recursive --debug-brk"
+  },
+  "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
+  "license": "MIT",
+  "dependencies": {
+    "autoinject": "^0.6.3",
+    "bunyan": "^1.4.0",
+    "got": "^4.2.0",
+    "knex": "^0.8.6",
+    "kue": "^0.9.4",
+    "mysql": "^2.9.0",
+    "typescript": "^1.8.0-dev.20151105"
+  },
+  "devDependencies": {
+    "babel-core": "^6.1.20",
+    "babel-plugin-transform-async-to-generator": "^6.1.18",
+    "babel-plugin-transform-es2015-destructuring": "^6.0.18",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.1.20",
+    "babel-plugin-transform-es2015-parameters": "^6.0.18",
+    "chai": "^3.2.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.9.2",
+    "mocha": "^2.3.0",
+    "mock-knex": "^0.2.2",
+    "simple-spy": "^1.0.3"
+  }
+}
