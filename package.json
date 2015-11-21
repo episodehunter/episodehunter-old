@@ -1,10 +1,13 @@
 {
   "name": "episodehunter-scrobler",
   "version": "1.0.0",
-  "main": "service.js",
+  "description": "Scrobler for episodehunter",
+  "keywords": ["episodehunter", "scrobler"],
+  "main": "",
   "scripts": {
     "test": "mocha dist/test/ --recursive"
   },
+  "private": true,
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
   "dependencies": {
