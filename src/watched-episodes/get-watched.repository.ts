@@ -33,11 +33,11 @@ function getWatchedEpisodes(userId: number): Promise<WatchedSeriesDatabaseInterf
         .join(model.series.$table, model.series.id, model.watched.showId)
         .where(model.watched.userId, '=', userId)
         .groupBy(model.watched.showId, model.watched.season, model.watched.episode)
-        .then(epesodes => {
-            if (!epesodes) {
+        .then(episodes => {
+            if (!episodes) {
                 return [];
             }
-            return epesodes;
+            return episodes;
         });
 }
 
