@@ -32,7 +32,7 @@ class MovieDbRepository {
         const url = `${baseUrl}${movieDbId}/videos?api_key=${apiKey}`;
         return this.makeCall(url)
             .then(videos => {
-                if (Array.isArray(videos.results)) {
+                if (!Array.isArray(videos.results)) {
                     return Promise.reject('Bad trailer response from server');
                 } else {
                     return videos.results;
@@ -49,7 +49,7 @@ class MovieDbRepository {
         })
         .then(({body}) => {
             if (!body) {
-                return Promise.reject<string>('Bad response from server');
+                return Promise.reject<string>('Bad response from server. Body is ' + body);
             }
             return body;
         });
