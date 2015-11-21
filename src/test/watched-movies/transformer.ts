@@ -13,14 +13,14 @@ describe('Movie transformer', () => {
                     tmdb_id: 5,
                     imdb_id: 'tt12345',
                     title: 'Best Movie',
-                    orginal_title: 'Best Movie',
+                    original_title: 'Best Movie',
                     release_date: '2015-05-23'
                 }, {
                     id: 3,
                     tmdb_id: 6,
                     imdb_id: 'tt12346',
                     title: 'Better Movie',
-                    orginal_title: 'Better Movie',
+                    original_title: 'Better Movie',
                     release_date: '2003-05-23'
                 }
             ];
@@ -39,7 +39,7 @@ describe('Movie transformer', () => {
                 },
                 year: 2015,
                 title: 'Best Movie',
-                orginalTitle: 'Best Movie'
+                originalTitle: 'Best Movie'
             });
             assert.deepEqual(movies[1], {
                 ids: {
@@ -49,7 +49,7 @@ describe('Movie transformer', () => {
                 },
                 year: 2003,
                 title: 'Better Movie',
-                orginalTitle: 'Better Movie'
+                originalTitle: 'Better Movie'
             });
 
         });
