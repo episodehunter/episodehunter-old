@@ -1,7 +1,7 @@
 import {extractYear} from '../lib/utility';
 
 /**
- * Transform watched movies in the database to a more readible structure
+ * Transform watched movies in the database to a more readable structure
  */
 function transformMoviesFromDB(data: Array<any>) {
     return data.map(movie => {

@@ -6,7 +6,7 @@ import {now, int, isNumric, extractYear} from '../lib/utility';
 
 /**
  * Taking a tv show and extract all episodes.
- * This funtion is usefull before adding episodes as watched in the DB
+ * This function is use full before adding episodes as watched in the DB
  */
 function extractEpisodesFromGivenShow(show: WatchedShow, showId: number, userId: number): Array<WatchedEpisodeDatabase> {
     let result = [];
@@ -42,7 +42,7 @@ function extractEpisodesFromGivenShow(show: WatchedShow, showId: number, userId:
 }
 
 /**
- * Transform watched episodes in the database to a more readible structure
+ * Transform watched episodes in the database to a more readable structure
  * @param  {WatchedSeriesDatabaseInterface[]} data
  * @return {}
  */
