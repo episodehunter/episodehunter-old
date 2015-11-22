@@ -4,7 +4,7 @@ let headers = {
 };
 
 let loginIfTrying = query => {
-    if (query.sql === 'select `id`, `username`, `password` from `users` where `id` = ? limit ?') {
+    if (query.sql === 'select `users`.`id`, `users`.`username`, `users`.`password` from `users` where `users`.`id` = ? limit ?') {
         query.response({
             username: 'john_snow',
             password: 'password'
