@@ -4,32 +4,32 @@
   "description": "Api server for episodehunter.tv",
   "main": "dist/server.js",
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha dest/specs/ --recursive -S --check-leaks"
+    "test": "mocha dist/specs/ --recursive -S --check-leaks"
   },
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
   "dependencies": {
     "autoinject": "git://github.com/tjoskar/autoinject.git",
-    "bluebird": "^2.9.34",
-    "boom": "^2.8.0",
-    "bunyan": "^1.4.0",
-    "hapi": "^9.0.3",
-    "hapi-auth-jwt2": "^5.0.3",
-    "joi": "^6.6.1",
-    "jsonwebtoken": "^5.0.5",
-    "knex": "^0.8.6",
-    "kue": "^0.9.4",
+    "bluebird": "^3.0.5",
+    "boom": "^3.0.0",
+    "bunyan": "^1.5.1",
+    "hapi": "^11.1.2",
+    "hapi-auth-jwt2": "^5.2.1",
+    "joi": "^7.0.0",
+    "jsonwebtoken": "^5.4.1",
+    "knex": "^0.9.0",
+    "kue": "^0.10.4",
     "lodash": "^3.10.1",
     "mysql": "^2.9.0",
     "twin-bcrypt": "^2.1.1"
   },
   "devDependencies": {
-    "chai": "^3.2.0",
+    "chai": "^3.4.1",
     "gulp": "^3.9.0",
     "gulp-nodemon": "^2.0.4",
-    "gulp-sourcemaps": "^1.5.2",
-    "gulp-typescript": "^2.8.1",
-    "mocha": "^2.2.5",
-    "mock-knex": "^0.2.2"
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.9.2",
+    "mocha": "^2.3.4",
+    "mock-knex": "^0.3.0"
   }
 }
