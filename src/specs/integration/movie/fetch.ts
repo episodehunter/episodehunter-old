@@ -5,11 +5,11 @@ import {server} from '../server';
 
 describe('Movie', () => {
     let tracker;
-    let url = '/movie/2'
+    let url = '/movie/2';
 
     before(() => {
         tracker = mockDb();
-    })
+    });
 
     beforeEach(() => {
         tracker.install();
@@ -48,7 +48,9 @@ describe('Movie', () => {
             };
 
             tracker.on('query', query => {
-                if (loginIfTrying(query)) return;
+                if (loginIfTrying(query)) {
+                    return;
+                }
                 query.response(undefined);
             });
 

@@ -7,7 +7,7 @@ import {registerLogger} from './lib/logger';
 import {decorateResponse} from './lib/decorate-response';
 import {config} from './config/index';
 
-var server = new Hapi.Server();
+const server = new Hapi.Server();
 
 server.connection({
     port: config.port,

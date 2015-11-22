@@ -6,7 +6,7 @@ import {config} from '../../../config/index';
 import {UserRepository} from '../../../sections/auth/auth-repository';
 import {dependencyInjection} from '../../ioc';
 
-interface Decoded {
+interface IDecoded {
     id: number;
     username: string;
 }
@@ -14,7 +14,7 @@ interface Decoded {
 let userRepository = dependencyInjection<UserRepository>(UserRepository);
 const jwtSecret = config.jwt.salt;
 
-let validate = (decoded: Decoded, request, next) => {
+let validate = (decoded: IDecoded, request, next) => {
     userRepository.getUserById(decoded.id)
         .then(user => {
             if (user.username === decoded.username) {

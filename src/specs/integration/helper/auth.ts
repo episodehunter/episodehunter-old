@@ -12,6 +12,6 @@ let loginIfTrying = query => {
         return true;
     }
     return false;
-}
+};
 
 export {headers, loginIfTrying};
