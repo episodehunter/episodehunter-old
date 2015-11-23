@@ -9,11 +9,11 @@ const config = {
     db: {
         client: 'mysql',
         connection: {
-            host: 'localhost',
-            user: 'episodehunter',
-            password: 'episodehunter',
-            database: 'episodehunter',
-            port: 33060
+            host: process.env.EH_DB_HOST,
+            user: process.env.EH_DB_USER,
+            password: process.env.EH_DB_PASS,
+            database: process.env.EH_DB_DB,
+            port: process.env.EH_DB_PORT
         },
         debug: false
     },
@@ -29,7 +29,7 @@ const config = {
             imageBaseUrl: 'http://thetvdb.com/banners/'
         },
         moviedb: {
-            apiKey: ''
+            apiKey: process.env.EH_TMDB_API
         },
         savePath: {
             show: {
