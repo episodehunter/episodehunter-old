@@ -16,12 +16,12 @@ gulp.task('build:typescript', function() {
         .pipe(sourcemaps.init())
         .pipe(ts(tsProject))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dest'));
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('serve', ['build:typescript'], function() {
     nodemon({
-        script: 'dest/server.js',
+        script: 'dist/server.js',
         env: { 'NODE_ENV': 'development' },
         ext: 'ts',
         tasks: ['build'],
