@@ -1,6 +1,5 @@
 'use strict';
 
-require('dotenv').load();
 import './lib/polyfill';
 import {dependencyInjection} from 'autoinject';
 import {logger, queue} from './lib/index';
