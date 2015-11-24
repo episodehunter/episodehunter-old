@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "",
   "scripts": {
+    "start": "node dist/start.js",
     "setup": "npm install && tsd reinstall && tsd link && gulp setup && echo 'Nice!'",
     "test": "mocha tests/unit --compilers js:babel-core/register --recursive --reporter spec",
     "test:all": "mocha tests --compilers js:babel-core/register --recursive --reporter nyan",
