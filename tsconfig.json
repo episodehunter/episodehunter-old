@@ -12,6 +12,10 @@
     },
     "compileOnSave": false,
     "exclude": [
-        "node_modules"
+        ".tmp",
+        "dist",
+        "log",
+        "node_modules",
+        "tests"
     ]
 }
