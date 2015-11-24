@@ -1,6 +1,3 @@
-
-const envKeys = [];
-
 const config = {
     appName: 'episodehunter-scrobbler',
     logger: {
@@ -10,11 +7,11 @@ const config = {
     db: {
         client: 'mysql',
         connection: {
-            host: 'localhost',
-            user: 'episodehunter',
-            password: 'episodehunter',
-            database: 'episodehunter',
-            port: 33060
+            host: process.env.EH_DB_HOST,
+            user: process.env.EH_DB_USER,
+            password: process.env.EH_DB_PASS,
+            database: process.env.EH_DB_DB,
+            port: process.env.EH_DB_PORT
         },
         debug: false
     },
@@ -27,4 +24,4 @@ const config = {
     }
 };
 
-export {config, envKeys};
+export {config};

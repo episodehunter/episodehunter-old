@@ -1,6 +1,6 @@
+require('dotenv').load();
 import queue from './lib/queue';
 import {logger} from './lib/logger';
-import {envKeys} from './config';
 import {scrobble} from './episodehunter-messages/queue/scrobble';
 import episodeController from './watched-episodes/controller';
 import movieController from './watched-movies/controller';
@@ -40,12 +40,6 @@ function processJob(fun) {
 }
 
 function main() {
-    envKeys.forEach(key => {
-        if (process.env[key] === undefined) {
-            throw new Error(`${key} is not defined`);
-        }
-    });
-
     const q = queue.connect();
     q.process(scrobble.sync.watched.show.add, 1, processJob(setShowAsWatched));
     q.process(scrobble.sync.watched.show.get, 10, processJob(getWatchedShows));
