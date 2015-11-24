@@ -27,7 +27,7 @@ class UpcomingRepository {
         let raw = database.q.raw;
 
         let model = {
-            series: database.model.series,
+            series: database.model.show,
             episode: database.model.episode,
             follow: database.model.followingSeries
         };
