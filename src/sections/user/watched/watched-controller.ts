@@ -14,18 +14,17 @@ class WatchedController {
         this.watchedService = watchedService;
     }
 
-    getMovies(request: Hapi.Request, reply: Hapi.IReply) {
+    getWatchedMovies(request: Hapi.Request, reply: Hapi.IReply) {
         let userId = request.auth.credentials.id;
         this.watchedService
             .getWatchedMovies(userId)
             .then(movies => reply({movies}))
             .catch(error => {
-                console.log(error);
                 reply(badImplementation());
             });
     }
 
-    getSeries(request: Hapi.Request, reply: Hapi.IReply) {
+    getWatchedShows(request: Hapi.Request, reply: Hapi.IReply) {
         let userId = request.auth.credentials.id;
         this.watchedService
             .getWatchedSeries(userId)
@@ -36,15 +35,28 @@ class WatchedController {
             });
     }
 
-    setSeriesAsWatched(request: Hapi.Request, reply: Hapi.IReply) {
+    setShowsAsWatched(request: Hapi.Request, reply: Hapi.IReply) {
         let userId = request.auth.credentials.id;
         let shows = request.payload['shows'];
 
         if (!Array.isArray(shows)) {
-            return reply(badRequest('Shows must be an instance of Array'));
+            return reply(badRequest('shows must be an instance of Array'));
         }
 
         this.watchedService.setShowsAsWatched(userId, shows);
+
+        reply({}).code(statusCodes.ACCEPTED);
+    }
+
+    setMoviesAsWatched(request: Hapi.Request, reply: Hapi.IReply) {
+        let userId = request.auth.credentials.id;
+        let movies = request.payload['movies'];
+
+        if (!Array.isArray(movies)) {
+            return reply(badRequest('movies must be an instance of Array'));
+        }
+
+        this.watchedService.setMovieAsWatched(userId, movies);
 
         reply({}).code(statusCodes.ACCEPTED);
     }

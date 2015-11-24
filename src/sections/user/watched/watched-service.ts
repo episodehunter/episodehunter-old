@@ -1,77 +1,36 @@
-import {chain, pluck} from 'lodash';
 import {autoInject} from 'autoinject';
-import {extractYear} from '../../../lib/utility/dates';
+import {WatchedMovie, WatchedShow} from 'eh-domain/model/scrobble/sync';
 import queue from '../../../lib/queue';
-import {WatchedMovies} from './model/watched-movies';
-import {WatchedSeries} from './model/watched-series';
-import {WatchedMoviesRepository} from './watched-movies-repository';
-import {WatchedSeriesRepository, WatchedSeriesDatabaseInterface} from './watched-series-repository';
-
+import {scrobble} from '../../../episodehunter-messages/queue/scrobble';
 
 @autoInject
 class WatchedService {
 
-    watchedMoviesRepo: WatchedMoviesRepository;
-    watchedSeriesRepo: WatchedSeriesRepository;
-
-    constructor(
-        watchedMoviesRepo: WatchedMoviesRepository,
-        watchedSeriesRepo: WatchedSeriesRepository
-    ) {
-        this.watchedMoviesRepo = watchedMoviesRepo;
-        this.watchedSeriesRepo = watchedSeriesRepo;
+    getWatchedMovies(userId: number): Promise<WatchedMovie[]> {
+        return queue.rpc<WatchedMovie[]>(scrobble.sync.watched.movie.get, {userId});
     }
 
-    getWatchedMovies(userId: number): Promise<WatchedMovies[]> {
-        return this.watchedMoviesRepo
-            .getAll(userId)
-            .then(data => {
-                return data.map(movie => {
-                    return {
-                        ids: {
-                            id: movie.id,
-                            theMoveDb: movie.tmdb_id,
-                            imdb: movie.imdb_id
-                        },
-                        year: extractYear(movie.release_date),
-                        title: movie.orginal_title,
-                        orginalTitle: movie.title
-                    };
-                })
-            });
+    getWatchedSeries(userId: number): Promise<WatchedShow[]> {
+        return queue.rpc<WatchedShow[]>(scrobble.sync.watched.show.get, {userId});
     }
 
-    getWatchedSeries(userId: number): Promise<WatchedSeries[]> {
-        return this.watchedSeriesRepo
-            .getAll(userId)
-            .then(data => {
-                return <any>chain(data)
-                    .groupBy('show_id')
-                    .map(series => {
-                        return {
-                            ids: {
-                                id: series[0].show_id,
-                                tvdb: series[0].show_tvdb_id,
-                                imdb: series[0].show_imdb_id
-                            },
-                            year: extractYear(series[0].show_first_aired),
-                            title: series[0].show_title,
-                            seasons: chain(series)
-                                .groupBy('season')
-                                .mapValues((episodes: any) => pluck(episodes, 'episode'))
-                                .value()
-                        };
-                    })
-                    .value();
-            });
-        }
-
-    setShowsAsWatched(userId: number, shows: WatchedSeries[]) {
+    setShowsAsWatched(userId: number, shows: WatchedShow[]): void {
         shows.forEach(show => {
-            queue.create(jobNames.watchedAdd, {userId, show}).save();
-        })
+            queue.addToQueue(scrobble.sync.watched.show.add, {userId, show}, {
+                attempts: 3,
+                backoff: {delay: 60000, type: 'fixed'}
+            });
+        });
     }
 
+    setMovieAsWatched(userId: number, movies: WatchedMovie[]): void {
+        movies.forEach(movie => {
+            queue.addToQueue(scrobble.sync.watched.movie.add, {userId, movie}, {
+                attempts: 3,
+                backoff: {delay: 60000, type: 'fixed'}
+            });
+        });
+    }
 
 }
 

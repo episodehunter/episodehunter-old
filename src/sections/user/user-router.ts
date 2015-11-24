@@ -17,21 +17,28 @@ const userRouts = [
     }, {
         method: 'GET',
         path: '/user/watched/movies',
-        handler: watchedController.getMovies,
+        handler: watchedController.getWatchedMovies,
         config: {
             bind: watchedController
         }
     }, {
         method: 'GET',
-        path: '/user/watched/series',
-        handler: watchedController.getSeries,
+        path: '/user/watched/shows',
+        handler: watchedController.getWatchedShows,
         config: {
             bind: watchedController
         }
     }, {
         method: 'POST',
-        path: '/user/watched/series',
-        handler: watchedController.setSeriesAsWatched,
+        path: '/user/watched/shows',
+        handler: watchedController.setShowsAsWatched,
+        config: {
+            bind: watchedController
+        }
+    }, {
+        method: 'POST',
+        path: '/user/watched/movies',
+        handler: watchedController.setMoviesAsWatched,
         config: {
             bind: watchedController
         }
