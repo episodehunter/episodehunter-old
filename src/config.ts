@@ -33,13 +33,13 @@ const config = {
         },
         savePath: {
             show: {
-                fanart: './tmp-folder/show/fanart/',
-                poster: './tmp-folder/show/poster/',
-                episode: './tmp-folder/show/episode/'
+                fanart: process.env.EH_SHOW_FANART,
+                poster: process.env.EH_SHOW_POSTER,
+                episode: process.env.EH_EPISODE_IMAGE
             },
             movie: {
-                fanart: './tmp-folder/movie/fanart/',
-                poster: './tmp-folder/movie/poster/',
+                fanart: process.env.EH_MOVIE_FANART,
+                poster: process.env.EH_MOVIE_POSTER
             }
         }
     }
