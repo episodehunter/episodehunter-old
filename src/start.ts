@@ -1,9 +1,9 @@
 'use strict';
 
+require('dotenv').load();
 import './lib/polyfill';
 import {dependencyInjection} from 'autoinject';
 import {logger, queue} from './lib/index';
-import {envKeys} from './config';
 import MovieService from './movie.service';
 import movieIngest from './episodehunter-messages/queue/movie-ingest';
 
@@ -36,12 +36,6 @@ function processJob(fun) {
 }
 
 function main() {
-    envKeys.forEach(key => {
-        if (process.env[key] === undefined) {
-            throw new Error(`${key} is not defined`);
-        }
-    });
-
     const q = queue.connect();
     q.process(movieIngest.add, 1, processJob(addMovie));
     q.process(movieIngest.update, 1, processJob(updateMovie));

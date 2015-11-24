@@ -1,7 +1,5 @@
 'use strict';
 
-const envKeys = ['MOVIE_DB_API'];
-
 const config = {
     appName: 'episodehunter-movie-ingest',
     logger: {
@@ -11,11 +9,11 @@ const config = {
     db: {
         client: 'mysql',
         connection: {
-            host: 'localhost',
-            user: 'episodehunter',
-            password: 'episodehunter',
-            database: 'episodehunter',
-            port: 33060
+            host: process.env.EH_DB_HOST,
+            user: process.env.EH_DB_USER,
+            password: process.env.EH_DB_PASS,
+            database: process.env.EH_DB_DB,
+            port: process.env.EH_DB_PORT
         },
         debug: false
     },
@@ -28,9 +26,9 @@ const config = {
     },
     theMovieDb: {
         url: 'https://api.themoviedb.org/3/movie/',
-        api: process.env.MOVIE_DB_API
+        api: process.env.EH_TMDB_API
     }
 };
 
 export default config;
-export {config, envKeys};
+export {config};
