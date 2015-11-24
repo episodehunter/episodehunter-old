@@ -17,7 +17,7 @@ function getWatchedMovies(userId: number): Promise<WatchedMovie[]> {
 function findMovieId(movie: WatchedMovie): Promise<number> {
     return repo.getMovieById(movie.ids.id)
         .catch(() => repo.getMovieIdByTheMoveDbId(movie.ids.theMoveDb))
-        .catch(() => repo.getShowIdByImdbId(movie.ids.imdb))
+        .catch(() => repo.getMovieIdByImdbId(movie.ids.imdb))
         .catch(() => {
             return Promise.reject(new MissingMovieError('Can not find movie id'));
         });

@@ -21,7 +21,7 @@ function getMovieIdByTheMoveDbId(theMoveDbId: number): Promise<number> {
         .then(result => result.id);
 }
 
-function getShowIdByImdbId(imdbId: string): Promise<number> {
+function getMovieIdByImdbId(imdbId: string): Promise<number> {
     if (typeof imdbId === 'string') {
         return Promise.reject('Invalid imdbId');
     }
@@ -67,7 +67,7 @@ function prepareMovie(movie: WatchedMovie, movieId: number, userId: number): Wat
 
 const movieRepository = {
     getMovieIdByTheMoveDbId,
-    getShowIdByImdbId,
+    getMovieIdByImdbId,
     getMovieById,
     setMovieAsWatched,
     prepareMovie
