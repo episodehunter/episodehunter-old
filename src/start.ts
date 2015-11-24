@@ -28,7 +28,7 @@ function processJob(fun) {
             return Promise.reject(`Invalid job data: jobId: ${job.id}`);
         }
 
-        fun(job)
+        fun(job.data)
             .then(result => {
                 done(undefined, result);
             })
