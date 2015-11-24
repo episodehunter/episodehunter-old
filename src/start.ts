@@ -1,4 +1,3 @@
-require('dotenv').load();
 import queue from './lib/queue';
 import {logger} from './lib/logger';
 import {scrobble} from './episodehunter-messages/queue/scrobble';

@@ -5,6 +5,7 @@
   "keywords": ["episodehunter", "scrobler"],
   "main": "",
   "scripts": {
+    "start": "node -r dotenv/config dist/start.js",
     "test": "mocha dist/test/ --recursive"
   },
   "private": true,
