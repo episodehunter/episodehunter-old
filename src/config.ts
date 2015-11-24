@@ -9,11 +9,11 @@ const config = {
     db: {
         client: 'mysql',
         connection: {
-            host: 'localhost',
-            user: 'episodehunter',
-            password: 'episodehunter',
-            database: 'episodehunter',
-            port: 33060
+            host: process.env.EH_DB_HOST,
+            user: process.env.EH_DB_USER,
+            password: process.env.EH_DB_PASS,
+            database: process.env.EH_DB_DB,
+            port: process.env.EH_DB_PORT
         },
         debug: false
     },
@@ -24,8 +24,8 @@ const config = {
             host: '127.0.0.1'
         }
     },
-    tvdbAPIkey: ''
-}
+    tvdbAPIkey: process.env.EH_TV_DB_API_KEY
+};
 
 export default config;
 export {config};
