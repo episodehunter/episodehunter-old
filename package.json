@@ -15,29 +15,29 @@
   "license": "MIT",
   "dependencies": {
     "autoinject": "^0.6.3",
-    "bunyan": "^1.4.0",
+    "bunyan": "^1.5.1",
     "dotenv": "^1.2.0",
-    "got": "^4.2.0",
-    "knex": "^0.8.6",
-    "kue": "^0.9.4",
+    "got": "^5.1.0",
+    "knex": "^0.9.0",
+    "kue": "^0.10.4",
     "lodash": "^3.10.1",
     "mysql": "^2.9.0",
-    "typescript": "^1.8.0-dev.20151105",
-    "xml2js": "^0.4.12"
+    "typescript": "^1.6.2",
+    "xml2js": "^0.4.15"
   },
   "devDependencies": {
-    "babel-core": "^6.1.20",
+    "babel-core": "^6.2.1",
     "babel-plugin-transform-async-to-generator": "^6.1.18",
-    "babel-plugin-transform-es2015-destructuring": "^6.0.18",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.1.20",
-    "babel-plugin-transform-es2015-parameters": "^6.0.18",
-    "chai": "^3.2.0",
+    "babel-plugin-transform-es2015-destructuring": "^6.1.18",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.2.0",
+    "babel-plugin-transform-es2015-parameters": "^6.1.18",
+    "chai": "^3.4.1",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-typescript": "^2.9.2",
-    "mocha": "^2.3.0",
-    "mock-knex": "^0.2.2",
+    "mocha": "^2.3.4",
+    "mock-knex": "^0.3.0",
     "simple-spy": "^1.0.3"
   }
 }
