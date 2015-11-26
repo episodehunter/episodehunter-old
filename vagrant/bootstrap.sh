@@ -1,6 +1,11 @@
 #!/bin/sh
 set -e
 
+### TODO:
+# Install graphicsmagick "sudo apt-get install graphicsmagick"
+# Install Redis
+# Installera NodeJS 4+
+
 if [ -e /.installed ]; then
   echo 'Already installed.'
 
