@@ -13,6 +13,7 @@ function getWatchedShows(data) {
 }
 
 function setMovieAsWatched(data) {
+    console.log('start:setMovieAsWatched', data.movie, data.userId);
     return movieController.setWatched(data.movie, data.userId);
 }
 

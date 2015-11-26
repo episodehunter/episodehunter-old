@@ -7,12 +7,15 @@ import {setMovieAsWatched, getWatchedMovies} from './service';
 
 
 function setWatched(watchedMovie: WatchedMovie, userId: number) {
+    console.log('movie-controller:setWatched', watchedMovie, userId);
     return setMovieAsWatched(watchedMovie, userId)
         .catch(error => {
             if (error instanceof MissingMovieError) {
                 // The movie is missing
                 // Add it and try agin later
                 logger.debug(error.message);
+                console.log('movie-controller:catch', watchedMovie.ids);
+
                 addToQueue(movieIngest.add, watchedMovie.ids, {
                     attempts: 3,
                     backoff: {delay: 60000, type: 'fixed'}

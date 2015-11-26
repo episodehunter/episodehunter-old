@@ -8,6 +8,7 @@ import {catchDbError, rejectIfNoResult} from '../lib/error-handler';
 import {scrobbleTypes} from '../episodehunter-messages/constant/scrobble-types';
 
 function getMovieIdByTheMoveDbId(theMoveDbId: number): Promise<number> {
+    console.log('movie-repo:getMovieIdByTheMoveDbId', theMoveDbId)
     if (!isNumric(theMoveDbId)) {
         return Promise.reject('Invalid theMoveDbId');
     }
