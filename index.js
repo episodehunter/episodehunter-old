@@ -32,8 +32,8 @@ trace (10): Logging from external libraries used by your app or very detailed ap
 */
 function createLogger(_ref) {
     var name = _ref.name;
-    var _ref$minLevel = _ref.minLevel;
-    var minLevel = _ref$minLevel === undefined ? 'warn' : _ref$minLevel;
+    var _ref$logLevel = _ref.logLevel;
+    var logLevel = _ref$logLevel === undefined ? 'warn' : _ref$logLevel;
     var filePath = _ref.filePath;
     var stdout = _ref.stdout;
     var ravenDNS = _ref.ravenDNS;
@@ -50,7 +50,7 @@ function createLogger(_ref) {
 
     if (stdout) {
         bunyanConfig.streams.push({
-            level: minLevel,
+            level: logLevel,
             stream: process.stdout
         });
     }
@@ -58,7 +58,7 @@ function createLogger(_ref) {
     if (filePath) {
         bunyanConfig.streams.push({
             type: 'rotating-file',
-            level: minLevel,
+            level: logLevel,
             path: filePath,
             period: '1d',
             count: 30
