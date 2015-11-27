@@ -13,6 +13,9 @@
   ],
   "author": "Oskar Karlsson <kontakta@oskar.karlsson.nu>",
   "license": "MIT",
+  "typescript": {
+    "definition": "./typings/episodehunter-logger.d.ts"
+  },
   "dependencies": {
     "bunyan": "^1.5.1",
     "bunyan-raven": "^0.4.0",
