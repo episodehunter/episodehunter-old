@@ -24,7 +24,7 @@ function compareUserPassword(user: UserSelectionInterface, password: string): Pr
     return new Promise<UserSelectionInterface>((resolve, reject) => {
         bcrypt.compare(password, user.password, match => {
             if (match === true) {
-                resolve(Promise.resolve(user));
+                resolve(<any>user);
             } else {
                 reject(`password don't match`);
             }

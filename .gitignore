@@ -5,3 +5,5 @@ build
 typings
 dist
 .vagrant
+dest
+log/

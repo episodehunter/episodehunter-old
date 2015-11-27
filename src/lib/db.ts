@@ -2,13 +2,13 @@
 
 import {config} from '../config/index';
 import Knex = require('knex');
-import * as models from '../model/database/index';
+import * as models from '../episodehunter-messages/database/index';
 
-const knex = Knex(config.db);
+const knex = Knex(config.db)
 
-class db {
-    q = knex;
-    model = models;
+let database = {
+    q: knex,
+    model: models
 }
 
-export {knex, db, models};
+export {database, models};

@@ -1,17 +1,22 @@
 'use strict';
 
-import {MovieController} from './movie-controller';
+import {number} from 'joi';
 import {dependencyInjection} from '../../lib/ioc';
+import {MovieController} from './movie-controller';
 let controller = dependencyInjection<MovieController>(MovieController);
 
 const movieRouts = [
     {
         method: 'GET',
-        path: '/movies',
+        path: '/movie/{id}',
         handler: controller.get,
         config: {
-            auth: 'jwt',
-            bind: controller
+            bind: controller,
+            validate: {
+                params: {
+                    id: number().required()
+                }
+            }
         }
     }
 ];
