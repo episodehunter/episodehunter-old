@@ -39,7 +39,7 @@ function createLogger({name, logLevel = 'warn', filePath, stdout, ravenDNS}) {
         bunyanConfig.streams.push({
             type: 'raw',
             stream: new RavenStream(ravenClient),
-            level: 'error'
+            level: 'warning'
         });
     }
 
