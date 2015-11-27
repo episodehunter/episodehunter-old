@@ -6,6 +6,7 @@ import RavenStream from 'bunyan-raven';
 
 let logger;
 
+function createLogger({name, logLevel = 'warn', filePath, stdout, ravenDNS}) {
     if (!name) {
         throw new Error('You must specify an application name for the logger');
     }
@@ -18,7 +19,7 @@ let logger;
 
     if (stdout) {
         bunyanConfig.streams.push({
-            level: minLevel,
+            level: logLevel,
             stream: process.stdout
         });
     }
@@ -26,7 +27,7 @@ let logger;
     if (filePath) {
         bunyanConfig.streams.push({
             type: 'rotating-file',
-            level: minLevel,
+            level: logLevel,
             path: filePath,
             period: '1d',
             count: 30
