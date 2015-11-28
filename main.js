@@ -33,7 +33,7 @@ function createJob(jobName, payload, options = {}) {
     return job;
 }
 
-function addToQueue(jobName, payload, options = {}): void  {
+function addToQueue(jobName, payload, options = {}) {
     const job = createJob(jobName, payload, options);
     job.save();
 }
