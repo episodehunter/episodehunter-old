@@ -3,6 +3,7 @@ interface configInterface {
     logger: {
         level: string;
         filePath: string;
+        ravenDns: string;
     };
     db: {
         client: string;

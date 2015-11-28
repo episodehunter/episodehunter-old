@@ -4,7 +4,8 @@ const config: configInterface = {
     appName: 'episodehunter-api',
     logger: {
         level: 'info',
-        filePath: '../../log/develop.txt'
+        filePath: '../../log/develop.txt',
+        ravenDns: ''
     },
     db: {
         client: 'mysql',

@@ -1,25 +1,19 @@
+import {createLogger} from 'episodehunter-logger';
 import {join, normalize} from 'path';
-import {createLogger} from 'bunyan'
 import {config} from '../config/index';
 
-let logger = createLogger(<any>{
+const logger = createLogger({
     name: config.appName,
-    streams: [{
-        level: config.logger.level,
-        stream: process.stdout
-    }, {
-        type: 'rotating-file',
-        level: config.logger.level,
-        path: normalize(join(__dirname, config.logger.filePath)),
-        period: '1d',
-        count: 30
-    }]
+    logLevel: config.logger.level,
+    filePath: normalize(join(__dirname, config.logger.filePath)),
+    stdout: true,
+    ravenDNS: config.logger.ravenDns
 });
 
-let registerLogger = server => {
+const registerLogger = server => {
 
     server.on('request', (request, event, tags) => {
-        let levels = ['fatal', 'error', 'warn', 'info', 'debug', 'trace'];
+        const levels = ['fatal', 'error', 'warn', 'info', 'debug', 'trace'];
 
         levels.forEach(level => {
             if (level in tags) {
