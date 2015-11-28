@@ -9,7 +9,7 @@
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
   "dependencies": {
-    "autoinject": "git://github.com/tjoskar/autoinject.git",
+    "autoinject": "0.6.5",
     "bluebird": "^3.0.5",
     "boom": "^3.0.0",
     "episodehunter-logger": "tjoskar/episodehunter-logger#v1.0.0",

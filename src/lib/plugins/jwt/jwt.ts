@@ -2,16 +2,16 @@
 
 import Hapi = require('hapi');
 const jwt = require('hapi-auth-jwt2');
+import {dependencyInjection} from 'autoinject';
 import {config} from '../../../config/index';
 import {UserRepository} from '../../../sections/auth/auth-repository';
-import {dependencyInjection} from '../../ioc';
 
 interface IDecoded {
     id: number;
     username: string;
 }
 
-let userRepository = dependencyInjection<UserRepository>(UserRepository);
+let userRepository: UserRepository = dependencyInjection(UserRepository);
 const jwtSecret = config.jwt.salt;
 
 let validate = (decoded: IDecoded, request, next) => {

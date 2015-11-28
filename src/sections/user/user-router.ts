@@ -1,10 +1,11 @@
 'use strict';
 
+import {dependencyInjection} from 'autoinject';
 import {UpcomingController} from './upcoming/upcoming-controller';
 import {WatchedController} from './watched/watched-controller';
-import {dependencyInjection} from '../../lib/ioc';
-let upcomingController = dependencyInjection<UpcomingController>(UpcomingController);
-let watchedController = dependencyInjection<WatchedController>(WatchedController);
+
+let upcomingController: UpcomingController = dependencyInjection(UpcomingController);
+let watchedController: WatchedController = dependencyInjection(WatchedController);
 
 const userRouts = [
     {

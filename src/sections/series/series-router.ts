@@ -1,9 +1,10 @@
 'use strict';
 
 import {number} from 'joi';
+import {dependencyInjection} from 'autoinject';
 import {SeriesController} from './series-controller';
-import {dependencyInjection} from '../../lib/ioc';
-let controller = dependencyInjection<SeriesController>(SeriesController);
+
+let controller: SeriesController = dependencyInjection(SeriesController);
 
 const seriesRouts = [
     {

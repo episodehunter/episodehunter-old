@@ -2,9 +2,10 @@
 
 import Hapi = require('hapi');
 import {string as validateString} from 'joi';
+import {dependencyInjection} from 'autoinject';
 import {AuthController} from './auth-controller';
-import {dependencyInjection} from '../../lib/ioc';
-let controller = dependencyInjection<AuthController>(AuthController);
+
+let controller: AuthController = dependencyInjection(AuthController);
 
 const authRouts = [
     {
