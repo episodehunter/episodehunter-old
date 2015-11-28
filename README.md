@@ -1,6 +1,6 @@
 ## Queue handler for Episodehunter
 
-This is a simple queue handler for the Episode Hunter project. 
+This is a simple queue handler for the Episodehunter project. 
 
 ### Methods
 
@@ -22,7 +22,8 @@ const jobName = 'something.something.dark.side';
 const payload = {id: 42};
 const options = {
     removeOnComplete: true, // default
-    attempts: 2
+    attempts: 2,
+    backoff: (attempts, delay) => 42
 }
 createJob(jobName, payload, options);
 
