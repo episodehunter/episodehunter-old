@@ -1,6 +1,7 @@
 'use strict';
 
 import Hapi = require('hapi');
+import queue from 'episodehunter-queue';
 import {registerRouts} from './sections/index';
 import {registerPlugin} from './lib/plugins/index';
 import {registerLogger} from './lib/logger';
@@ -21,8 +22,10 @@ registerRouts(server);
 registerLogger(server);
 decorateResponse(server);
 
-// Ony start the server if we run the script directly
+// Only start the server if we run the script directly
 if (!module.parent) {
+    queue.connect(config.redis);
+
     server.start(() => {
         console.log('Server running at:', server.info.uri);
     });

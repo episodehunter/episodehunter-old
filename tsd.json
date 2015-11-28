@@ -37,21 +37,6 @@
     },
     "es6-collections/es6-collections.d.ts": {
       "commit": "de1bfe2c1de921da660cc17a5af1de6c095b35eb"
-    },
-    "kue/kue.d.ts": {
-      "commit": "af76bf46025371c760d8fe8c03cf874428da6124"
-    },
-    "redis/redis.d.ts": {
-      "commit": "af76bf46025371c760d8fe8c03cf874428da6124"
-    },
-    "serve-static/serve-static.d.ts": {
-      "commit": "af76bf46025371c760d8fe8c03cf874428da6124"
-    },
-    "mime/mime.d.ts": {
-      "commit": "af76bf46025371c760d8fe8c03cf874428da6124"
-    },
-    "express/express.d.ts": {
-      "commit": "af76bf46025371c760d8fe8c03cf874428da6124"
     }
   }
 }
