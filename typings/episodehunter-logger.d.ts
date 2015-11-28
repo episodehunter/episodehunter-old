@@ -1,4 +1,4 @@
-interface logger {
+interface _logger {
     trace(msg: string, ...data: any[]): void;
     debug(msg: string, ...data: any[]): void;
     info(msg: string, ...data: any[]): void;
@@ -8,12 +8,14 @@ interface logger {
 }
 
 declare function createLogger({name, logLevel, filePath, stdout, ravenDNS}: {
-        name: string;
-        logLevel?: string;
-        filePath: string;
-        stdout: boolean;
-        ravenDNS: string;
-    }): logger;
+    name: string;
+    logLevel?: string;
+    filePath: string;
+    stdout: boolean;
+    ravenDNS: string;
+}): _logger;
+
+declare var logger: _logger;
 
 declare module 'episodehunter-logger' {
     export default logger;
