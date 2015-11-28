@@ -11,6 +11,10 @@
     "logger",
     "episodehunter"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tjoskar/episodehunter-logger.git"
+  },
   "author": "Oskar Karlsson <kontakta@oskar.karlsson.nu>",
   "license": "MIT",
   "typescript": {
