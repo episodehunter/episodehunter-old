@@ -14,7 +14,7 @@
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
   "dependencies": {
-    "autoinject": "^0.6.3",
+    "autoinject": "^0.6.5",
     "dotenv": "^1.2.0",
     "episodehunter-logger": "tjoskar/episodehunter-logger#v1.0.0",
     "gm": "^1.21.1",
@@ -32,7 +32,7 @@
     "babel-plugin-transform-es2015-parameters": "^6.1.18",
     "chai": "^3.4.1",
     "gulp": "^3.9.0",
-    "gulp-babel": "^6.1.0",
+    "gulp-babel": "^6.1.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-typescript": "^2.9.2",
     "mocha": "^2.3.4",
