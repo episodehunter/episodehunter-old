@@ -4,7 +4,8 @@ const config = {
     appName: 'episodehunter-image-ingest',
     logger: {
         level: 'debug',
-        filePath: `../../log/episodehunter-image-ingest.txt`
+        filePath: `../../log/episodehunter-image-ingest.txt`,
+        ravenDns: process.env.RAVEN_DNS
     },
     db: {
         client: 'mysql',
