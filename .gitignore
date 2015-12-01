@@ -6,3 +6,4 @@ dist
 .idea
 tmp-folder
 .env
+.tern-port
