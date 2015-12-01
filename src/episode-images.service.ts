@@ -10,9 +10,11 @@ import {imageDownloader} from './lib/image-downloader';
 @autoInject
 class EpisodeImageService {
     databaseRepo: DatabaseRepo;
+    downloader;
 
-    constructor(databaseRepo: DatabaseRepo) {
+    constructor(databaseRepo: DatabaseRepo, downloader = imageDownloader) {
         this.databaseRepo = databaseRepo;
+        this.downloader = downloader;
     }
 
     async getOrUpdateEpisodeImage(job: EpisodeImageJob) {
@@ -27,7 +29,7 @@ class EpisodeImageService {
 
         const from = `${config.image.tvdb.imageBaseUrl}${job.fileName}`;
 
-        return await imageDownloader(from, config.image.savePath.show.episode)
+        return await this.downloader(from, config.image.savePath.show.episode)
             .then(imageName => this.databaseRepo.updateEpisodeImage(episode.id, imageName));
     }
 
