@@ -19,7 +19,7 @@ var _bunyanRaven2 = _interopRequireDefault(_bunyanRaven);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var logger = undefined;
+let logger;
 
 /*
 Levels:
@@ -31,22 +31,22 @@ debug (20): Anything else, i.e. too verbose to be included in "info" level.
 trace (10): Logging from external libraries used by your app or very detailed application logging.
 */
 function createLogger(_ref) {
-    var name = _ref.name;
+    let name = _ref.name;
     var _ref$logLevel = _ref.logLevel;
-    var logLevel = _ref$logLevel === undefined ? 'warn' : _ref$logLevel;
-    var filePath = _ref.filePath;
-    var stdout = _ref.stdout;
-    var ravenDNS = _ref.ravenDNS;
+    let logLevel = _ref$logLevel === undefined ? 'warn' : _ref$logLevel;
+    let filePath = _ref.filePath;
+    let stdout = _ref.stdout;
+    let ravenDNS = _ref.ravenDNS;
 
     if (!name) {
         throw new Error('You must specify an application name for the logger');
     }
 
-    var bunyanConfig = {
-        name: name,
+    const bunyanConfig = {
+        name,
         streams: []
     };
-    var ravenClient = undefined;
+    let ravenClient;
 
     if (stdout) {
         bunyanConfig.streams.push({
@@ -74,7 +74,7 @@ function createLogger(_ref) {
         });
     }
 
-    var bunyanLogger = _bunyan2.default.createLogger(bunyanConfig);
+    const bunyanLogger = _bunyan2.default.createLogger(bunyanConfig);
 
     if (logger === undefined) {
         exports.logger = logger = bunyanLogger;
