@@ -16,7 +16,7 @@
   "dependencies": {
     "autoinject": "^0.6.5",
     "dotenv": "^1.2.0",
-    "episodehunter-logger": "tjoskar/episodehunter-logger#v1.0.0",
+    "episodehunter-logger": "tjoskar/episodehunter-logger#v1.0.1",
     "episodehunter-queue": "tjoskar/episodehunter-queue#v1.0.0",
     "gm": "^1.21.1",
     "got": "^5.1.0",
