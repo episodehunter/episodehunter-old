@@ -2,8 +2,9 @@
 
 import './lib/polyfill';
 import {dependencyInjection} from 'autoinject';
-import queue from './lib/queue';
+import queue from 'episodehunter-queue';
 import logger from './lib/logger';
+import config from './config';
 import imageIngest from './episodehunter-messages/queue/image-ingest';
 import EpisodeImageService from './episode-images.service';
 import MovieImageService from './movie-images.service';
@@ -54,7 +55,7 @@ function processJob(fun) {
 }
 
 function main() {
-    const q = queue.connect();
+    const q = queue.connect(config.redis);
     q.process(imageIngest.addOrUpdate.show.fanart, 1, processJob(addOrUpdateShowFanart));
     q.process(imageIngest.addOrUpdate.show.poster, 1, processJob(addOrUpdateShowPoster));
     q.process(imageIngest.addOrUpdate.movie.fanart, 1, processJob(addOrUpdateMovieFanart));
