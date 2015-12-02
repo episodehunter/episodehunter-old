@@ -5,14 +5,16 @@ import {autoInject} from 'autoinject';
 import DatabaseRepo from './database.repository';
 import {logger} from './lib/index';
 import config from './config';
-import {resize, imageDownloader} from './lib/image-downloader';
+import imageDownloader from './lib/image-downloader';
 
 @autoInject
 class ShowImageService {
     databaseRepo: DatabaseRepo;
+    downloader;
 
-    constructor(databaseRepo: DatabaseRepo) {
+    constructor(databaseRepo: DatabaseRepo, downloader = imageDownloader) {
         this.databaseRepo = databaseRepo;
+        this.downloader = downloader;
     }
 
     async getOrUpdateShowFanart(job: ShowImageJob) {
@@ -27,7 +29,8 @@ class ShowImageService {
 
         const from = `${config.image.tvdb.imageBaseUrl}${job.fileName}`;
 
-        return await imageDownloader(from, config.image.savePath.show.fanart)
+        return await this.downloader
+            .imageDownloader(from, config.image.savePath.show.fanart)
             .then(fanartName => this.databaseRepo.updateShowFanart(show.id, fanartName));
     }
 
@@ -43,7 +46,8 @@ class ShowImageService {
 
         const from = `${config.image.tvdb.imageBaseUrl}${job.fileName}`;
 
-        return await resize(from, config.image.savePath.show.poster, 185, 274)
+        return await this.downloader
+            .resize(from, config.image.savePath.show.poster, 185, 274)
             .then(posterName => this.databaseRepo.updateShowPoster(show.id, posterName));
     }
 }
