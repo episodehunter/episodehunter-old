@@ -11,10 +11,10 @@ function getConfiguration(): Promise<any> {
             json: true,
             timeout: 3000
         })
-            .then(({body}) => {
-                configuration = body;
-                return configuration;
-            });
+        .then(({body}) => {
+            configuration = body;
+            return configuration;
+        });
     } else {
         return Promise.resolve(configuration);
     }
