@@ -4,7 +4,7 @@ import {assert} from 'chai';
 import {imageDownloader, resize} from '../../dist/lib/image-downloader';
 import {createServer} from '../server';
 
-describe.only('Image downloader', () => {
+describe('Image downloader', () => {
 
     let server;
 
