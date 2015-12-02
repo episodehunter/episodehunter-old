@@ -32,12 +32,14 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.2.0",
     "babel-plugin-transform-es2015-parameters": "^6.1.18",
     "chai": "^3.4.1",
+    "get-port": "^2.1.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-typescript": "^2.9.2",
     "mocha": "^2.3.4",
     "mock-knex": "^0.3.0",
+    "pify": "^2.3.0",
     "simple-spy": "^1.0.3"
   }
 }
