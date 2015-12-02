@@ -15,7 +15,12 @@ function imageDownloader(url: string, toPath: string): Promise<string> {
         ws.on('finish', () => resolve(name));
         got.stream(url, {
             timeout: 3000
-        }).pipe(ws).on('error', reject);
+        })
+        .on('error', error => {
+            fs.unlink(path);
+            reject(error);
+        })
+        .pipe(ws);
     });
 }
 
@@ -24,9 +29,12 @@ function resize(url: string, toPath: string, w: number, h: number): Promise<stri
     const path = `${toPath}${name}`;
 
     return new Promise((resolve, reject) => {
-        gm(got.stream(url, {
+        const stream = got.stream(url, {
             timeout: 3000
-        }), name)
+        })
+        .on('error', reject);
+
+        gm(stream, name)
             .resizeExact(w, h)
             .write(path, error => {
                 if (error) {
