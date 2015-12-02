@@ -35,7 +35,7 @@ describe('Show Image Service', () => {
             const service = new ShowImageService(databaseMock, imageDownloaderMock);
 
             // Act
-            const result = await service.getOrUpdateShowFanart(job);
+            const result = await service.setOrUpdateShowFanart(job);
 
             // Assert
             assert.strictEqual(result, undefined, 'Should return undefined');
@@ -56,7 +56,7 @@ describe('Show Image Service', () => {
             const service = new ShowImageService(databaseMock, imageDownloaderMock);
 
             // Act
-            const result = await service.getOrUpdateShowFanart(job);
+            const result = await service.setOrUpdateShowFanart(job);
 
             // Assert
             assert.strictEqual(result, undefined, 'Should return undefined');
@@ -82,7 +82,7 @@ describe('Show Image Service', () => {
             const service = new ShowImageService(databaseMock, imageDownloaderMock);
 
             // Act
-            await service.getOrUpdateShowFanart(job);
+            await service.setOrUpdateShowFanart(job);
 
             // Assert
             assert.strictEqual(imageDownloaderMock.imageDownloader.callCount, 1, 'Should have called image downloader');
@@ -110,7 +110,7 @@ describe('Show Image Service', () => {
             const service = new ShowImageService(databaseMock, imageDownloaderMock);
 
             // Act
-            await service.getOrUpdateShowFanart(job);
+            await service.setOrUpdateShowFanart(job);
 
             // Assert
             assert.strictEqual(databaseMock.updateShowFanart.callCount, 1);
@@ -134,7 +134,7 @@ describe('Show Image Service', () => {
             const service = new ShowImageService(databaseMock, imageDownloaderMock);
 
             // Act
-            const result = await service.getOrUpdateShowPoster(job);
+            const result = await service.setOrUpdateShowPoster(job);
 
             // Assert
             assert.strictEqual(result, undefined, 'Should return undefined');
@@ -155,7 +155,7 @@ describe('Show Image Service', () => {
             const service = new ShowImageService(databaseMock, imageDownloaderMock);
 
             // Act
-            const result = await service.getOrUpdateShowPoster(job);
+            const result = await service.setOrUpdateShowPoster(job);
 
             // Assert
             assert.strictEqual(result, undefined, 'Should return undefined');
@@ -181,7 +181,7 @@ describe('Show Image Service', () => {
             const service = new ShowImageService(databaseMock, imageDownloaderMock);
 
             // Act
-            await service.getOrUpdateShowPoster(job);
+            await service.setOrUpdateShowPoster(job);
 
             // Assert
             assert.strictEqual(imageDownloaderMock.resize.callCount, 1, 'Should have called resize');
@@ -211,7 +211,7 @@ describe('Show Image Service', () => {
             const service = new ShowImageService(databaseMock, imageDownloaderMock);
 
             // Act
-            await service.getOrUpdateShowPoster(job);
+            await service.setOrUpdateShowPoster(job);
 
             // Assert
             assert.strictEqual(databaseMock.updateShowPoster.callCount, 1);

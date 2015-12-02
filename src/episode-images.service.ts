@@ -17,7 +17,7 @@ class EpisodeImageService {
         this.downloader = downloader;
     }
 
-    async getOrUpdateEpisodeImage(job: EpisodeImageJob) {
+    async setOrUpdateEpisodeImage(job: EpisodeImageJob) {
         const episode = await this.databaseRepo.getEpisodeImageByTvdbId(job.ids.tvdbId);
         if (episode === undefined) {
             logger.info(`Can't find episode in database, will not download image`);

@@ -19,7 +19,7 @@ class MovieImageService {
         this.databaseRepo = databaseRepo;
     }
 
-    async getOrUpdateMovieFanart(job: MovieImageJob) {
+    async setOrUpdateMovieFanart(job: MovieImageJob) {
         const movie = await this.databaseRepo.getMovieFanartByTmdbId(job.ids.tmdbId);
         if (movie === undefined) {
             logger.info(`Can't find movie in database, will not download fanart`);
@@ -35,7 +35,7 @@ class MovieImageService {
             .then(fanart => this.databaseRepo.updateMovieFanart(movie.id, fanart));
     }
 
-    async getOrUpdateMoviePoster(job: MovieImageJob) {
+    async setOrUpdateMoviePoster(job: MovieImageJob) {
         const movie = await this.databaseRepo.getMoviePosterByTmdbId(job.ids.tmdbId);
         if (movie === undefined) {
             logger.info(`Can't find movie in database, will not download poster`);

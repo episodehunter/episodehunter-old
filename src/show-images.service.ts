@@ -17,7 +17,7 @@ class ShowImageService {
         this.downloader = downloader;
     }
 
-    async getOrUpdateShowFanart(job: ShowImageJob) {
+    async setOrUpdateShowFanart(job: ShowImageJob) {
         const show = await this.databaseRepo.getShowFanartByTvdbId(job.ids.tvdbId);
         if (show === undefined) {
             logger.info(`Can't find show in database, will not download fanart`);
@@ -34,7 +34,7 @@ class ShowImageService {
             .then(fanartName => this.databaseRepo.updateShowFanart(show.id, fanartName));
     }
 
-    async getOrUpdateShowPoster(job: ShowImageJob) {
+    async setOrUpdateShowPoster(job: ShowImageJob) {
         const show = await this.databaseRepo.getShowPosterByTvdbId(job.ids.tvdbId);
         if (show === undefined) {
             logger.info(`Can't find show in database, will not download poster`);

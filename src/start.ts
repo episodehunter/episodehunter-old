@@ -13,27 +13,27 @@ import ShowImageService from './show-images.service';
 
 function addOrUpdateShowFanart(job): Promise<any> {
     const showImageService: ShowImageService = dependencyInjection(ShowImageService);
-    return showImageService.getOrUpdateShowFanart(job.data);
+    return showImageService.setOrUpdateShowFanart(job.data);
 }
 
 function addOrUpdateShowPoster(job): Promise<any> {
     const showImageService: ShowImageService = dependencyInjection(ShowImageService);
-    return showImageService.getOrUpdateShowPoster(job.data);
+    return showImageService.setOrUpdateShowPoster(job.data);
 }
 
 function addOrUpdateMovieFanart(job): Promise<any> {
     const movieImageService: MovieImageService = dependencyInjection(MovieImageService);
-    return movieImageService.getOrUpdateMovieFanart(job.data);
+    return movieImageService.setOrUpdateMovieFanart(job.data);
 }
 
 function addOrUpdateMoviePoster(job): Promise<any> {
     const movieImageService: MovieImageService = dependencyInjection(MovieImageService);
-    return movieImageService.getOrUpdateMoviePoster(job.data);
+    return movieImageService.setOrUpdateMoviePoster(job.data);
 }
 
 function addOrUpdateEpisodeImage(job): Promise<any> {
     const episodeImageService: EpisodeImageService = dependencyInjection(EpisodeImageService);
-    return episodeImageService.getOrUpdateEpisodeImage(job.data);
+    return episodeImageService.setOrUpdateEpisodeImage(job.data);
 }
 
 function processJob(fun) {

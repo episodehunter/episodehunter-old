@@ -31,7 +31,7 @@ describe('Episode Image Service', () => {
         const service = new EpisodeImageService(databaseMock, imageDownloaderMock);
 
         // Act
-        const result = await service.getOrUpdateEpisodeImage(job);
+        const result = await service.setOrUpdateEpisodeImage(job);
 
         // Assert
         assert.strictEqual(result, undefined, 'Should return undefined');
@@ -53,7 +53,7 @@ describe('Episode Image Service', () => {
         const service = new EpisodeImageService(databaseMock, imageDownloaderMock);
 
         // Act
-        const result = await service.getOrUpdateEpisodeImage(job);
+        const result = await service.setOrUpdateEpisodeImage(job);
 
         // Assert
         assert.strictEqual(result, undefined, 'Should return undefined');
@@ -80,7 +80,7 @@ describe('Episode Image Service', () => {
         const service = new EpisodeImageService(databaseMock, imageDownloaderMock);
 
         // Act
-        await service.getOrUpdateEpisodeImage(job);
+        await service.setOrUpdateEpisodeImage(job);
 
         // Assert
         assert.strictEqual(imageDownloaderMock.callCount, 1, 'Should not have called image downloader');
@@ -109,7 +109,7 @@ describe('Episode Image Service', () => {
         const service = new EpisodeImageService(databaseMock, imageDownloaderMock);
 
         // Act
-        await service.getOrUpdateEpisodeImage(job);
+        await service.setOrUpdateEpisodeImage(job);
 
         // Assert
         assert.strictEqual(databaseMock.updateEpisodeImage.callCount, 1);
