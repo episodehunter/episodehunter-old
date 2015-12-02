@@ -14,9 +14,13 @@ const fanartSize = 'original';
 @autoInject
 class MovieImageService {
     databaseRepo: DatabaseRepo;
+    downloader;
+    theMovieDb;
 
-    constructor(databaseRepo: DatabaseRepo) {
+    constructor(databaseRepo: DatabaseRepo, downloader = imageDownloader, movieDb = theMovieDb) {
         this.databaseRepo = databaseRepo;
+        this.downloader = downloader;
+        this.theMovieDb = movieDb;
     }
 
     async setOrUpdateMovieFanart(job: MovieImageJob) {
@@ -29,9 +33,9 @@ class MovieImageService {
             return;
         }
 
-        const from = `${await theMovieDb.getBaseImageUrl()}${fanartSize}${job.fileName}`;
+        const from = `${await this.theMovieDb.getBaseImageUrl()}${fanartSize}/${job.fileName}`;
 
-        return await imageDownloader(from, config.image.savePath.movie.fanart)
+        return await this.downloader(from, config.image.savePath.movie.fanart)
             .then(fanart => this.databaseRepo.updateMovieFanart(movie.id, fanart));
     }
 
@@ -45,9 +49,9 @@ class MovieImageService {
             return;
         }
 
-        const from = `${await theMovieDb.getBaseImageUrl()}${posterSize}${job.fileName}`;
+        const from = `${await this.theMovieDb.getBaseImageUrl()}${posterSize}/${job.fileName}`;
 
-        return await imageDownloader(from, config.image.savePath.movie.poster)
+        return await this.downloader(from, config.image.savePath.movie.poster)
             .then(poster => this.databaseRepo.updateMoviePoster(movie.id, poster));
     }
 }
