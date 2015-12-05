@@ -1,5 +1,6 @@
-import queue from './lib/queue';
+import queue from 'episodehunter-queue';
 import {logger} from './lib/logger';
+import config from './config';
 import {scrobble} from './episodehunter-messages/queue/scrobble';
 import episodeController from './watched-episodes/controller';
 import movieController from './watched-movies/controller';
@@ -40,7 +41,7 @@ function processJob(fun) {
 }
 
 function main() {
-    const q = queue.connect();
+    const q = queue.connect(config.redis);
     q.process(scrobble.sync.watched.show.add, 1, processJob(setShowAsWatched));
     q.process(scrobble.sync.watched.show.get, 10, processJob(getWatchedShows));
     q.process(scrobble.sync.watched.movie.add, 1, processJob(setMovieAsWatched));

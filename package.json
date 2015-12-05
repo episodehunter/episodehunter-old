@@ -14,6 +14,7 @@
   "dependencies": {
     "dotenv": "^1.2.0",
     "episodehunter-logger": "tjoskar/episodehunter-logger#v1.0.1",
+    "episodehunter-queue": "tjoskar/episodehunter-queue#v1.0.1",
     "knex": "^0.9.0",
     "kue": "^0.10.4",
     "lodash": "^3.10.1",

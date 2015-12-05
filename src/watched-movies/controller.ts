@@ -1,6 +1,6 @@
+import queue from 'episodehunter-queue';
 import {WatchedMovie} from 'eh-domain/model/scrobble/sync';
 import {movieIngest} from '../episodehunter-messages/queue/movie-ingest';
-import {addToQueue} from '../lib/queue';
 import {logger} from '../lib/logger';
 import {MissingMovieError} from '../error/missing-movie.error';
 import {setMovieAsWatched, getWatchedMovies} from './service';
@@ -16,7 +16,7 @@ function setWatched(watchedMovie: WatchedMovie, userId: number) {
                 logger.debug(error.message);
                 console.log('movie-controller:catch', watchedMovie.ids);
 
-                addToQueue(movieIngest.add, watchedMovie.ids, {
+                queue.addToQueue(movieIngest.add, watchedMovie.ids, {
                     attempts: 3,
                     backoff: {delay: 60000, type: 'fixed'}
                 });

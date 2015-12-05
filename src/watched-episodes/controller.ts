@@ -1,5 +1,5 @@
+import queue from 'episodehunter-queue';
 import {WatchedShow} from 'eh-domain/model/scrobble/sync';
-import {addToQueue} from '../lib/queue';
 import {logger} from '../lib/logger';
 import {showIngest} from '../episodehunter-messages/queue/show-ingest';
 import {setEpisodesAsWatched, getWatchedEpisodes} from '../watched-episodes/service';
@@ -12,7 +12,7 @@ function setWatched(watchedShow: WatchedShow, userId: number) {
                 // The show is missing
                 // Add it and try agin later
                 logger.debug(error.message);
-                addToQueue(showIngest.add, watchedShow.ids, {
+                queue.addToQueue(showIngest.add, watchedShow.ids, {
                     attempts: 3,
                     backoff: {delay: 60000, type: 'fixed'}
                 });
