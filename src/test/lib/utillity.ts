@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {as, extractYear, int, isDefined, isNumric, now, parseInteger} from '../../lib/utility';
+import {as, extractYear, isDefined, isNumric, now, parseInteger} from '../../lib/utility';
 
 describe('Utillity', () => {
 
@@ -33,7 +33,7 @@ describe('Utillity', () => {
             assert.isNumber(timestamp);
             assert(timestamp > 1448128744, 'The timestamp should be larger then the timestamp when I wrote this test case');
             assert(timestamp < 2000000000, 'The timestamp should smaller then the year 2033');
-        })
+        });
     });
 
     describe('parseInteger', () => {
@@ -169,7 +169,7 @@ describe('Utillity', () => {
 
             // Act
             assert.strictEqual(result, 'column as newName');
-        })
+        });
     });
 
     describe('isDefined', () => {
