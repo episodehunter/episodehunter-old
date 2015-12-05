@@ -8,6 +8,7 @@
   ],
   "main": "",
   "scripts": {
+    "setup": "npm install && tsc && echo 'Nice!'",
     "start": "node -r dotenv/config dist/start.js",
     "test": "mocha dist/test/unit --recursive",
     "test:all": "mocha dist/test --recursive",
