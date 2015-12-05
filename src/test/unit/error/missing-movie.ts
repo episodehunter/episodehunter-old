@@ -1,5 +1,5 @@
 import {expect, assert} from 'chai';
-import {MissingMovieError} from '../../error/missing-movie.error';
+import {MissingMovieError} from '../../../error/missing-movie.error';
 
 describe('Error', () => {
 

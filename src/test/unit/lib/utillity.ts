@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {as, extractYear, isDefined, isNumric, now, parseInteger} from '../../lib/utility';
+import {as, extractYear, isDefined, isNumric, now, parseInteger} from '../../../lib/utility';
 
 describe('Utillity', () => {
 

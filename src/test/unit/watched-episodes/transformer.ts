@@ -1,7 +1,7 @@
 import {assert} from 'chai';
 import {WatchedShow} from 'eh-domain/model/scrobble/sync';
-import {extractEpisodesFromGivenShow, transformEpisodesFromDB} from '../../watched-episodes/transformer';
-import {watchedEpisode} from '../../episodehunter-messages/database/watched-episode';
+import {extractEpisodesFromGivenShow, transformEpisodesFromDB} from '../../../watched-episodes/transformer';
+import {watchedEpisode} from '../../../episodehunter-messages/database/watched-episode';
 
 describe('Show transformer', () => {
     let orginalDateNow = Date.now;

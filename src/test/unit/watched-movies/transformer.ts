@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {transformMoviesFromDB} from '../../watched-movies/transformer';
+import {transformMoviesFromDB} from '../../../watched-movies/transformer';
 
 describe('Movie transformer', () => {
 

@@ -1,7 +1,7 @@
 import {assert, expect} from 'chai';
 import {spy} from 'simple-spy';
-import {logger} from '../../lib/logger';
-import {catchDbError, rejectIfNoResult} from '../../lib/error-handler';
+import {logger} from '../../../lib/logger';
+import {catchDbError, rejectIfNoResult} from '../../../lib/error-handler';
 
 describe('Error handler', () => {
 

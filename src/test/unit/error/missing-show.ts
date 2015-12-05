@@ -1,5 +1,5 @@
 import {expect, assert} from 'chai';
-import {MissingShowError} from '../../error/missing-show.error';
+import {MissingShowError} from '../../../error/missing-show.error';
 
 describe('Error', () => {
 
