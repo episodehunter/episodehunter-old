@@ -14,13 +14,13 @@ const queue = createQueue();
 logger.info = () => {};
 
 const httpGetMock = url => {
-   if (url.substr(0, 50) === 'https://api.themoviedb.org/3/movie/206647?api_key=') {
+    if (url.substr(0, 50) === 'https://api.themoviedb.org/3/movie/206647?api_key=') {
         return Promise.resolve({body: mockMovie});
-   } else if (url.substr(0, 57) === 'https://api.themoviedb.org/3/movie/206647/videos?api_key=') {
+    } else if (url.substr(0, 57) === 'https://api.themoviedb.org/3/movie/206647/videos?api_key=') {
         return Promise.resolve({body: mockTrailer});
-   } else {
-       throw new Error('Unexpected url: ' + url);
-   }
+    } else {
+        throw new Error('Unexpected url: ' + url);
+    }
 };
 
 MovieDbRepository.inject = [httpGetMock];
