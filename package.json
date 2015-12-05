@@ -11,6 +11,14 @@
     "test:watch": "mocha tests/unit --compilers js:babel-core/register --recursive --dot",
     "test:debug": "mocha tests/unit --compilers js:babel-core/register --recursive --debug-brk"
   },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "http://episodehunter.tv",
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
   "dependencies": {
