@@ -2,7 +2,8 @@ const config = {
     appName: 'episodehunter-scrobbler',
     logger: {
         level: 'debug',
-        filePath: `../../log/episodehunter-scrobbler.txt`
+        filePath: `../../log/episodehunter-scrobbler.txt`,
+        ravenDns: process.env.RAVEN_DNS
     },
     db: {
         client: 'mysql',
