@@ -1,7 +1,9 @@
+'use strict';
+
 import {autoInject} from 'autoinject';
 import {sign} from 'jsonwebtoken';
-import {UserRepository, UserSelectionInterface} from './auth-repository';
-import {config} from '../../config/index';
+import {UserRepository} from './auth-repository';
+import config from '../../config';
 import {compareUserPassword} from '../../lib/bcrypt';
 
 const jwtSecret = config.jwt.salt;

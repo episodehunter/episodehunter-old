@@ -3,7 +3,7 @@
 import Hapi = require('hapi');
 const jwt = require('hapi-auth-jwt2');
 import {dependencyInjection} from 'autoinject';
-import {config} from '../../../config/index';
+import config from '../../../config';
 import {UserRepository} from '../../../sections/auth/auth-repository';
 
 interface IDecoded {

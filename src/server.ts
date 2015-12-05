@@ -6,7 +6,7 @@ import {registerRouts} from './sections/index';
 import {registerPlugin} from './lib/plugins/index';
 import {registerLogger} from './lib/logger';
 import {decorateResponse} from './lib/decorate-response';
-import {config} from './config/index';
+import config from './config';
 
 const server = new Hapi.Server();
 

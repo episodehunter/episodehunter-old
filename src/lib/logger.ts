@@ -1,6 +1,6 @@
 import {createLogger} from 'episodehunter-logger';
 import {join, normalize} from 'path';
-import {config} from '../config/index';
+import config from '../config';
 
 const logger = createLogger({
     name: config.appName,
