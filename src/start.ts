@@ -1,8 +1,10 @@
 'use strict';
 
 import './lib/polyfill';
+import queue from 'episodehunter-queue';
 import {dependencyInjection} from 'autoinject';
-import {logger, queue} from './lib/index';
+import config from './config';
+import {logger} from './lib/index';
 import MovieService from './movie.service';
 import movieIngest from './episodehunter-messages/queue/movie-ingest';
 
@@ -35,7 +37,7 @@ function processJob(fun) {
 }
 
 function main() {
-    const q = queue.connect();
+    const q = queue.connect(config.redis);
     q.process(movieIngest.add, 1, processJob(addMovie));
     q.process(movieIngest.update, 1, processJob(updateMovie));
 
