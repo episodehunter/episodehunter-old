@@ -5,7 +5,7 @@ import {ShowIds} from 'eh-domain/model/ingest/new';
 import {show as showTable} from './episodehunter-messages/database/show';
 import {episode as episodeTable} from './episodehunter-messages/database/episode';
 import database from './lib/database';
-import {TvdbShow, TvdbEpisode} from './thetvdb/tvdb.model';
+import {TvdbShow} from './thetvdb/tvdb.model';
 import transformer from './thetvdb.transformer';
 
 
@@ -60,7 +60,7 @@ class ShowDbRepository {
                 return this.insertEpisodes(
                     transformer.transformEpisodesForDBinsert(ids, show.episodes),
                     trx
-                )
+                );
             });
         })
         .then(() => show);
@@ -84,7 +84,7 @@ class ShowDbRepository {
                     episodes.splice(0, 50)
                 )
                 .into(episodeTable.$table)
-            )
+            );
         }
 
         return Promise.all(result);

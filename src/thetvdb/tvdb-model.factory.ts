@@ -50,7 +50,7 @@ function tvdbShowFactory(response: TvdbShowResponse) {
                 overview: episode.Overview,
                 thumbnail: episode.filename
             });
-        }
+        };
 
         if (Array.isArray(response.Episode)) {
             response.Episode.forEach(pushEpisode);

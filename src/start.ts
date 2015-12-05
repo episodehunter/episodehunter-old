@@ -28,7 +28,7 @@ function updateShow(job): Promise<number|string> {
 
 function processJob(fun) {
     return (job, done) => {
-        logger.debug('Getting job', job.data);
+        logger.debug('Getting job', fun.name, job.data);
 
         fun(job)
             .then(result => {
