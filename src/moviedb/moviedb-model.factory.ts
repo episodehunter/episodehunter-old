@@ -19,8 +19,16 @@ function movieDbModelFactory(response: MovieDbMovieResponse) {
     movie.spokenLanguages = response.spoken_languages.map(l => l.name);
     movie.tagline = response.tagline;
     movie.title = response.title;
-    movie.trailer = response.trailer;
+    movie.trailer = extractYoutubeTrailer(response.videos);
     return movie;
+}
+
+function extractYoutubeTrailer(videos) {
+    try {
+        return videos.results.find(y => y.site === 'YouTube').key;
+    } catch (e) {
+        return undefined;
+    }
 }
 
 export default {movieDbModelFactory};

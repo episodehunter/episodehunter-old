@@ -25,6 +25,16 @@ interface SpokenLanguage {
     name: string;
 }
 
+interface Video {
+    id: string;
+    iso_639_1: string;
+    key: string;
+    name: string;
+    site: string;
+    size: number;
+    type: string;
+}
+
 interface MovieDbMovieResponse {
     adult: boolean;
     backdrop_path: string;
@@ -51,6 +61,9 @@ interface MovieDbMovieResponse {
     trailer: string;
     vote_average: number;
     vote_count: number;
+    videos: {
+        results: Video[];
+    };
 }
 
 export {MovieDbMovieResponse};

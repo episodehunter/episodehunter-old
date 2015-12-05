@@ -8,7 +8,6 @@ import {movie as movieTable} from '../../dist/episodehunter-messages/database/mo
 import database from '../../dist/lib/database';
 import MovieDbRepository from '../../dist/moviedb/moviedb-repository';
 import mockMovie from '../testdata/mock-movie.json';
-import mockTrailer from '../testdata/mock-trailer.json';
 
 const queue = createQueue();
 logger.info = () => {};
@@ -16,8 +15,6 @@ logger.info = () => {};
 const httpGetMock = url => {
     if (url.substr(0, 50) === 'https://api.themoviedb.org/3/movie/206647?api_key=') {
         return Promise.resolve({body: mockMovie});
-    } else if (url.substr(0, 57) === 'https://api.themoviedb.org/3/movie/206647/videos?api_key=') {
-        return Promise.resolve({body: mockTrailer});
     } else {
         throw new Error('Unexpected url: ' + url);
     }

@@ -16,29 +16,10 @@ class MovieDbRepository {
     }
 
     getMovie(movieDbId: number): Promise<MovieDbMovie> {
-        const url = `${baseUrl}${movieDbId}?api_key=${apiKey}`;
-        return Promise.all([
-            this.makeCall(url),
-            this.getTrailer(movieDbId)
-        ])
-        .then(([movie, trailer]) => {
-            movie.trailer = trailer;
+        const url = `${baseUrl}${movieDbId}?api_key=${apiKey}&append_to_response=videos`;
+        return this.makeCall(url).then(movie => {
             return movieDbModelFactory(movie);
         });
-    }
-
-    getTrailer(movieDbId: number): Promise<string> {
-        const url = `${baseUrl}${movieDbId}/videos?api_key=${apiKey}`;
-        return this.makeCall(url)
-            .then(videos => {
-                if (!Array.isArray(videos.results)) {
-                    return Promise.reject('Bad trailer response from server');
-                } else {
-                    return videos.results;
-                }
-            })
-            .then(results => results.find(y => y.site === 'YouTube') || {})
-            .then(trailer => trailer.key);
     }
 
     makeCall(url: string) {
