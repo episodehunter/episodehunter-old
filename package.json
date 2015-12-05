@@ -9,7 +9,8 @@
   "main": "",
   "scripts": {
     "start": "node -r dotenv/config dist/start.js",
-    "test": "mocha dist/test/unit --recursive"
+    "test": "mocha dist/test/unit --recursive",
+    "test:integration": "mocha dist/test/integration --recursive"
   },
   "private": true,
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
