@@ -2,7 +2,7 @@ import {autoInject} from 'autoinject';
 import {database} from '../../lib/db';
 import {as} from '../../lib/utility/database';
 
-interface SeriesDatabaseInterface {
+interface ShowDatabaseInterface {
     id: number;
     tvdbId: number;
     imdbId: string;
@@ -21,9 +21,9 @@ interface SeriesDatabaseInterface {
 }
 
 @autoInject
-class SeriesRepository {
+class ShowRepository {
 
-    get(seriesId: number): Promise<SeriesDatabaseInterface> {
+    get(showId: number): Promise<ShowDatabaseInterface> {
         let model = database.model.show;
 
         return database.q
@@ -45,15 +45,15 @@ class SeriesRepository {
                 model.poster
             )
             .from(model.$table)
-            .where(model.id, '=', seriesId)
-            .then(series => {
-                if (series === undefined) {
+            .where(model.id, '=', showId)
+            .then(show => {
+                if (show === undefined) {
                     return Promise.reject(404);
                 }
-                return series;
+                return show;
             });
     }
 
 }
 
-export {SeriesRepository};
+export {ShowRepository};

@@ -25,7 +25,7 @@ class WatchedController {
     getWatchedShows(request: Hapi.Request, reply: Hapi.IReply) {
         let userId = request.auth.credentials.id;
         this.watchedService
-            .getWatchedSeries(userId)
+            .getWatchedShows(userId)
             .then(series => reply({series}))
             .catch(error => {
                 console.log(error);

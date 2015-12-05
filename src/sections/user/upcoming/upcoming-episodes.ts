@@ -36,12 +36,12 @@ class UpcomingEpiosdes {
                     thumbnail: el.thumbnail,
                     show: {
                         ids: {
-                            id: el.series_id
+                            id: el.show_id
                         },
-                        title: el.series_title,
-                        year: extractYear(el.series_first_aired),
-                        poster: el.series_poster,
-                        fanart: el.series_fanart
+                        title: el.show_title,
+                        year: extractYear(el.show_first_aired),
+                        poster: el.show_poster,
+                        fanart: el.show_fanart
                     }
                 };
             });

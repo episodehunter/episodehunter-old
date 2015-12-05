@@ -70,11 +70,11 @@ describe('Series', () => {
                 id: 2,
                 thumbnail: 'thumbnail.jpg',
                 title: 'Surprise Motherfucka',
-                series_id: 5,
-                series_title: 'Dexter',
-                series_first_aired: '2004-09-21',
-                series_poster: 'poster.jpg',
-                series_fanart: 'fanart.jpg',
+                show_id: 5,
+                show_title: 'Dexter',
+                show_first_aired: '2004-09-21',
+                show_poster: 'poster.jpg',
+                show_fanart: 'fanart.jpg',
                 season: 1,
                 episode: 3,
                 airs: '2004-09-21'
@@ -103,12 +103,12 @@ describe('Series', () => {
                             thumbnail: dbRow[0].thumbnail,
                             show: {
                                 ids: {
-                                    id: dbRow[0].series_id
+                                    id: dbRow[0].show_id
                                 },
-                                title: dbRow[0].series_title,
+                                title: dbRow[0].show_title,
                                 year: 2004,
-                                poster: dbRow[0].series_poster,
-                                fanart: dbRow[0].series_fanart
+                                poster: dbRow[0].show_poster,
+                                fanart: dbRow[0].show_fanart
                             }
                         }]
                     });

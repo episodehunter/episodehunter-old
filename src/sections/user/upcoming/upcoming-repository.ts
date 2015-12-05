@@ -6,11 +6,11 @@ interface UpcompingDatabaseInterface {
     id: number;
     thumbnail: string;
     title: string;
-    series_id: number;
-    series_title: string;
-    series_first_aired: string;
-    series_poster: string;
-    series_fanart: string;
+    show_id: number;
+    show_title: string;
+    show_first_aired: string;
+    show_poster: string;
+    show_fanart: string;
     season: number;
     episode: number;
     airs: string;
@@ -25,9 +25,9 @@ class UpcomingRepository {
         let raw = database.q.raw;
 
         let model = {
-            series: database.model.show,
+            show: database.model.show,
             episode: database.model.episode,
-            follow: database.model.followingSeries
+            follow: database.model.followingShow
         };
 
         return database.q
@@ -35,26 +35,26 @@ class UpcomingRepository {
                 model.episode.id,
                 model.episode.image,
                 as(model.episode.name, 'title'),
-                as(model.series.id, 'series_id'),
-                as(model.series.title, 'series_title'),
-                as(model.series.airs.first, 'series_first_aired'),
-                as(model.series.poster, 'series_poster'),
-                as(model.series.fanart, 'series_fanart')
+                as(model.show.id, 'show_id'),
+                as(model.show.title, 'show_title'),
+                as(model.show.airs.first, 'show_first_aired'),
+                as(model.show.poster, 'show_poster'),
+                as(model.show.fanart, 'show_fanart')
             )
             .max(as(model.episode.season, 'season'))
             .min(as(model.episode.episode, 'episode'))
             .min(as(model.episode.firstAired, 'airs'))
             .from(model.follow.$table)
-            .leftJoin(model.series.$table, model.follow.seriesId, model.series.id)
+            .leftJoin(model.show.$table, model.follow.showId, model.show.id)
             .leftJoin(model.episode.$table, function() {
-                this.on(model.follow.seriesId, '=', model.episode.seriesId)
+                this.on(model.follow.showId, '=', model.episode.showId)
                     .on(model.episode.season, '!=', raw('0'))
                     .on(model.episode.episode, '!=', raw('0'))
                     .on(model.episode.firstAired, '>=', raw('"' + today + '"'));
             })
             .where(model.follow.userId, '=', userId)
             .where(function() {
-                this.where(model.series.status, '=', 'Continuing')
+                this.where(model.show.status, '=', 'Continuing')
                     .orWhereNotNull(model.episode.episode);
             })
             .groupBy(model.follow.id)

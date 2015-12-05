@@ -2,21 +2,21 @@ import Hapi = require('hapi');
 import {autoInject} from 'autoinject';
 import {notFound, badImplementation} from 'boom';
 import {int} from '../../lib/utility/type-conversion';
-import {ServiesService} from './series-service';
+import {ShowService} from './show-service';
 
 @autoInject
-class SeriesController {
-    service: ServiesService;
+class ShowController {
+    service: ShowService;
 
-    constructor(service: ServiesService) {
+    constructor(service: ShowService) {
         this.service = service;
     }
 
     get(request: Hapi.Request, reply: Hapi.IReply) {
-        let seriesId = int(request.params['id']);
+        let showId = int(request.params['id']);
         this.service
-            .getSeries(seriesId)
-            .then(series => reply({series}))
+            .getShow(showId)
+            .then(show => reply({show}))
             .catch(code => {
                 if (code === 404) {
                     reply(notFound());
@@ -28,4 +28,4 @@ class SeriesController {
 
 }
 
-export {SeriesController};
+export {ShowController};

@@ -1,4 +1,4 @@
-import {Series} from '../../../series/model/series-model';
+import {Show} from '../../../show/model/show-model';
 
 interface UpcomingEpisode {
     ids: {
@@ -9,7 +9,7 @@ interface UpcomingEpisode {
     episode: number;
     airs: string;
     thumbnail: string;
-    show: Series;
+    show: Show;
 }
 
 export {UpcomingEpisode};

@@ -10,7 +10,7 @@ class WatchedService {
         return queue.rpc<WatchedMovie[]>(scrobble.sync.watched.movie.get, {userId});
     }
 
-    getWatchedSeries(userId: number): Promise<WatchedShow[]> {
+    getWatchedShows(userId: number): Promise<WatchedShow[]> {
         return queue.rpc<WatchedShow[]>(scrobble.sync.watched.show.get, {userId});
     }
 

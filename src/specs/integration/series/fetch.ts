@@ -4,7 +4,7 @@ import {mockDb} from '../helper/database';
 import {headers, loginIfTrying} from '../helper/auth';
 import {server} from '../server';
 
-describe('Series', () => {
+describe('Shows', () => {
     let tracker;
 
     before(() => {
@@ -21,10 +21,10 @@ describe('Series', () => {
 
     describe('Fetch', () => {
 
-        it(`Should get unauthorized response if trying to fetch series with invalid token`, () => {
+        it(`Should get unauthorized response if trying to fetch shows with invalid token`, () => {
             let options: any = {
                 method: 'GET',
-                url: '/series/1',
+                url: '/show/1',
                 headers: {
                     Authorization: 'bad-token'
                 }
@@ -40,10 +40,10 @@ describe('Series', () => {
                 });
         });
 
-        it(`Should return 404 for a series that doesn't exist`, () => {
+        it(`Should return 404 for a shows that doesn't exist`, () => {
             let options: any = {
                 method: 'GET',
-                url: '/series/1',
+                url: '/show/1',
                 headers: headers
             };
 
@@ -64,7 +64,7 @@ describe('Series', () => {
         it(`Should return a tv show when asking for it`, () => {
             let options: any = {
                 method: 'GET',
-                url: '/series/3860',
+                url: '/show/3860',
                 headers: headers
             };
 
@@ -98,7 +98,7 @@ describe('Series', () => {
                     let result = response.result;
                     assert.equal(response.statusCode, 200);
                     assert.deepEqual(result, {
-                    series: {
+                    show: {
                         ids: {
                             id: dbRow.id
                         },

@@ -1,4 +1,4 @@
-interface Series {
+interface Show {
     ids: {
         id: number;
         tvdbId?: number;
@@ -21,4 +21,4 @@ interface Series {
     poster?: string;
 }
 
-export {Series};
+export {Show};
