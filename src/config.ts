@@ -4,7 +4,8 @@ const config = {
     appName: 'episodehunter-show-handler',
     logger: {
         level: 'debug',
-        filePath: `../../log/episodehunter-show-handler.txt`
+        filePath: `../../log/episodehunter-show-handler.txt`,
+        ravenDns: process.env.RAVEN_DNS
     },
     db: {
         client: 'mysql',
