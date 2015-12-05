@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node -r dotenv/config dist/start.js",
     "test": "mocha dist/test/unit --recursive",
+    "test:all": "mocha dist/test --recursive",
     "test:integration": "mocha dist/test/integration --recursive"
   },
   "private": true,
