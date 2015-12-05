@@ -3,15 +3,20 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.rpc = exports.addToQueue = exports.connect = undefined;
+exports.__kue = exports.rpc = exports.addToQueue = exports.connect = undefined;
 
 var _kue = require('kue');
 
+var _kue2 = _interopRequireDefault(_kue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var queue = undefined;
+var __kue = _kue2.default;
 
 function connect(config) {
     if (queue === undefined) {
-        queue = (0, _kue.createQueue)(config);
+        queue = _kue2.default.createQueue(config);
     }
     return queue;
 }
@@ -63,7 +68,8 @@ function rpc(jobName, payload) {
     });
 }
 
-exports.default = { connect: connect, addToQueue: addToQueue, rpc: rpc };
+exports.default = { connect: connect, addToQueue: addToQueue, rpc: rpc, __kue: __kue };
 exports.connect = connect;
 exports.addToQueue = addToQueue;
 exports.rpc = rpc;
+exports.__kue = __kue;
