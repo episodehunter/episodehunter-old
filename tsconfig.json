@@ -18,8 +18,7 @@
         "node_modules",
         "tests"
     ],
-    "filesGlob": [
-        "typings/tsd.d.ts",
-        "src/**/*.ts"
-    ]
+    "atom": {
+        "rewriteTsconfig": true
+    }
 }
