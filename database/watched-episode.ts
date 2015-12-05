@@ -1,5 +1,5 @@
 const watchedEpisode = {
-    id: 'tv_watched.movie.id',
+    id: 'tv_watched.id',
     userId: 'tv_watched.user_id',
     showId: 'tv_watched.serie_id',
     season: 'tv_watched.season',
