@@ -3,7 +3,7 @@
 const config = {
     appName: 'episodehunter-show-handler',
     logger: {
-        level: 'debug',
+        level: process.env.EH_LOG_LEVEL || 'debug',
         filePath: `../../log/episodehunter-show-handler.txt`,
         ravenDns: process.env.RAVEN_DNS
     },

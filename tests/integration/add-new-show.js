@@ -1,5 +1,6 @@
 'use strict';
 
+import '../set-env-var';
 import {assert} from 'chai';
 import {createQueue} from 'kue';
 import {addShow} from '../../dist/start';
