@@ -4,7 +4,9 @@
   "description": "Api server for episodehunter.tv",
   "main": "dist/server.js",
   "scripts": {
-    "test": "mocha dist/specs/ --recursive -S --check-leaks"
+    "test": "mocha dist/specs/unit --recursive --check-leaks",
+    "test:all": "mocha dist/specs --recursive --check-leaks",
+    "test:integration": "mocha dist/specs/integration --recursive --check-leaks"
   },
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
