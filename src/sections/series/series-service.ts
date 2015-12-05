@@ -44,7 +44,7 @@ class ServiesService {
                     status: series.status,
                     fanart: series.fanart,
                     poster: series.poster
-                }
+                };
             });
     }
 

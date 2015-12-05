@@ -23,7 +23,7 @@ class SeriesController {
                 if (code === 404) {
                     reply(notFound());
                 } else {
-                    reply(badImplementation())
+                    reply(badImplementation());
                 }
             });
     }

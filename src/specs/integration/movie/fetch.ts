@@ -5,7 +5,7 @@ import {server} from '../server';
 
 describe('Movie', () => {
     let tracker;
-    let url = '/movie/2';
+    const url = '/movie/2';
 
     before(() => {
         tracker = mockDb();
@@ -22,7 +22,7 @@ describe('Movie', () => {
     describe('Fetch', () => {
 
         it(`Should get unauthorized response if trying to fetch a movie with invalid token`, () => {
-            let options: any = {
+            const options: any = {
                 method: 'GET',
                 url: url,
                 headers: {
@@ -41,7 +41,7 @@ describe('Movie', () => {
         });
 
         it(`Should return 404 for a movie that doesn't exist`, () => {
-            let options: any = {
+            const options: any = {
                 method: 'GET',
                 url: url,
                 headers: headers
@@ -56,20 +56,19 @@ describe('Movie', () => {
 
             return server.injectThen(options)
                 .then(response => {
-                    let result = response.result;
                     assert.equal(response.statusCode, 404);
                     assert.deepEqual(response.result, { statusCode: 404, error: 'Not Found' });
                 });
         });
 
         it(`Should return a movie when asking for it`, () => {
-            let options: any = {
+            const options: any = {
                 method: 'GET',
                 url: url,
                 headers: headers
             };
 
-            let dbRow = {
+            const dbRow = {
                 id: 2,
                 tmdb_id: 44833,
                 imdb_id: 'tt1440129',
@@ -89,13 +88,15 @@ describe('Movie', () => {
             };
 
             tracker.on('query', query => {
-                if (loginIfTrying(query)) return;
+                if (loginIfTrying(query)) {
+                    return;
+                }
                 query.response(dbRow);
             });
 
             return server.injectThen(options)
                 .then(response => {
-                    let result = response.result;
+                    const result = response.result;
                     assert.equal(response.statusCode, 200);
                     assert.deepEqual(result, {
                     movie: {

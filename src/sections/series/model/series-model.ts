@@ -9,7 +9,7 @@ interface Series {
         dayOfWeek: string;
         time: string;
         first: string;
-    }
+    };
     year: number;
     genre?: Array<string>;
     language?: string;

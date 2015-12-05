@@ -7,12 +7,12 @@ import {Server} from 'hapi';
 interface plugin { (options: any): any; attributes: any; }
 interface TestServer extends Server { injectThen(options: any): Promise<any> }
 
-let injectThenRegister = <plugin>function (server, options, next) {
-    let injectThen = function(options) {
+const injectThenRegister = <plugin>function (server, _options, next) {
+    const injectThen = function(options) {
         return new Promise(resolve => {
             server.inject(options, resolve);
         });
-    }
+    };
 
     if (!server.injectThen) {
         server.decorate('server', 'injectThen', injectThen);
@@ -24,7 +24,7 @@ let injectThenRegister = <plugin>function (server, options, next) {
 injectThenRegister.attributes = {
     name: 'injectThen',
     version: '1.0.0'
-}
+};
 
 server.register(injectThenRegister, err => {
     if (err) {
@@ -32,6 +32,6 @@ server.register(injectThenRegister, err => {
     }
 });
 
-let testServer: TestServer = <any>server;
+const testServer: TestServer = <any>server;
 
 export {testServer as server};

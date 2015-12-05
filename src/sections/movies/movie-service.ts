@@ -1,6 +1,3 @@
-'use strict';
-
-import Promise = require('bluebird');
 import {autoInject} from 'autoinject';
 import {parseJson} from '../../lib/utility/type-conversion';
 import {extractYear} from '../../lib/utility/dates';
@@ -39,7 +36,7 @@ class MovieService {
                     overview: movie.overview,
                     poster: movie.poster,
                     fanart: movie.fanart
-                }
+                };
             });
     }
 

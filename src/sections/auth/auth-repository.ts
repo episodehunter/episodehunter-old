@@ -19,7 +19,7 @@ class UserRepository {
         ];
     }
 
-    getUserById(id: number) : Promise<UserSelectionInterface> {
+    getUserById(id: number): Promise<UserSelectionInterface> {
         return database.q
             .first(...this.selections)
             .from(database.model.userModel.$table)
@@ -27,13 +27,13 @@ class UserRepository {
                 database.model.userModel.id, '=', id
             ).then(user => {
                 if (user === undefined) {
-                    return Promise.reject(undefined)
+                    return Promise.reject(undefined);
                 }
                 return user;
             });
     }
 
-    getUserByUsername(username: string) : Promise<UserSelectionInterface> {
+    getUserByUsername(username: string): Promise<UserSelectionInterface> {
         return database.q
             .first(...this.selections)
             .from(database.model.userModel.$table)
@@ -41,7 +41,7 @@ class UserRepository {
                 database.model.userModel.username, '=', username
             ).then(user => {
                 if (user === undefined) {
-                    return Promise.reject(undefined)
+                    return Promise.reject(undefined);
                 }
                 return user;
             });

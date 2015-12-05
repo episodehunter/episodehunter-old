@@ -8,7 +8,7 @@ describe('Series', () => {
 
     before(() => {
         tracker = mockDb();
-    })
+    });
 
     beforeEach(() => {
         tracker.install();
@@ -47,13 +47,14 @@ describe('Series', () => {
             };
 
             tracker.on('query', query => {
-                if (loginIfTrying(query)) return;
+                if (loginIfTrying(query)) {
+                    return;
+                }
                 query.response(undefined);
             });
 
             return server.injectThen(options)
                 .then(response => {
-                    let result = response.result;
                     assert.equal(response.statusCode, 404);
                     assert.deepEqual(response.result, { statusCode: 404, error: 'Not Found' });
                 });
@@ -85,7 +86,9 @@ describe('Series', () => {
             };
 
             tracker.on('query', query => {
-                if (loginIfTrying(query)) return;
+                if (loginIfTrying(query)) {
+                    return;
+                }
                 query.response(dbRow);
             });
 

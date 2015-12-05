@@ -2,14 +2,13 @@ import {assert} from 'chai';
 import {server} from '../server';
 import {mockDb} from '../helper/database';
 
-
 describe('Auth', () => {
 
     let tracker;
 
     before(() => {
         tracker = mockDb();
-    })
+    });
 
     beforeEach(() => {
         tracker.install();
@@ -23,7 +22,7 @@ describe('Auth', () => {
 
         it(`Should be able to login with valid credentials`, () => {
 
-            let options: any = {
+            const options: any = {
                 method: 'POST',
                 url: '/auth/create-token',
                 payload: {
@@ -42,7 +41,7 @@ describe('Auth', () => {
 
             return server.injectThen(options)
                 .then(response => {
-                    let result = response.result;
+                    const result = response.result;
                     assert.equal(response.statusCode, 200);
                     assert.closeTo(result['token'].length, 150, 50);
                 });
@@ -69,14 +68,13 @@ describe('Auth', () => {
 
             return server.injectThen(options)
                 .then(response => {
-                    let result = response.result;
                     assert.equal(response.statusCode, 403);
                 });
         });
 
         it(`Should get forbidden response if trying to login with non-existing user`, () => {
 
-            let options: any = {
+            const options: any = {
                 method: 'POST',
                 url: '/auth/create-token',
                 payload: {

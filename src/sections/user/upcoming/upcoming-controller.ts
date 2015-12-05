@@ -3,7 +3,6 @@
 import Hapi = require('hapi');
 import {autoInject} from 'autoinject';
 import {UpcomingEpiosdes} from './upcoming-episodes';
-import {notFound, badImplementation} from 'boom';
 
 @autoInject
 class UpcomingController {

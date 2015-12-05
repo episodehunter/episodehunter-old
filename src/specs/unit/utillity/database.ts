@@ -7,11 +7,11 @@ describe('Utillity', () => {
 
         it(`Should correct as statement`, () => {
             // Arrange
-            let column = 'name';
-            let newName = 'title';
+            const column = 'name';
+            const newName = 'title';
 
             // Act
-            let result = as(column, newName);
+            const result = as(column, newName);
 
             assert.strictEqual(result, 'name as title');
         });

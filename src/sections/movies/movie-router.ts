@@ -1,10 +1,8 @@
-'use strict';
-
 import {number} from 'joi';
 import {dependencyInjection} from 'autoinject';
 import {MovieController} from './movie-controller';
 
-let controller: MovieController = dependencyInjection(MovieController);
+const controller: MovieController = dependencyInjection(MovieController);
 
 const movieRouts = [
     {

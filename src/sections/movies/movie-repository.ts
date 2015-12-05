@@ -2,7 +2,6 @@
 
 import {autoInject} from 'autoinject';
 import {database} from '../../lib/db';
-import {as} from '../../lib/utility/database';
 
 interface MovieDatabaseInterface {
     id: number;
@@ -27,8 +26,7 @@ interface MovieDatabaseInterface {
 class MovieRepository {
 
     get(movieId: number): Promise<MovieDatabaseInterface> {
-        let raw = database.q.raw;
-        let model = database.model.movie;
+        const model = database.model.movie;
 
         return database.q
             .first(

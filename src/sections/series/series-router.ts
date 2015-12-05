@@ -4,7 +4,7 @@ import {number} from 'joi';
 import {dependencyInjection} from 'autoinject';
 import {SeriesController} from './series-controller';
 
-let controller: SeriesController = dependencyInjection(SeriesController);
+const controller: SeriesController = dependencyInjection(SeriesController);
 
 const seriesRouts = [
     {

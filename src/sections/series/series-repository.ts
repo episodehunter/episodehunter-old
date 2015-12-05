@@ -26,7 +26,6 @@ interface SeriesDatabaseInterface {
 class SeriesRepository {
 
     get(seriesId: number): Promise<SeriesDatabaseInterface> {
-        let raw = database.q.raw;
         let model = database.model.show;
 
         return database.q

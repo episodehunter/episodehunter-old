@@ -8,6 +8,6 @@ let decorateResponse = server => {
         reply.continue();
     });
 
-}
+};
 
 export {decorateResponse};

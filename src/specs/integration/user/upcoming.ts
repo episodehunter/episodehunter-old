@@ -5,11 +5,11 @@ import {server} from '../server';
 
 describe('Series', () => {
     let tracker;
-    let url = '/user/upcoming/episodes'
+    const url = '/user/upcoming/episodes';
 
     before(() => {
         tracker = mockDb();
-    })
+    });
 
     beforeEach(() => {
         tracker.install();
@@ -22,7 +22,7 @@ describe('Series', () => {
     describe('Upcoming', () => {
 
         it(`Should get unauthorized response if trying to fetch upcoming with invalid token`, () => {
-            let options: any = {
+            const options: any = {
                 method: 'GET',
                 url: url,
                 headers: {
@@ -37,34 +37,35 @@ describe('Series', () => {
         });
 
         it(`Should return an empty array if no upcoming series exists`, () => {
-            let options: any = {
+            const options: any = {
                 method: 'GET',
                 url: url,
                 headers: headers
             };
 
             tracker.on('query', query => {
-                if (loginIfTrying(query)) return;
+                if (loginIfTrying(query)) {
+                    return;
+                }
                 query.response(undefined);
             });
 
             return server.injectThen(options)
                 .then(response => {
-                    let result = response.result;
                     assert.equal(response.statusCode, 200);
                     assert.isArray(response.result.episodes);
-                    assert.lengthOf(response.result.episodes, 0)
+                    assert.lengthOf(response.result.episodes, 0);
                 });
         });
 
         it(`Should return a list of upcoming episodes when asking for it`, () => {
-            let options: any = {
+            const options: any = {
                 method: 'GET',
                 url: url,
                 headers: headers
             };
 
-            let dbRow = [{
+            const dbRow = [{
                 id: 2,
                 thumbnail: 'thumbnail.jpg',
                 title: 'Surprise Motherfucka',
@@ -79,13 +80,15 @@ describe('Series', () => {
             }];
 
             tracker.on('query', query => {
-                if (loginIfTrying(query)) return;
+                if (loginIfTrying(query)) {
+                    return;
+                }
                 query.response(dbRow);
             });
 
             return server.injectThen(options)
                 .then(response => {
-                    let result = response.result;
+                    const result = response.result;
                     assert.equal(response.statusCode, 200);
                     assert.deepEqual(result, {
                         episodes: [{

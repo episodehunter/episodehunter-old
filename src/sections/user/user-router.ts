@@ -4,8 +4,8 @@ import {dependencyInjection} from 'autoinject';
 import {UpcomingController} from './upcoming/upcoming-controller';
 import {WatchedController} from './watched/watched-controller';
 
-let upcomingController: UpcomingController = dependencyInjection(UpcomingController);
-let watchedController: WatchedController = dependencyInjection(WatchedController);
+const upcomingController: UpcomingController = dependencyInjection(UpcomingController);
+const watchedController: WatchedController = dependencyInjection(WatchedController);
 
 const userRouts = [
     {

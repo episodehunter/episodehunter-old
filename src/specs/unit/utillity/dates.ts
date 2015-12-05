@@ -7,20 +7,20 @@ describe('Utillity', () => {
 
         it(`Should return the year for a date string`, () => {
             // Arrange
-            let date = '2015-08-26';
+            const date = '2015-08-26';
 
             // Act
-            let result = extractYear(date);
+            const result = extractYear(date);
 
             assert.strictEqual(result, 2015);
         });
 
         it(`Should return zero if passing a falsy value`, () => {
             // Arrange
-            let date = undefined;
+            const date = undefined;
 
             // Act
-            let result = extractYear(date);
+            const result = extractYear(date);
 
             assert.strictEqual(result, 0);
         });

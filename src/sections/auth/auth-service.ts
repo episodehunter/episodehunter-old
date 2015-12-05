@@ -6,12 +6,13 @@ import {UserRepository} from './auth-repository';
 import config from '../../config';
 import {compareUserPassword} from '../../lib/bcrypt';
 
-const jwtSecret = config.jwt.salt;
-
 @autoInject
 class AuthService {
+    rep: UserRepository;
 
-    constructor(public rep: UserRepository) {}
+    constructor(rep: UserRepository) {
+        this.rep = rep;
+    }
 
     generateToken(username: string, password: string): Promise<string> {
         return this.rep
@@ -20,7 +21,7 @@ class AuthService {
             .then(user => {
                 // Remove the password
                 user.password = undefined;
-                return sign(user, config.jwt.salt)
+                return sign(user, config.jwt.salt);
             });
     }
 }

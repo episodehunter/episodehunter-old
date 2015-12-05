@@ -45,6 +45,6 @@ const registerLogger = server => {
         logger.error('500 response', data);
     });
 
-}
+};
 
 export {logger, registerLogger};

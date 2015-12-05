@@ -7,8 +7,11 @@ import {AuthService} from './auth-service';
 
 @autoInject
 class AuthController {
+    service: AuthService;
 
-    constructor(public service: AuthService) {}
+    constructor(service: AuthService) {
+        this.service = service;
+    }
 
     createToken(request: Request, reply: IReply): void {
         let username = request.payload['username'];

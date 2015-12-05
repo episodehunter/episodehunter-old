@@ -8,7 +8,7 @@ describe('Watched', () => {
 
     before(() => {
         tracker = mockDb();
-    })
+    });
 
     beforeEach(() => {
         tracker.install();
@@ -19,10 +19,10 @@ describe('Watched', () => {
     });
 
     describe('Series', () => {
-        let url = '/user/watched/series'
+        const url = '/user/watched/series';
 
         it(`Should get unauthorized response if trying to fetch watched series with invalid token`, () => {
-            let options: any = {
+            const options: any = {
                 method: 'GET',
                 url: url,
                 headers: {
@@ -37,34 +37,35 @@ describe('Watched', () => {
         });
 
         it(`Should return an empty array if no watched series exists`, () => {
-            let options: any = {
+            const options: any = {
                 method: 'GET',
                 url: url,
                 headers: headers
             };
 
             tracker.on('query', query => {
-                if (loginIfTrying(query)) return;
+                if (loginIfTrying(query)) {
+                    return;
+                }
                 query.response(undefined);
             });
 
             return server.injectThen(options)
                 .then(response => {
-                    let result = response.result;
                     assert.equal(response.statusCode, 200);
                     assert.isArray(response.result.series);
-                    assert.lengthOf(response.result.series, 0)
+                    assert.lengthOf(response.result.series, 0);
                 });
         });
 
         it(`Should return a list of watched series when asking for it`, () => {
-            let options: any = {
+            const options: any = {
                 method: 'GET',
                 url: url,
                 headers: headers
             };
 
-            let dbRow = [{
+            const dbRow = [{
                 show_id: 1,
                 show_tvdb_id: 2,
                 show_imdb_id: 'tt12345',
@@ -99,13 +100,15 @@ describe('Watched', () => {
             }];
 
             tracker.on('query', query => {
-                if (loginIfTrying(query)) return;
+                if (loginIfTrying(query)) {
+                    return;
+                }
                 query.response(dbRow);
             });
 
             return server.injectThen(options)
                 .then(response => {
-                    let result = response.result;
+                    const result = response.result;
                     assert.equal(response.statusCode, 200);
                     assert.deepEqual(result, {
                         series: [{
@@ -137,10 +140,10 @@ describe('Watched', () => {
     });
 
     describe('Movies', () => {
-        let url = '/user/watched/movies'
+        const url = '/user/watched/movies';
 
         it(`Should get unauthorized response if trying to fetch watched movies with invalid token`, () => {
-            let options: any = {
+            const options: any = {
                 method: 'GET',
                 url: url,
                 headers: {
@@ -155,34 +158,35 @@ describe('Watched', () => {
         });
 
         it(`Should return an empty array if no watched movies exists`, () => {
-            let options: any = {
+            const options: any = {
                 method: 'GET',
                 url: url,
                 headers: headers
             };
 
             tracker.on('query', query => {
-                if (loginIfTrying(query)) return;
+                if (loginIfTrying(query)) {
+                    return;
+                }
                 query.response(undefined);
             });
 
             return server.injectThen(options)
                 .then(response => {
-                    let result = response.result;
                     assert.equal(response.statusCode, 200);
                     assert.isArray(response.result.movies);
-                    assert.lengthOf(response.result.movies, 0)
+                    assert.lengthOf(response.result.movies, 0);
                 });
         });
 
         it(`Should return a list of watched movies when asking for it`, () => {
-            let options: any = {
+            const options: any = {
                 method: 'GET',
                 url: url,
                 headers: headers
             };
 
-            let dbRow = [{
+            const dbRow = [{
                 id: 1,
                 tmdb_id: 2,
                 imdb_id: 'tt12345',
@@ -192,13 +196,15 @@ describe('Watched', () => {
             }];
 
             tracker.on('query', query => {
-                if (loginIfTrying(query)) return;
+                if (loginIfTrying(query)) {
+                    return;
+                }
                 query.response(dbRow);
             });
 
             return server.injectThen(options)
                 .then(response => {
-                    let result = response.result;
+                    const result = response.result;
                     assert.equal(response.statusCode, 200);
                     assert.deepEqual(result, {
                         movies: [{
