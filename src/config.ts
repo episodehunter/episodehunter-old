@@ -3,7 +3,7 @@
 const config = {
     appName: 'episodehunter-scrobbler',
     logger: {
-        level: 'debug',
+        level: process.env.EH_LOG_LEVEL || 'debug',
         filePath: `../../log/episodehunter-scrobbler.txt`,
         ravenDns: process.env.RAVEN_DNS
     },
