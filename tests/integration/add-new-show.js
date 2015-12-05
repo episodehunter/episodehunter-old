@@ -2,7 +2,7 @@
 
 import '../set-env-var';
 import {assert} from 'chai';
-import {createQueue} from 'kue';
+import {connect as createQueue} from 'episodehunter-queue';
 import {addShow} from '../../dist/start';
 import {series} from '../../dist/episodehunter-messages/database/series';
 import {episode} from '../../dist/episodehunter-messages/database/episode';
