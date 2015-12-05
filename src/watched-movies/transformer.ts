@@ -14,8 +14,8 @@ function transformMoviesFromDB(data: Array<any>) {
                 imdb: movie.imdb_id
             },
             year: extractYear(movie.release_date),
-            title: movie.original_title,
-            originalTitle: movie.title
+            title: movie.title,
+            originalTitle: movie.orginal_title
         };
     });
 }
