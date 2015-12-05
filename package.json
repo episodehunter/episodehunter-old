@@ -1,6 +1,6 @@
 {
   "name": "episodehunter-queue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Queue handler for episodehunter",
   "main": "index.js",
   "scripts": {
