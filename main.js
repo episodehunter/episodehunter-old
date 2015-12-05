@@ -1,12 +1,13 @@
 'use strict';
 
-import {createQueue} from 'kue';
+import kue from 'kue';
 
 let queue = undefined;
+const __kue = kue;
 
 function connect(config) {
     if (queue === undefined) {
-        queue = createQueue(config);
+        queue = kue.createQueue(config);
     }
     return queue;
 }
@@ -48,5 +49,5 @@ function rpc(jobName, payload, options = {}) {
     });
 }
 
-export default {connect, addToQueue, rpc};
-export {connect, addToQueue, rpc};
+export default {connect, addToQueue, rpc, __kue};
+export {connect, addToQueue, rpc, __kue};
