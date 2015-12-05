@@ -55,7 +55,7 @@ describe('Set movie as watched', () => {
             });
     });
 
-    it('Should add the movie it it does not exist', () => {
+    it('Should add the movie if it does not exist', () => {
         // Arrange
         const job = {
             movie: {
@@ -69,7 +69,6 @@ describe('Set movie as watched', () => {
         // Act
         return setMovieAsWatched(job)
             .then(() => {
-                console.log('Hej');
                 throw new Error('Why wont you just die?');
             })
             .catch(() => {
