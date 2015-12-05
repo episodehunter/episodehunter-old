@@ -14,7 +14,6 @@ function setWatched(watchedMovie: WatchedMovie, userId: number) {
                 // The movie is missing
                 // Add it and try agin later
                 logger.debug(error.message);
-                console.log('movie-controller:catch', watchedMovie.ids);
 
                 queue.addToQueue(movieIngest.add, watchedMovie.ids, {
                     attempts: 3,

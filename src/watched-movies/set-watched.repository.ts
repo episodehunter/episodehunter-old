@@ -2,13 +2,11 @@ import {WatchedMovie, WatchedMovieDatabase} from 'eh-domain/model/scrobble/sync'
 import {movie} from '../episodehunter-messages/database/movie';
 import {watchedMovie} from '../episodehunter-messages/database/watched-movie';
 import {database} from '../lib/database';
-import {logger} from '../lib/logger';
 import {now, isNumric} from '../lib/utility';
 import {catchDbError, rejectIfNoResult} from '../lib/error-handler';
 import {scrobbleTypes} from '../episodehunter-messages/constant/scrobble-types';
 
 function getMovieIdByTheMoveDbId(theMoveDbId: number): Promise<number> {
-    console.log('movie-repo:getMovieIdByTheMoveDbId', theMoveDbId)
     if (!isNumric(theMoveDbId)) {
         return Promise.reject('Invalid theMoveDbId');
     }

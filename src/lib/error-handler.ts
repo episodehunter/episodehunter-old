@@ -7,6 +7,7 @@ const catchDbError = error => {
 
 const rejectIfNoResult = data => {
     if (data === undefined || data === null) {
+        logger.debug('The database did not find any content');
         return Promise.reject(undefined);
     }
     return data;

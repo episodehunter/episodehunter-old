@@ -34,7 +34,7 @@ function processJob(fun) {
                 done(undefined, result);
             })
             .catch(error => {
-                logger.fatal(error);
+                logger.error(error);
                 done(error);
             });
     };
