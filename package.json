@@ -9,14 +9,14 @@
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
   "dependencies": {
-    "autoinject": "0.6.5",
-    "bluebird": "^3.0.5",
+    "autoinject": "0.6.6",
+    "bluebird": "^3.0.6",
     "boom": "^3.0.0",
     "episodehunter-logger": "tjoskar/episodehunter-logger#v1.0.0",
     "episodehunter-queue": "tjoskar/episodehunter-queue#v1.0.0",
     "hapi": "^11.1.2",
     "hapi-auth-jwt2": "^5.2.1",
-    "joi": "^7.0.0",
+    "joi": "^7.0.1",
     "jsonwebtoken": "^5.4.1",
     "knex": "^0.9.0",
     "lodash": "^3.10.1",
@@ -29,7 +29,7 @@
     "gulp": "^3.9.0",
     "gulp-nodemon": "^2.0.4",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-typescript": "^2.9.2",
+    "gulp-typescript": "^2.10.0",
     "mocha": "^2.3.4",
     "mock-knex": "^0.3.0"
   }
