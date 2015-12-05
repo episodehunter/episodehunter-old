@@ -1,5 +1,3 @@
-'use strict';
-
 import {autoInject} from 'autoinject';
 import {database} from '../../lib/db';
 import {as} from '../../lib/utility/database';

@@ -1,5 +1,3 @@
-'use strict';
-
 import {number} from 'joi';
 import {dependencyInjection} from 'autoinject';
 import {SeriesController} from './series-controller';

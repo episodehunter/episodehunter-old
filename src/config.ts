@@ -1,5 +1,3 @@
-'use strict';
-
 const config = {
     appName: 'episodehunter-api',
     logger: {

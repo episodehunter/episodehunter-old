@@ -1,5 +1,3 @@
-'use strict';
-
 import {autoInject} from 'autoinject';
 import {sign} from 'jsonwebtoken';
 import {UserRepository} from './auth-repository';

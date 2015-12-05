@@ -1,5 +1,3 @@
-'use strict';
-
 import Hapi = require('hapi');
 const jwt = require('hapi-auth-jwt2');
 import {dependencyInjection} from 'autoinject';

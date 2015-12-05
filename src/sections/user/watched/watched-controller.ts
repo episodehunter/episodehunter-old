@@ -1,5 +1,3 @@
-'use strict';
-
 import Hapi = require('hapi');
 import {autoInject} from 'autoinject';
 import {badImplementation, badRequest} from 'boom';

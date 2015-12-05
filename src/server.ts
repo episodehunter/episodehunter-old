@@ -1,5 +1,3 @@
-'use strict';
-
 import Hapi = require('hapi');
 import queue from 'episodehunter-queue';
 import {registerRouts} from './sections/index';
