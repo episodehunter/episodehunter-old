@@ -15,16 +15,15 @@
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^1.2.0",
     "episodehunter-logger": "tjoskar/episodehunter-logger#v1.0.1",
     "episodehunter-queue": "tjoskar/episodehunter-queue#v1.0.1",
     "knex": "^0.9.0",
-    "kue": "^0.10.4",
     "lodash": "^3.10.1",
     "mysql": "^2.9.0"
   },
   "devDependencies": {
     "chai": "^3.4.1",
+    "dotenv": "^1.2.0",
     "mocha": "^2.3.4",
     "mock-knex": "^0.3.0",
     "simple-spy": "^1.0.3"
