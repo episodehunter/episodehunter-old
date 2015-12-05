@@ -1,7 +1,8 @@
 'use strict';
 
+import '../set-env-var';
 import {assert} from 'chai';
-import {createQueue} from 'kue';
+import {connect as createQueue} from 'episodehunter-queue';
 import {addMovie} from '../../dist/start';
 import logger from '../../dist/lib/logger';
 import {movie as movieTable} from '../../dist/episodehunter-messages/database/movie';
