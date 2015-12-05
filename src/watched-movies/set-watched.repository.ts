@@ -63,7 +63,7 @@ function prepareMovie(movie: WatchedMovie, movieId: number, userId: number): Wat
         [watchedMovie.movieId]: movieId,
         [watchedMovie.time]: now(),
         [watchedMovie.type]: scrobbleTypes.xbmcSync
-    }
+    };
 }
 
 const movieRepository = {
