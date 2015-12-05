@@ -15,6 +15,7 @@ function transformMoviesFromDB(data: Array<any>) {
             },
             year: extractYear(movie.release_date),
             title: movie.title,
+            // There is a typo in the database, damn legazy db
             originalTitle: movie.orginal_title
         };
     });
