@@ -1,3 +1,4 @@
+import '../../set-env-var';
 import {assert} from 'chai';
 import {server} from '../server';
 import {mockDb} from '../helper/database';

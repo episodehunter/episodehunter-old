@@ -1,3 +1,4 @@
+import '../../set-env-var';
 import {assert} from 'chai';
 import {mockDb} from '../helper/database';
 import {headers, loginIfTrying} from '../helper/auth';

@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "chai": "^3.4.1",
+    "dotenv": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-nodemon": "^2.0.4",
     "gulp-sourcemaps": "^1.6.0",
