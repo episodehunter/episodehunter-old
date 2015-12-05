@@ -5,9 +5,7 @@ import {logger} from '../lib/logger';
 import {MissingMovieError} from '../error/missing-movie.error';
 import {setMovieAsWatched, getWatchedMovies} from './service';
 
-
 function setWatched(watchedMovie: WatchedMovie, userId: number) {
-    console.log('movie-controller:setWatched', watchedMovie, userId);
     return setMovieAsWatched(watchedMovie, userId)
         .catch(error => {
             if (error instanceof MissingMovieError) {
