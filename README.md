@@ -1,12 +1,22 @@
-## Queue handler for Episodehunter
+# Queue handler
 
-This is a simple queue handler for the Episodehunter project. 
+> Queue handler for episodehunter.tv
 
-### Methods
+This is part of an ongoing project to rewrite episodehunter.tv to an node.js project.
+Parallel to this project, there is an ongoing project to rewrite the front end part of episodehunter [here](https://github.com/tjoskar/episodehunter.tv)
 
-#### API
+## Requirement
+- Node >= 4.0
+- Redis >= 3.0 ([setup](https://github.com/tjoskar/episodehunter-api))
+
+## Install
+```
+$ npm run setup
+```
+
+## API
 ```javascript
-import {connect, addToQueue, rpc} from 'episodehunter-queue';
+import {connect, createJob, rpc} from 'episodehunter-queue';
 
 // Connect
 const queue = connect({ // This must happens before working with the queue

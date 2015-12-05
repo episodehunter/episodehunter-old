@@ -4,6 +4,7 @@
   "description": "Queue handler for episodehunter",
   "main": "index.js",
   "scripts": {
+    "setup": "npm install && npm run build && echo 'Nice!'",
     "build": "babel main.js --out-file index.js",
     "test": "echo \"Sorry, there is no tests :/\" && exit 1"
   },
