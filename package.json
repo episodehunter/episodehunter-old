@@ -2,7 +2,10 @@
   "name": "episodehunter-scrobler",
   "version": "1.0.0",
   "description": "Scrobler for episodehunter",
-  "keywords": ["episodehunter", "scrobler"],
+  "keywords": [
+    "episodehunter",
+    "scrobler"
+  ],
   "main": "",
   "scripts": {
     "start": "node -r dotenv/config dist/start.js",
