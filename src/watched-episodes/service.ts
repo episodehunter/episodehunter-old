@@ -11,7 +11,8 @@ function findShowId(show: WatchedShow): Promise<number> {
         .catch(() => setRepo.getShowIdByTvdbId(show.ids.tvdbId))
         .catch(() => setRepo.getShowIdByImdbId(show.ids.imdbId))
         .catch(() => {
-            return Promise.reject(new MissingShowError('Can not find show id'));
+            return Promise.reject(new MissingShowError(`Can not find show id.
+                Id: ${show.ids.id} tvdbId: ${show.ids.tvdbId} imdbId: ${show.ids.imdbId}`));
         });
 }
 
