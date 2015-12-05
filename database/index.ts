@@ -1,6 +1,6 @@
 export {episodeFollowing} from './episode-following';
 export {episode} from './episode';
-export {followingSeries} from './following-series';
+export {followingShow} from './following-show';
 export {movieRating} from './movie-rating';
 export {movieWatching} from './movie-watching';
 export {movieWatched} from './movie-watched';
