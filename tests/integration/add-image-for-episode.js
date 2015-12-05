@@ -1,5 +1,6 @@
 'use strict';
 
+import '../set-env-var';
 import {assert} from 'chai';
 import {episode} from '../../dist/episodehunter-messages/database/episode'
 import database from '../../dist/lib/database';
