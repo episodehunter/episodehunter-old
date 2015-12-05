@@ -1,8 +1,10 @@
 'use strict';
 
 import './lib/polyfill';
+import queue from 'episodehunter-queue';
 import {dependencyInjection} from 'autoinject';
-import {logger, queue} from './lib/index';
+import {logger} from './lib/logger';
+import confg from './config';
 import ShowController from './controller';
 import showIngest from './episodehunter-messages/queue/show-ingestor';
 
@@ -40,7 +42,7 @@ function processJob(fun) {
 }
 
 function main() {
-    const q = queue.connect();
+    const q = queue.connect(confg.redis);
     q.process(showIngest.add, 1, processJob(addShow));
 
     logger.info('Hello friend');
