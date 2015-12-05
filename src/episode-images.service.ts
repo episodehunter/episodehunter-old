@@ -1,6 +1,6 @@
 'use strict';
 
-import {EpisodeImageJob} from "eh-domain/model/ingest/image";
+import {EpisodeImageJob} from 'eh-domain/model/ingest/image';
 import {autoInject} from 'autoinject';
 import DatabaseRepo from './database.repository';
 import {logger} from './lib/index';

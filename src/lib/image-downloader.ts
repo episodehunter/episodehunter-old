@@ -40,7 +40,7 @@ function resize(url: string, toPath: string, w: number, h: number): Promise<stri
                 if (error) {
                     reject(error);
                 } else {
-                    resolve(name)
+                    resolve(name);
                 }
             });
     });

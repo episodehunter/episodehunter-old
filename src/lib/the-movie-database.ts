@@ -1,3 +1,5 @@
+'use strict';
+
 const got = require('got');
 import config from '../config';
 
