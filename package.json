@@ -7,7 +7,7 @@
     "setup": "npm install && tsd reinstall && tsd link && gulp setup && echo 'Nice!'",
     "test": "mocha tests/unit --compilers js:babel-core/register --recursive --reporter spec",
     "test:all": "mocha tests --compilers js:babel-core/register --recursive --reporter nyan",
-    "test:integration": "mocha tests/integration --compilers js:babel-core/register --recursive --reporter spec",
+    "test:integration": "mocha tests/integration --compilers js:babel-core/register --recursive --reporter spec --timeout 10000",
     "test:watch": "mocha tests/unit --compilers js:babel-core/register --recursive --dot",
     "test:debug": "mocha tests/unit --compilers js:babel-core/register --recursive --debug-brk"
   },
