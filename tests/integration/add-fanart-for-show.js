@@ -15,15 +15,15 @@ describe('Show fanart', () => {
     const gotId = 10;
 
     before(async () => {
-       await db
-           .first(show.id)
-           .from(show.$table)
-           .where(show.id, gotId)
-           .then(result => {
-               if (!result) {
-                   throw new Error('Game of thrones to not exist in the database add it');
-               }
-           });
+        await db
+            .first(show.id)
+            .from(show.$table)
+            .where(show.id, gotId)
+            .then(result => {
+                if (!result) {
+                    throw new Error('Game of thrones to not exist in the database add it');
+                }
+            });
     });
 
     it('Should add a fanart for Game Of Thrones', async () => {

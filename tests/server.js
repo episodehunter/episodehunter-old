@@ -14,8 +14,8 @@ function createServer() {
 
         s.host = host;
         s.port = port;
-        s.url = 'http://' + host + ':' + port;
         s.protocol = 'http';
+        s.url = `${s.protocol}://${host}:${port}`;
 
         s.listen = pify(s.listen, Promise);
         s.close = pify(s.close, Promise);

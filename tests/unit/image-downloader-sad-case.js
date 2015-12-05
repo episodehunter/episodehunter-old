@@ -13,7 +13,7 @@ describe('Image downloader', () => {
 
         server.on('/', (req, res) => {
             res.statusCode = 404;
-            res.end('not');
+            res.end('This is the end');
         });
 
         await server.listen(server.port);
