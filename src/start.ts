@@ -25,7 +25,7 @@ function getWatchedMovies(data) {
 
 function processJob(fun) {
     return (job, done) => {
-        logger.debug('Getting job', job.data);
+        logger.debug('Getting job', fun.name, job.data);
         if (!job || !job.data || !job.data.userId) {
             return Promise.reject(`Invalid job data: jobId: ${job.id}`);
         }
