@@ -1,3 +1,5 @@
+'use strict';
+
 import {WatchedMovie} from 'eh-domain/model/scrobble/sync';
 import {MissingMovieError} from '../error/missing-movie.error';
 import {movieRepository as repo} from './set-watched.repository';

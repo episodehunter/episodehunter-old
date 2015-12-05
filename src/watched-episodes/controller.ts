@@ -1,3 +1,5 @@
+'use strict';
+
 import queue from 'episodehunter-queue';
 import {WatchedShow} from 'eh-domain/model/scrobble/sync';
 import {logger} from '../lib/logger';

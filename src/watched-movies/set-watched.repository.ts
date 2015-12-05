@@ -1,3 +1,5 @@
+'use strict';
+
 import {WatchedMovie, WatchedMovieDatabase} from 'eh-domain/model/scrobble/sync';
 import {movie} from '../episodehunter-messages/database/movie';
 import {watchedMovie} from '../episodehunter-messages/database/watched-movie';

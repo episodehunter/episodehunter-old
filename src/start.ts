@@ -1,3 +1,5 @@
+'use strict';
+
 import queue from 'episodehunter-queue';
 import {logger} from './lib/logger';
 import config from './config';

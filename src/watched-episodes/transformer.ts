@@ -1,3 +1,5 @@
+'use strict';
+
 import {chain, pluck} from 'lodash';
 import {WatchedShow, WatchedEpisodeDatabase} from 'eh-domain/model/scrobble/sync';
 import {watchedEpisode} from '../episodehunter-messages/database/index';

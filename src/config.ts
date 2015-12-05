@@ -1,3 +1,5 @@
+'use strict';
+
 const config = {
     appName: 'episodehunter-scrobbler',
     logger: {

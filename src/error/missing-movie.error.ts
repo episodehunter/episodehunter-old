@@ -1,3 +1,5 @@
+'use strict';
+
 function MissingMovieError(message?: string) {
     this.name = 'MissingMovieError';
     this.message = message || 'Can not find movie';

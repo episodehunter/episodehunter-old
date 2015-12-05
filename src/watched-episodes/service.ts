@@ -1,3 +1,5 @@
+'use strict';
+
 import {WatchedShow} from 'eh-domain/model/scrobble/sync';
 import setRepo from './set-watched.repository';
 import getRepo from './get-watched.repository';

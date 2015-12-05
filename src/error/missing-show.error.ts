@@ -1,3 +1,5 @@
+'use strict';
+
 function MissingShowError(message?: string) {
     this.name = 'MissingShowError';
     this.message = message || 'Can not find show';

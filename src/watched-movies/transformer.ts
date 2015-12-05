@@ -1,3 +1,5 @@
+'use strict';
+
 import {extractYear} from '../lib/utility';
 
 /**
