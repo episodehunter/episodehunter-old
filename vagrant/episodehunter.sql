@@ -1,76 +1,5 @@
-# ************************************************************
-# Host: 127.0.0.1 (MySQL 5.6.25-0ubuntu0.15.04.1)
-# Databas: episodehunter
-# Genereringstid: 2015-08-23 11:07:59 +0000
-# ************************************************************
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-
-# Tabelldump groups
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `groups`;
-
-CREATE TABLE `groups` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `permissions` text COLLATE utf8_unicode_ci,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `groups_name_unique` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-
-
-# Tabelldump images_delete
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `images_delete`;
-
-CREATE TABLE `images_delete` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `type` varchar(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
-# Tabelldump images_download
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `images_download`;
-
-CREATE TABLE `images_download` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `media_id` int(10) unsigned NOT NULL,
-  `type` varchar(11) NOT NULL,
-  `path` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
-# Tabelldump migrations
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `migrations`;
-
-CREATE TABLE `migrations` (
-  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-
+# Welcome to the land of legacy database structure.
+# This will be updated when this project reach beta stage
 
 # Tabelldump movie
 # ------------------------------------------------------------
@@ -114,22 +43,6 @@ CREATE TABLE `movie_rating` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-
-# Tabelldump movie_to_add
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `movie_to_add`;
-
-CREATE TABLE `movie_to_add` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `tmdb_id` int(7) unsigned DEFAULT NULL,
-  `imdb_id` varchar(10) DEFAULT NULL,
-  `time` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
 # Tabelldump movie_watched
 # ------------------------------------------------------------
 
@@ -139,22 +52,6 @@ CREATE TABLE `movie_watched` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
   `movie_id` int(10) NOT NULL,
-  `time` int(10) unsigned NOT NULL,
-  `type` int(1) unsigned DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
-# Tabelldump movie_watched_temp
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `movie_watched_temp`;
-
-CREATE TABLE `movie_watched_temp` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) unsigned NOT NULL,
-  `movie_id` varchar(10) NOT NULL DEFAULT '',
   `time` int(10) unsigned NOT NULL,
   `type` int(1) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
@@ -173,20 +70,6 @@ CREATE TABLE `movie_watching` (
   `movie_id` int(10) NOT NULL,
   `progress` int(2) DEFAULT NULL,
   `time` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
-# Tabelldump system_setings
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `system_setings`;
-
-CREATE TABLE `system_setings` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `key` varchar(11) DEFAULT NULL,
-  `value` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -328,20 +211,6 @@ CREATE TABLE `tv_show` (
 
 
 
-# Tabelldump tv_to_add
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tv_to_add`;
-
-CREATE TABLE `tv_to_add` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tvdb_id` int(7) unsigned NOT NULL,
-  `time` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
 # Tabelldump tv_watched
 # ------------------------------------------------------------
 
@@ -358,24 +227,6 @@ CREATE TABLE `tv_watched` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `user_id` (`user_id`,`serie_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
-# Tabelldump tv_watched_temp
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tv_watched_temp`;
-
-CREATE TABLE `tv_watched_temp` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `serie_id` int(10) unsigned NOT NULL,
-  `season` int(2) unsigned DEFAULT '0',
-  `episode` int(3) unsigned DEFAULT '0',
-  `time` int(10) unsigned DEFAULT '0',
-  `type` int(1) unsigned DEFAULT '0',
-  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
@@ -410,18 +261,8 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `timezone` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'UTC',
   `apikey` varchar(5) COLLATE utf8_unicode_ci DEFAULT 'ak7',
-  `permissions` text COLLATE utf8_unicode_ci,
-  `activated` tinyint(1) NOT NULL DEFAULT '0',
-  `activation_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `activated_at` timestamp NULL DEFAULT NULL,
   `last_login` timestamp NULL DEFAULT NULL,
-  `persist_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `reset_password_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `first_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `facebook_uid` bigint(20) unsigned DEFAULT NULL,
-  `facebook_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `share` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `auto_follow` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -455,12 +296,3 @@ VALUES
   (797, 3360391, 121361, 10, 'The Pointy End', 1, 8, '2011-06-05', 'In the aftermath of Ned\'s capture, Syrio and Arya face off against Lannister guards, while Cersei manipulates Sansa to her own ends. Robb rallies his father\'s northern allies against Tywin Lannister and heads south to war. Tyrion forms an uneasy alliance with the hill tribes and reunites with his father. Jon lashes out at Ser Alliser Thorne and battles a mysterious attacker from beyond the Wall. Dany is forced to reconcile her desire to conquer Westeros with Drogo\'s savagery after the Dothraki raid a peaceful village.', '', 1433646627),
   (798, 4063481, 121361, 10, 'Baelor', 1, 9, '2011-06-12', 'With Sansa\'s life in danger, Ned makes a fateful decision. Catelyn brokers an unsavory deal with the slippery Walder Frey. Tyrion acquires a mistress and is forced by his father to fight on the front lines. Robb wins his first major victory and captures a prized prisoner. Jon is rewarded for his valor and discovers a dark secret about Maester Aemon. As Drogo\'s wound festers, Dany defies her bloodrider Qotho and puts her trust in the enslaved witch Mirri Maz Duur.', '', 1433646483),
   (799, 4063491, 121361, 10, 'Fire and Blood', 1, 10, '2011-06-19', 'As tragic news spreads across the Seven Kingdoms, Bran and Rickon share a prophetic dream, Catelyn interrogates Jamie about her son\'s fall, and Robb\'s destiny is forever changed. After a surprising decision by his father, Tyrion heads south. Arya assumes a new identity in an attempt to escape King\'s Landing, and Sansa is terrorized by Joffrey. At the Wall, Jon is forced to choose between the Night\'s Watch and the family he left behind. Across the sea, Dany pays a terrible price for her love, but finds new hope.', '', 1433646477);
-
-
-
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
