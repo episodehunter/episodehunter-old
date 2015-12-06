@@ -1,8 +1,9 @@
-## Logger for Episodehunter
+# Logger for Episodehunter
 
-This is a simple logger module for the Episode Hunter project. 
-The reason to have a separate module for the log methods is to handle dependency easier and to have a 
-standardize way of handling logs.
+> Logger for episodehunter.tv
+
+This is part of an ongoing project to rewrite episodehunter.tv to an node.js project.
+Parallel to this project, there is an ongoing project to rewrite the front end part of episodehunter [here](https://github.com/tjoskar/episodehunter.tv)
 
 ### Methods
 
@@ -25,7 +26,7 @@ const name = 'image-ingest'; // Name of the current app
 const logLevel = 'warn'; // Default. Min. log level.
 const filePath = './logs/develop.txt'; // File to log to. Skipp if undefined. Will rotate file.
 const stdout = true; // Bad name, but will use stout if true.
-const ravenDNS = 'xxx...xxx@...'; // Your path to raven 
+const ravenDNS = 'xxx...xxx@...'; // Your path to raven
 
 const log = createLogger({name, logLevel, filePath, stdout, ravenDNS});
 ```
