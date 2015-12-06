@@ -18,8 +18,8 @@
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
   "dependencies": {
-    "episodehunter-logger": "tjoskar/episodehunter-logger#v1.0.1",
-    "episodehunter-queue": "tjoskar/episodehunter-queue#v1.0.1",
+    "episodehunter-logger": "episodehunter/episodehunter-logger#v1.0.1",
+    "episodehunter-queue": "episodehunter/episodehunter-queue#v1.0.1",
     "knex": "^0.9.0",
     "lodash": "^3.10.1",
     "mysql": "^2.9.0"
