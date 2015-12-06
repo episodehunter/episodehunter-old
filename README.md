@@ -10,6 +10,11 @@ Parallel to this project, there is an ongoing project to rewrite the front end p
 - MySQL >= 5.6 (see below)
 - Redis >= 3.0 (see below)
 
+### Clone
+```
+$ git clone --recursive git@github.com:episodehunter/episodehunter-api.git
+```
+
 ### Install
 ```
 $ npm run setup
