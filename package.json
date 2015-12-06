@@ -4,6 +4,7 @@
   "description": "Api server for episodehunter.tv",
   "main": "dist/server.js",
   "scripts": {
+    "setup": "npm install && tsd reinstall && tsd link && gulp setup && echo 'Nice!'",
     "test": "mocha dist/specs/unit --recursive --check-leaks",
     "test:all": "mocha dist/specs --recursive --check-leaks",
     "test:integration": "mocha dist/specs/integration --recursive --check-leaks"
