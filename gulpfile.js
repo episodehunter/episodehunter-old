@@ -22,7 +22,18 @@ gulp.task('build:typescript', function() {
 gulp.task('serve', ['build:typescript'], function() {
     nodemon({
         script: 'dist/server.js',
-        env: { 'NODE_ENV': 'development' },
+        env: {
+            NODE_ENV: 'development',
+            EH_DB_HOST: 'localhost',
+            EH_DB_USER: 'episodehunter',
+            EH_DB_PASS: 'episodehunter',
+            EH_DB_DB: 'episodehunter',
+            EH_DB_PORT: '33060',
+            EH_LOG_LEVEL: 'debug',
+            RAVEN_DNS: '',
+            EH_API_SERVER_PORT: '8000',
+            EH_JWT_SALT: 'BY8nAbzP9sCP2y0N!tpjTAjZB39K0E-a'
+        },
         ext: 'ts',
         tasks: ['build'],
         nodeArgs: ['--debug']
