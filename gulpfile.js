@@ -45,4 +45,5 @@ gulp.task('serve', ['build:typescript'], function() {
 
 
 gulp.task('build', ['build:typescript']);
+gulp.task('setup', ['build']);
 gulp.task('default', ['build']);
