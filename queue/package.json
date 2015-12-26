@@ -1,0 +1,32 @@
+{
+  "name": "episodehunter-queue",
+  "version": "1.0.1",
+  "description": "Queue handler for episodehunter",
+  "main": "index.js",
+  "scripts": {
+    "setup": "npm install && npm run build && echo 'Nice!'",
+    "build": "babel main.js --out-file index.js",
+    "test": "echo \"Sorry, there is no tests :/\" && exit 1"
+  },
+  "keywords": [
+    "queue",
+    "episodehunter"
+  ],
+  "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
+  "license": "MIT",
+  "typescript": {
+    "definition": "./typings/episodehunter-queue.d.ts"
+  },
+  "dependencies": {
+    "kue": "^0.10.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  }
+}
