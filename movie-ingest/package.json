@@ -1,0 +1,50 @@
+{
+  "name": "episodehunter-movie-ingest",
+  "version": "1.0.0",
+  "main": "",
+  "scripts": {
+    "start": "node -r dotenv/config dist/start.js",
+    "setup": "npm install && tsd reinstall && tsd link && gulp setup && echo 'Nice!'",
+    "test": "mocha tests/unit --compilers js:babel-core/register --recursive --reporter spec",
+    "test:all": "mocha tests --compilers js:babel-core/register --recursive --reporter nyan",
+    "test:integration": "mocha tests/integration --compilers js:babel-core/register --recursive --reporter spec",
+    "test:watch": "mocha tests/unit --compilers js:babel-core/register --recursive --dot",
+    "test:debug": "mocha tests/unit --compilers js:babel-core/register --recursive --debug-brk"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "http://episodehunter.tv",
+  "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
+  "license": "MIT",
+  "dependencies": {
+    "autoinject": "^0.6.6",
+    "episodehunter-logger": "episodehunter/episodehunter-logger#v1.0.1",
+    "episodehunter-queue": "episodehunter/episodehunter-queue#v1.0.1",
+    "got": "^5.2.0",
+    "knex": "^0.9.0",
+    "mysql": "^2.9.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.3.13",
+    "babel-plugin-transform-async-to-generator": "^6.3.13",
+    "babel-plugin-transform-es2015-destructuring": "^6.3.13",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.3.13",
+    "babel-plugin-transform-es2015-parameters": "^6.3.13",
+    "chai": "^3.4.1",
+    "dotenv": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.10.0",
+    "lodash": "^3.10.1",
+    "mocha": "^2.3.4",
+    "mock-knex": "^0.3.0",
+    "simple-spy": "^1.0.3",
+    "typescript": "^1.7.3"
+  }
+}
