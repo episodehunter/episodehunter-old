@@ -1,0 +1,56 @@
+'use strict';
+
+let now = () => Math.floor(Date.now() / 1000);
+let int = val => parseInt(val, 10);
+let as = (column, newName) => `${column} as ${newName}`;
+let extractYear = (date: string): number => {
+    // Expecting the format to be 'YYYY..'
+    return date ? int(date.substr(0, 4)) : 0;
+};
+
+let parseInteger = val => {
+    if (/^[0-9]+$/.test(val)) {
+        return parseInt(val, 10);
+    } else {
+        return NaN;
+    }
+};
+
+let isNumric = (...args) => {
+    return !args.some(val => parseInteger(val) % 1 !== 0);
+};
+
+let isDefined = (...args) => {
+    return !args.some(val => (val === undefined || val === null));
+};
+
+let currentUnixtime = () => {
+    return ((new Date()).getTime() / 1000) | 0;
+};
+
+const generateRandomName = () => {
+    return '_' + Math.random().toString(36).substr(2, 20);
+};
+
+export default {
+    as,
+    currentUnixtime,
+    extractYear,
+    generateRandomName,
+    int,
+    isDefined,
+    isNumric,
+    now,
+    parseInteger
+};
+export {
+    as,
+    currentUnixtime,
+    extractYear,
+    generateRandomName,
+    int,
+    isDefined,
+    isNumric,
+    now,
+    parseInteger
+};

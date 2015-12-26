@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "es6",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "outDir": "./.temp"
+    },
+    "compileOnSave": false,
+    "exclude": [
+        ".tmp",
+        "dist",
+        "log",
+        "node_modules",
+        "tests"
+    ]
+}
