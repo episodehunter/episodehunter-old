@@ -1,0 +1,34 @@
+{
+  "name": "episodehunter-scrobler",
+  "version": "1.0.0",
+  "description": "Scrobler for episodehunter",
+  "keywords": [
+    "episodehunter",
+    "scrobler"
+  ],
+  "main": "",
+  "scripts": {
+    "setup": "npm install && tsc && echo 'Nice!'",
+    "start": "node -r dotenv/config dist/start.js",
+    "test": "mocha dist/test/unit --recursive",
+    "test:all": "mocha dist/test --recursive",
+    "test:integration": "mocha dist/test/integration --recursive"
+  },
+  "private": true,
+  "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
+  "license": "MIT",
+  "dependencies": {
+    "episodehunter-logger": "episodehunter/episodehunter-logger#v1.0.1",
+    "episodehunter-queue": "episodehunter/episodehunter-queue#v1.0.1",
+    "knex": "^0.9.0",
+    "lodash": "^3.10.1",
+    "mysql": "^2.9.0"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "dotenv": "^1.2.0",
+    "mocha": "^2.3.4",
+    "mock-knex": "^0.3.0",
+    "simple-spy": "^1.0.3"
+  }
+}
