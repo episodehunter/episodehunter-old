@@ -1,0 +1,41 @@
+{
+  "name": "episodehunter-logger",
+  "version": "1.0.1",
+  "description": "Logger tool for episodehunter",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel main.js --out-file index.js",
+    "test": "echo \"Sorry, there is no tests :/\" && exit 1"
+  },
+  "keywords": [
+    "logger",
+    "episodehunter"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tjoskar/episodehunter-logger.git"
+  },
+  "author": "Oskar Karlsson <kontakta@oskar.karlsson.nu>",
+  "license": "MIT",
+  "typescript": {
+    "definition": "./typings/episodehunter-logger.d.ts"
+  },
+  "dependencies": {
+    "bunyan": "1.5.1",
+    "bunyan-raven": "0.4.0",
+    "raven": "0.9.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.2.0",
+    "babel-plugin-transform-es2015-destructuring": "^6.1.18",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.2.0",
+    "babel-plugin-transform-es2015-parameters": "^6.1.18"
+  },
+  "babel": {
+    "plugins": [
+      "transform-es2015-modules-commonjs",
+      "transform-es2015-parameters",
+      "transform-es2015-destructuring"
+    ]
+  }
+}
