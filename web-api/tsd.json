@@ -1,0 +1,42 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "hapi/hapi.d.ts": {
+      "commit": "8de599097a8acb3c246f9cc152f07b323c5a8b49"
+    },
+    "node/node.d.ts": {
+      "commit": "af76bf46025371c760d8fe8c03cf874428da6124"
+    },
+    "bluebird/bluebird.d.ts": {
+      "commit": "8de599097a8acb3c246f9cc152f07b323c5a8b49"
+    },
+    "knex/knex.d.ts": {
+      "commit": "8de599097a8acb3c246f9cc152f07b323c5a8b49"
+    },
+    "lodash/lodash.d.ts": {
+      "commit": "8de599097a8acb3c246f9cc152f07b323c5a8b49"
+    },
+    "jsonwebtoken/jsonwebtoken.d.ts": {
+      "commit": "8de599097a8acb3c246f9cc152f07b323c5a8b49"
+    },
+    "joi/joi.d.ts": {
+      "commit": "8de599097a8acb3c246f9cc152f07b323c5a8b49"
+    },
+    "boom/boom.d.ts": {
+      "commit": "8de599097a8acb3c246f9cc152f07b323c5a8b49"
+    },
+    "chai/chai.d.ts": {
+      "commit": "af81415504b4edce8dac8446d96857f8018c6e9f"
+    },
+    "mocha/mocha.d.ts": {
+      "commit": "af81415504b4edce8dac8446d96857f8018c6e9f"
+    },
+    "es6-collections/es6-collections.d.ts": {
+      "commit": "de1bfe2c1de921da660cc17a5af1de6c095b35eb"
+    }
+  }
+}

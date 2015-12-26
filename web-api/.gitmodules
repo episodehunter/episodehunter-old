@@ -1,0 +1,3 @@
+[submodule "src/episodehunter-messages"]
+	path = src/episodehunter-messages
+        url = git@github.com:episodehunter/episodehunter-messages.git
