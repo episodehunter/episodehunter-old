@@ -23,7 +23,7 @@ function requestDownload(show: TvdbShow) {
 
     show.episodes.forEach(episode => {
         if (episode.thumbnail) {
-            queue.addToQueue(imageIngest.addOrUpdate.show.episode, {
+            queue.addToQueue(imageIngest.addOrUpdate.episode, {
                 filename: episode.thumbnail
             }, {
                 attempts: 2

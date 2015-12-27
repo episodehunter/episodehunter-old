@@ -1,6 +1,6 @@
 'use strict';
 
-import {ShowIds} from 'eh-domain/model/ingest/new';
+import {ShowIds} from 'eh-domain/model/ids';
 import {episode as episodeTable} from './episodehunter-messages/database/episode';
 import {show as showTable} from './episodehunter-messages/database/show';
 import {TvdbEpisode, TvdbShow} from './thetvdb/tvdb.model';
@@ -11,8 +11,8 @@ function transformEpisodesForDBinsert(showId: ShowIds, tvdbEpisodes: TvdbEpisode
     tvdbEpisodes.forEach(episode => {
         result.push({
             [episodeTable.tvdbId]: episode.id,
-            [episodeTable.seriesTvdbId]: showId.tvdbId,
-            [episodeTable.seriesId]: showId.id,
+            [episodeTable.showTvdbId]: showId.tvdbId,
+            [episodeTable.showId]: showId.id,
             [episodeTable.name]: episode.name,
             [episodeTable.season]: episode.seasonNumber,
             [episodeTable.episode]: episode.episodeNumber,

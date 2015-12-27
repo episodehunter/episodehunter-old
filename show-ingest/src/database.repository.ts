@@ -1,7 +1,7 @@
 'use strict';
 
 import Knex from 'knex';
-import {ShowIds} from 'eh-domain/model/ingest/new';
+import {ShowIds} from 'eh-domain/model/ids';
 import {show as showTable} from './episodehunter-messages/database/show';
 import {episode as episodeTable} from './episodehunter-messages/database/episode';
 import database from './lib/database';

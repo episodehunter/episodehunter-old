@@ -49,12 +49,12 @@ else
   # Set up a develop database
   mysql -uroot -p$DBPASSWD -e "CREATE DATABASE $DBNAME"
   mysql -uroot -p$DBPASSWD -e "grant all privileges on $DBNAME.* to '$DBUSER'@'%' identified by '$DBPASSWD'"
-  mysql -uroot -p$DBPASSWD $DBNAME < /home/vagrant/data/episodehunter-api/vagrant/$DBNAME.sql
+  mysql -uroot -p$DBPASSWD $DBNAME < /home/vagrant/data/vagrant/$DBNAME.sql
 
   # Set up a test database
   mysql -uroot -p$DBPASSWD -e "CREATE DATABASE ${DBNAME}_test"
   mysql -uroot -p$DBPASSWD -e "grant all privileges on ${DBNAME}_test.* to '$DBUSER'@'%' identified by '$DBPASSWD'"
-  mysql -uroot -p$DBPASSWD ${DBNAME}_test < /home/vagrant/data/episodehunter-api/vagrant/$DBNAME.sql
+  mysql -uroot -p$DBPASSWD ${DBNAME}_test < /home/vagrant/data/vagrant/$DBNAME.sql
 
   echo "\n--- Updating mysql configs in /etc/mysql/my.cnf ---\n"
   sed -i "s/bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf

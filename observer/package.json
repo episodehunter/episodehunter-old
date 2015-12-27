@@ -5,12 +5,12 @@
   "main": "start.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "setup": "npm install && echo 'Nice!'",
+    "setup": "npm install",
     "start": "node start.js"
   },
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
   "dependencies": {
-    "episodehunter-queue": "episodehunter/episodehunter-queue#v1.0.1"
+    "episodehunter-queue": "file:../queue"
   }
 }

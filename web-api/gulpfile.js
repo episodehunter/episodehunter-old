@@ -12,7 +12,11 @@ gulp.task('watch', ['build:typescript'], function() {
 });
 
 gulp.task('build:typescript', function() {
-    return gulp.src(['./typings/tsd.d.ts', 'src/**/*.ts'])
+    return gulp.src([
+            'src/episodehunter-messages/**/*.d.ts',
+            './typings/tsd.d.ts',
+            'src/**/*.ts'
+        ])
         .pipe(sourcemaps.init())
         .pipe(ts(tsProject))
         .pipe(sourcemaps.write('.'))

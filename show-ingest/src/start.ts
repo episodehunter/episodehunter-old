@@ -6,7 +6,7 @@ import {dependencyInjection} from 'autoinject';
 import {logger} from './lib/logger';
 import confg from './config';
 import ShowController from './controller';
-import showIngest from './episodehunter-messages/queue/show-ingestor';
+import showIngest from './episodehunter-messages/queue/show-ingest';
 
 function addShow(job): Promise<any> {
     if (!job || !job.data || !job.data.ids) {

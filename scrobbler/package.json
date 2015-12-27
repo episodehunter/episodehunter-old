@@ -8,7 +8,7 @@
   ],
   "main": "",
   "scripts": {
-    "setup": "npm install && tsc && echo 'Nice!'",
+    "setup": "npm install && tsd install && tsd link && tsc && echo 'Nice!'",
     "start": "node -r dotenv/config dist/start.js",
     "test": "mocha dist/test/unit --recursive",
     "test:all": "mocha dist/test --recursive",
@@ -18,8 +18,8 @@
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
   "dependencies": {
-    "episodehunter-logger": "episodehunter/episodehunter-logger#v1.0.1",
-    "episodehunter-queue": "episodehunter/episodehunter-queue#v1.0.1",
+    "episodehunter-logger": "file:../logger",
+    "episodehunter-queue": "file:../queue",
     "knex": "^0.9.0",
     "lodash": "^3.10.1",
     "mysql": "^2.9.0"

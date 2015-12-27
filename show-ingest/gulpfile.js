@@ -10,6 +10,7 @@ let tsProject = ts.createProject('tsconfig.json', {
 
 gulp.task('build', () =>  {
     return gulp.src([
+        'src/episodehunter-messages/**/*.d.ts',
         'src/typings/typings.d.ts',
         'src/**/*.ts'
     ])

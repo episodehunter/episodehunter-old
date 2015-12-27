@@ -1,7 +1,7 @@
 'use strict';
 
 import {autoInject} from 'autoinject';
-import {ShowIds, EpisodesIds} from 'eh-domain/model/ingest/new';
+import {ShowIds, EpisodeIds} from 'eh-domain/model/ids';
 import logger from './lib/logger';
 import TvDbRepository from './thetvdb/tvdb-repository';
 import ShowDbReposetory from './database.repository';
@@ -46,7 +46,7 @@ class ShowService {
         return await this.showDbRepo.updateShow(id, newShow);
     }
 
-    updateEpisode(ids: EpisodesIds) {
+    updateEpisode(ids: EpisodeIds) {
         throw new Error('Not implemented');
     }
 

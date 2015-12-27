@@ -1,7 +1,7 @@
 'use strict';
 
 import {autoInject} from 'autoinject';
-import {ShowIds} from 'eh-domain/model/ingest/new';
+import {ShowIds} from 'eh-domain/model/ids';
 import ShowService from './show.service';
 
 

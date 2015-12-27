@@ -4,6 +4,7 @@
   "description": "Logger tool for episodehunter",
   "main": "index.js",
   "scripts": {
+    "setup": "npm install",
     "build": "babel main.js --out-file index.js",
     "test": "echo \"Sorry, there is no tests :/\" && exit 1"
   },
