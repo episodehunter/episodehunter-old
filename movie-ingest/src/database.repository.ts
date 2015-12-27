@@ -1,7 +1,7 @@
 'use strict';
 
 import Knex from 'knex';
-import {movie as movieTable} from './episodehunter-messages/database/movie';
+import {movie as movieTable} from 'messages/database/movie';
 import database from './lib/database';
 import MovieDbMovie from './moviedb/moviedb.model';
 import transformer from './moviedb.transformer';

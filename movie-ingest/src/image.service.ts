@@ -2,7 +2,7 @@
 
 import queue from 'episodehunter-queue';
 import MovieDbMovie from './moviedb/moviedb.model';
-import imageIngest from './episodehunter-messages/queue/image-ingest';
+import imageIngest from 'messages/queue/image-ingest';
 
 function requestDownload(movie: MovieDbMovie) {
     if (movie.fanart) {

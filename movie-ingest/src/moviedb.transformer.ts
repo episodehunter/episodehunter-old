@@ -2,7 +2,7 @@
 
 import utility from './lib/utility';
 import MovieDbMovie from './moviedb/moviedb.model';
-import {movie as movieTable} from './episodehunter-messages/database/movie';
+import {movie as movieTable} from 'messages/database/movie';
 
 function transformMovieForDbInsert(movie: MovieDbMovie) {
     return {

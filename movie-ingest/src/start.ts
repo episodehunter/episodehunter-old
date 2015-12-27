@@ -5,7 +5,7 @@ import {dependencyInjection} from 'autoinject';
 import config from './config';
 import {logger} from './lib/index';
 import MovieService from './movie.service';
-import movieIngest from './episodehunter-messages/queue/movie-ingest';
+import movieIngest from 'messages/queue/movie-ingest';
 
 function addMovie(job): Promise<any> {
     const movieService: MovieService = dependencyInjection(MovieService);

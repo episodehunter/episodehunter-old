@@ -27,6 +27,7 @@
     "episodehunter-queue": "file:../queue",
     "got": "^5.2.0",
     "knex": "^0.9.0",
+    "messages": "file:../messages",
     "mysql": "^2.9.0"
   },
   "devDependencies": {
