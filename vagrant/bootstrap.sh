@@ -57,7 +57,7 @@ else
   mysql -uroot -p$DBPASSWD ${DBNAME}_test < /home/vagrant/data/vagrant/$DBNAME.sql
 
   echo "\n--- Updating mysql configs in /etc/mysql/my.cnf ---\n"
-  sed -i "s/bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
+  sed -i "s/bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
   echo "\n--- Restarting mysql ---\n"
   service mysql restart
 
