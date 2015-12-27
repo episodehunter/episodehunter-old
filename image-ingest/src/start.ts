@@ -1,6 +1,5 @@
 'use strict';
 
-import './lib/polyfill';
 import {dependencyInjection} from 'autoinject';
 import queue from 'episodehunter-queue';
 import logger from './lib/logger';
