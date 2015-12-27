@@ -1,0 +1,10 @@
+node_modules
+/typings
+log
+dist
+.temp
+.idea
+tmp-folder
+.env
+.tern-port
+.vagrant
