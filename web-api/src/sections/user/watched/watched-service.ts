@@ -1,7 +1,7 @@
 import {autoInject} from 'autoinject';
 import queue from 'episodehunter-queue';
 import {WatchedMovie, WatchedShow} from 'eh-domain/model/scrobble/sync';
-import {scrobble} from '../../../episodehunter-messages/queue/scrobble';
+import {scrobble} from 'messages/queue/scrobble';
 
 @autoInject
 class WatchedService {

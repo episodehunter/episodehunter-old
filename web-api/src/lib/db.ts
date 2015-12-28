@@ -2,7 +2,7 @@
 
 import config from '../config';
 import Knex = require('knex');
-import * as models from '../episodehunter-messages/database/index';
+import * as models from 'messages/database/index';
 
 const knex = Knex(config.db);
 
