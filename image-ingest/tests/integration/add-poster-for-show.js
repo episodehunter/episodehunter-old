@@ -2,7 +2,7 @@
 
 import '../set-env-var';
 import {assert} from 'chai';
-import {show} from '../../dist/episodehunter-messages/database/show';
+import {show} from 'messages/database/show';
 import database from '../../dist/lib/database';
 import {addOrUpdateShowPoster} from '../../dist/start';
 import {logger} from '../../dist/lib/logger';

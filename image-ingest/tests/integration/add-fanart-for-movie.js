@@ -2,7 +2,7 @@
 
 import '../set-env-var';
 import {assert} from 'chai';
-import {movie} from '../../dist/episodehunter-messages/database/movie';
+import {movie} from 'messages/database/movie';
 import database from '../../dist/lib/database';
 import {addOrUpdateMovieFanart} from '../../dist/start';
 import {logger} from '../../dist/lib/logger';
