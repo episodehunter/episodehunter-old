@@ -4,4 +4,3 @@ const movieIngest = {
 };
 
 export {movieIngest};
-export default movieIngest;

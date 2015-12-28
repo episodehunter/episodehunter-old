@@ -3,4 +3,3 @@ const showIngest = {
 };
 
 export {showIngest};
-export default showIngest;

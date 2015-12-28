@@ -13,4 +13,3 @@ const imageIngest = {
 };
 
 export {imageIngest};
-export default imageIngest;
