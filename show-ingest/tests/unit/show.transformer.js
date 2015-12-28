@@ -1,10 +1,7 @@
-'use strict';
-
 import {assert} from 'chai';
-import {series as showTable} from '../../dist/episodehunter-messages/database/series';
-import {episode as episodeTable} from '../../dist/episodehunter-messages/database/episode';
+import {show as showTable} from 'messages/database/show';
+import {episode as episodeTable} from 'messages/database/episode';
 import transformer from '../../dist/thetvdb.transformer';
-import {TvdbShow, TvdbEpisode} from '../../dist/thetvdb/tvdb.model';
 
 describe('Show transformer', () => {
     const orgGetTime = Date.prototype.getTime;
@@ -87,8 +84,8 @@ describe('Show transformer', () => {
             // Assert
             assert.deepEqual(result[0], {
                 [episodeTable.tvdbId]: episodes[0].id,
-                [episodeTable.seriesTvdbId]: ids.tvdbId,
-                [episodeTable.seriesId]: ids.id,
+                [episodeTable.showTvdbId]: ids.tvdbId,
+                [episodeTable.showId]: ids.id,
                 [episodeTable.name]: episodes[0].name,
                 [episodeTable.season]: episodes[0].seasonNumber,
                 [episodeTable.episode]: episodes[0].episodeNumber,

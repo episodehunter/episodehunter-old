@@ -1,5 +1,3 @@
-'use strict';
-
 import {assert} from 'chai';
 import {spy} from 'simple-spy';
 import config from '../../../dist/config';

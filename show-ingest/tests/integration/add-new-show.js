@@ -1,11 +1,9 @@
-'use strict';
-
 import '../set-env-var';
 import {assert} from 'chai';
 import {connect as createQueue} from 'episodehunter-queue';
+import {show} from 'messages/database/show';
+import {episode} from 'messages/database/episode';
 import {addShow} from '../../dist/start';
-import {series} from '../../dist/episodehunter-messages/database/series';
-import {episode} from '../../dist/episodehunter-messages/database/episode';
 import database from '../../dist/lib/database';
 import TvDbRepository from '../../dist/thetvdb/tvdb-repository';
 import {trueblood} from '../testdata/trueblood';
@@ -36,12 +34,12 @@ describe('Add true blood', () => {
 
     beforeEach(async () => {
         // Set db in a known state
-        await db(series.$table)
-            .where(series.tvdbId, tvdbId)
+        await db(show.$table)
+            .where(show.tvdbId, tvdbId)
             .del();
 
         await db(episode.$table)
-            .where(episode.seriesTvdbId, tvdbId)
+            .where(episode.showTvdbId, tvdbId)
             .del();
     });
 
@@ -58,15 +56,15 @@ describe('Add true blood', () => {
         const success = await addShow(job);
 
         // Assert
-        const show = await db(series.$table)
-            .first(series.id)
-            .where(series.tvdbId, tvdbId);
+        const findShow = await db(show.$table)
+            .first(show.id)
+            .where(show.tvdbId, tvdbId);
         const episodes = await db(episode.$table)
             .count(`${episode.id} as count`)
-            .where(episode.seriesTvdbId, tvdbId);
+            .where(episode.showTvdbId, tvdbId);
 
         assert.isTrue(success);
-        assert.isNumber(show.id);
+        assert.isNumber(findShow.id);
         assert.strictEqual(episodes[0].count, 94);
     });
 
@@ -78,21 +76,21 @@ describe('Add true blood', () => {
                 ids: {tvdbId}
             }
         };
-        await db(series.$table)
+        await db(show.$table)
             .insert({
-                [series.tvdbId]: tvdbId,
-                [series.imdbId]: '',
-                [series.title]: 'True Blood',
-                [series.airs.dayOfWeek]: '',
-                [series.airs.time]: '',
-                [series.airs.first]: '',
-                [series.genre]: '',
-                [series.language]: '',
-                [series.network]: '',
-                [series.overview]: '',
-                [series.runtime]: 60,
-                [series.status]: '',
-                [series.lastupdate]: 0
+                [show.tvdbId]: tvdbId,
+                [show.imdbId]: '',
+                [show.title]: 'True Blood',
+                [show.airs.dayOfWeek]: '',
+                [show.airs.time]: '',
+                [show.airs.first]: '',
+                [show.genre]: '',
+                [show.language]: '',
+                [show.network]: '',
+                [show.overview]: '',
+                [show.runtime]: 60,
+                [show.status]: '',
+                [show.lastupdate]: 0
             });
 
         // Act
