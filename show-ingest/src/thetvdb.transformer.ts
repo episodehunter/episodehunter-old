@@ -1,8 +1,6 @@
-'use strict';
-
 import {ShowIds} from 'eh-domain/model/ids';
-import {episode as episodeTable} from './episodehunter-messages/database/episode';
-import {show as showTable} from './episodehunter-messages/database/show';
+import {episode as episodeTable} from 'messages/database/episode';
+import {show as showTable} from 'messages/database/show';
 import {TvdbEpisode, TvdbShow} from './thetvdb/tvdb.model';
 import utility from './lib/utility';
 

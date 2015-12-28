@@ -1,8 +1,6 @@
-'use strict';
-
 import queue from 'episodehunter-queue';
+import {imageIngest} from 'messages/queue/image-ingest';
 import {TvdbShow} from './thetvdb/tvdb.model';
-import imageIngest from './episodehunter-messages/queue/image-ingest';
 
 function requestDownload(show: TvdbShow) {
     if (show.fanart) {

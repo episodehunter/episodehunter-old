@@ -20,6 +20,7 @@
     "got": "^5.2.0",
     "knex": "^0.9.0",
     "lodash": "^3.10.1",
+    "messages": "file:../messages",
     "mysql": "^2.9.0",
     "xml2js": "^0.4.15"
   },
