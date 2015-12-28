@@ -1,11 +1,9 @@
-'use strict';
-
 import '../set-env-var';
 import {assert} from 'chai';
 import {connect as createQueue} from 'episodehunter-queue';
+import {movie as movieTable} from 'messages/database/movie';
 import {addMovie} from '../../dist/start';
 import logger from '../../dist/lib/logger';
-import {movie as movieTable} from '../../dist/episodehunter-messages/database/movie';
 import database from '../../dist/lib/database';
 import MovieDbRepository from '../../dist/moviedb/moviedb-repository';
 import mockMovie from '../testdata/mock-movie.json';
