@@ -2,9 +2,9 @@
 
 import {dependencyInjection} from 'autoinject';
 import queue from 'episodehunter-queue';
+import {imageIngest} from 'messages/queue/image-ingest';
 import logger from './lib/logger';
 import config from './config';
-import imageIngest from './episodehunter-messages/queue/image-ingest';
 import EpisodeImageService from './episode-images.service';
 import MovieImageService from './movie-images.service';
 import ShowImageService from './show-images.service';

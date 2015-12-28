@@ -1,10 +1,10 @@
 'use strict';
 
 import Knex from 'knex';
+import {show as showTable} from 'messages/database/show';
+import {movie as movieTable} from 'messages/database/movie';
+import {episode as episodeTable} from 'messages/database/episode';
 import database from './lib/database';
-import {show as showTable} from './episodehunter-messages/database/show';
-import {movie as movieTable} from './episodehunter-messages/database/movie';
-import {episode as episodeTable} from './episodehunter-messages/database/episode';
 
 class DatabaseRepository {
     db: Knex;
