@@ -8,3 +8,4 @@ tmp-folder
 .env
 .tern-port
 .vagrant
+npm-debug.log
