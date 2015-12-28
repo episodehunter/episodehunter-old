@@ -1,7 +1,7 @@
 'use strict';
 
 import {WatchedShow, WatchedEpisodeDatabase} from 'eh-domain/model/scrobble/sync';
-import {show, watchedEpisode} from '../episodehunter-messages/database/index';
+import {show, watchedEpisode} from 'messages/database/index';
 import {database} from '../lib/database';
 import {catchDbError, rejectIfNoResult} from '../lib/error-handler';
 import {isNumric} from '../lib/utility';

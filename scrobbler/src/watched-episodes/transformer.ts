@@ -1,9 +1,7 @@
-'use strict';
-
 import {chain, pluck} from 'lodash';
 import {WatchedShow, WatchedEpisodeDatabase} from 'eh-domain/model/scrobble/sync';
-import {watchedEpisode} from '../episodehunter-messages/database/index';
-import {scrobbleTypes} from '../episodehunter-messages/constant/scrobble-types';
+import {watchedEpisode} from 'messages/database/index';
+import {scrobbleTypes} from 'messages/constant/scrobble-types';
 import {now, int, isNumric, extractYear} from '../lib/utility';
 
 /**

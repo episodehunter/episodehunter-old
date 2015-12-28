@@ -1,7 +1,5 @@
-'use strict';
-
-import {movie} from '../episodehunter-messages/database/movie';
-import {watchedMovie} from '../episodehunter-messages/database/watched-movie';
+import {movie} from 'messages/database/movie';
+import {watchedMovie} from 'messages/database/watched-movie';
 import {database} from '../lib/database';
 
 interface WatchedMoviesDatabaseInterface {

@@ -1,9 +1,7 @@
-'use strict';
-
 import queue from 'episodehunter-queue';
 import {WatchedShow} from 'eh-domain/model/scrobble/sync';
+import {showIngest} from 'messages/queue/show-ingest';
 import {logger} from '../lib/logger';
-import {showIngest} from '../episodehunter-messages/queue/show-ingest';
 import {setEpisodesAsWatched, getWatchedEpisodes} from '../watched-episodes/service';
 import {MissingShowError} from '../error/missing-show.error';
 

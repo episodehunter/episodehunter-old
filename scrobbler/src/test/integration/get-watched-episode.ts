@@ -1,6 +1,6 @@
 import '../set-env-var';
 import {assert} from 'chai';
-import {watchedEpisode} from '../../episodehunter-messages/database/watched-episode';
+import {watchedEpisode} from 'messages/database/watched-episode';
 import db from '../../lib/database';
 import {getWatchedShows} from '../../start';
 

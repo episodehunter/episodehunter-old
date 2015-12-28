@@ -1,9 +1,9 @@
 'use strict';
 
 import queue from 'episodehunter-queue';
+import {scrobble} from 'messages/queue/scrobble';
 import {logger} from './lib/logger';
 import config from './config';
-import {scrobble} from './episodehunter-messages/queue/scrobble';
 import episodeController from './watched-episodes/controller';
 import movieController from './watched-movies/controller';
 

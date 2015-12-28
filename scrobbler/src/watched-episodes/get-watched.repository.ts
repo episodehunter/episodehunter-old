@@ -1,6 +1,4 @@
-'use strict';
-
-import {show, episode, watchedEpisode} from '../episodehunter-messages/database/index';
+import {show, episode, watchedEpisode} from 'messages/database/index';
 import {database} from '../lib/database';
 import {as} from '../lib/utility';
 

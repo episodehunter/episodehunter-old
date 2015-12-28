@@ -1,7 +1,7 @@
 import '../set-env-var';
 import {assert} from 'chai';
 import {connect as createQueue} from 'episodehunter-queue';
-import {watchedMovie} from '../../episodehunter-messages/database/watched-movie';
+import {watchedMovie} from 'messages/database/watched-movie';
 import db from '../../lib/database';
 import {setMovieAsWatched} from '../../start';
 

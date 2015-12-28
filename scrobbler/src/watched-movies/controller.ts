@@ -1,6 +1,6 @@
 import queue from 'episodehunter-queue';
 import {WatchedMovie} from 'eh-domain/model/scrobble/sync';
-import {movieIngest} from '../episodehunter-messages/queue/movie-ingest';
+import {movieIngest} from 'messages/queue/movie-ingest';
 import {logger} from '../lib/logger';
 import {MissingMovieError} from '../error/missing-movie.error';
 import {setMovieAsWatched, getWatchedMovies} from './service';

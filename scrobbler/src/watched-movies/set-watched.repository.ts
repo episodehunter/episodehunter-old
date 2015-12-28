@@ -1,12 +1,12 @@
 'use strict';
 
 import {WatchedMovie, WatchedMovieDatabase} from 'eh-domain/model/scrobble/sync';
-import {movie} from '../episodehunter-messages/database/movie';
-import {watchedMovie} from '../episodehunter-messages/database/watched-movie';
+import {movie} from 'messages/database/movie';
+import {watchedMovie} from 'messages/database/watched-movie';
+import {scrobbleTypes} from 'messages/constant/scrobble-types';
 import {database} from '../lib/database';
 import {now, isNumric} from '../lib/utility';
 import {catchDbError, rejectIfNoResult} from '../lib/error-handler';
-import {scrobbleTypes} from '../episodehunter-messages/constant/scrobble-types';
 
 function getMovieIdByTheMoveDbId(theMoveDbId: number): Promise<number> {
     if (!isNumric(theMoveDbId)) {
