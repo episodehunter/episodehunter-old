@@ -1,0 +1,16 @@
+{
+  "name": "messages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "npm install",
+    "postinstall": "tsc"
+  },
+  "typescript": {
+    "definition": "./typings/messages.d.ts"
+  },
+  "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
+  "license": "MIT"
+}
