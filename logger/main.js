@@ -61,5 +61,16 @@ function createLogger({name, logLevel = 'warn', filePath, stdout, ravenDNS}) {
     return bunyanLogger;
 }
 
+function traceFunCall(target, name, descriptor) {
+    const {value: orginalMethod} = descriptor;
+    descriptor.value = function(...args) {
+        logger.trace(`'${name}' is called`);
+        const result = orginalMethod.apply(this, args);
+        logger.trace(`We have a result from '${name}'`);
+        return result;
+    };
+    return descriptor;
+}
+
 export default logger;
-export {createLogger, logger};
+export {createLogger, logger, traceFunCall};

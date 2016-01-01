@@ -15,9 +15,11 @@ declare function createLogger({name, logLevel, filePath, stdout, ravenDNS}: {
     ravenDNS: string;
 }): _logger;
 
+declare function traceFunCall(target: any, name: string, descriptor: any): any;
+
 declare var logger: _logger;
 
 declare module 'episodehunter-logger' {
     export default logger;
-    export {createLogger, logger};
+    export {createLogger, logger, traceFunCall};
 }

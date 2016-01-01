@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.logger = exports.createLogger = undefined;
+exports.traceFunCall = exports.logger = exports.createLogger = undefined;
 
 var _bunyan = require('bunyan');
 
@@ -83,6 +83,24 @@ function createLogger(_ref) {
     return bunyanLogger;
 }
 
+function traceFunCall(target, name, descriptor) {
+    const orginalMethod = descriptor.value;
+
+    descriptor.value = function () {
+        logger.trace(`'${ name }' is called`);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        const result = orginalMethod.apply(this, args);
+        logger.trace(`We have a result from '${ name }'`);
+        return result;
+    };
+    return descriptor;
+}
+
 exports.default = logger;
 exports.createLogger = createLogger;
 exports.logger = logger;
+exports.traceFunCall = traceFunCall;
