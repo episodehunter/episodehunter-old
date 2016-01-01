@@ -6,7 +6,16 @@ import {registerLogger} from './lib/logger';
 import {decorateResponse} from './lib/decorate-response';
 import config from './config';
 
-const server = new Hapi.Server();
+const server = new Hapi.Server(<any>{
+    load: {
+        sampleInterval: 1000,
+    },
+    connections: {
+        load: {
+            maxEventLoopDelay: 3000
+        }
+    }
+});
 
 server.connection({
     port: config.port,
