@@ -1,4 +1,4 @@
-import {createLogger} from 'episodehunter-logger';
+import {createLogger, traceFunCall} from 'episodehunter-logger';
 import {join, normalize} from 'path';
 import config from '../config';
 
@@ -47,4 +47,4 @@ const registerLogger = server => {
 
 };
 
-export {logger, registerLogger};
+export {logger, registerLogger, traceFunCall};
