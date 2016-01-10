@@ -1,11 +1,21 @@
 import {int} from './type-conversion';
 
-let extractYear = (date: string): number => {
+const extractYear = (date: string): number => {
     // Expecting the format to be 'YYYY..'
     return date ? int(date.substr(0, 4)) : 0;
 };
 
-export default {
-    extractYear
+const isValid = (date: Date): boolean => {
+    return !isNaN(date.getTime());
 };
-export {extractYear};
+
+const convertToUnixTimestamp = (date: Date): number => {
+    return Math.floor(date.getTime() / 1000);
+};
+
+export default {
+    extractYear,
+    isValid,
+    convertToUnixTimestamp
+};
+export {extractYear, isValid, convertToUnixTimestamp};
