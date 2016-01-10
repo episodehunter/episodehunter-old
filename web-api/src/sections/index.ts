@@ -6,6 +6,7 @@ import {movieRouts} from './movies/movie-router';
 import {showRouts} from './show/show-router';
 import {userRouts} from './user/user-router';
 import {popularRouts} from './popular/popular-router';
+import {searchRoute} from './search/search-router';
 
 function registerRouts(server: Hapi.Server) {
     server.route(authRouts);
@@ -13,6 +14,7 @@ function registerRouts(server: Hapi.Server) {
     server.route(showRouts);
     server.route(userRouts);
     server.route(popularRouts);
+    server.route(searchRoute);
 }
 
 export {registerRouts};
