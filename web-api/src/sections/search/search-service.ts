@@ -1,5 +1,11 @@
 import {database} from '../../lib/db';
 
+// Ugly as fuck
+const replaceNonAlphabeticSQL = str => {
+    return `replace(replace(replace(replace(${str}, '+', ''), '\\'', ''), '.' ,''), ':', '')`;
+};
+const replaceNonAlphabeticStr = str => str.replace(/[+.:']/g, '');
+
 class SearchService {
 
     getShowSearchResultRaw(term: string): Promise<any> {
@@ -9,7 +15,7 @@ class SearchService {
 
         return database.q(model.show.$table)
             .select(model.show.id, model.show.imdbId, model.show.tvdbId, model.show.title, model.show.poster, model.show.fanart)
-            .whereRaw(`SOUNDEX(${model.show.title}) LIKE CONCAT(TRIM(TRAILING '0' FROM SOUNDEX(?)), '%')`, term)
+            .whereRaw(`${replaceNonAlphabeticSQL(model.show.title)} LIKE ?`, `%${replaceNonAlphabeticStr(term)}%`)
             .limit(20);
     }
 
@@ -20,7 +26,7 @@ class SearchService {
 
         return database.q(model.movie.$table)
             .select(model.movie.id, model.movie.imdbId, model.movie.tmdbId, model.movie.title, model.movie.poster, model.movie.fanart)
-            .whereRaw(`SOUNDEX(${model.movie.title}) LIKE CONCAT(TRIM(TRAILING '0' FROM SOUNDEX(?)), '%')`, term)
+            .whereRaw(`${replaceNonAlphabeticSQL(model.movie.title)} LIKE ?`, `%${replaceNonAlphabeticStr(term)}%`)
             .limit(20);
     }
 
