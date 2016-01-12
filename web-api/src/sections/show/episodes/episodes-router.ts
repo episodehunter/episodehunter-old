@@ -1,14 +1,13 @@
 import {number} from 'joi';
 import {dependencyInjection} from 'autoinject';
-import {ShowController} from './show-controller';
-import {episodesRouts} from './episodes/episodes-router';
+import {EpisodesController} from './episodes-controller';
 
-const controller: ShowController = dependencyInjection(ShowController);
+const controller: EpisodesController = dependencyInjection(EpisodesController);
 
-const showRouts = [
+const episodesRouts = [
     {
         method: 'GET',
-        path: '/show/{id}',
+        path: '/show/{id}/episodes',
         handler: controller.get,
         config: {
             bind: controller,
@@ -18,8 +17,7 @@ const showRouts = [
                 }
             }
         }
-    },
-    ...episodesRouts
+    }
 ];
 
-export {showRouts};
+export {episodesRouts};
