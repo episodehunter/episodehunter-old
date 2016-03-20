@@ -7,19 +7,12 @@ interface _logger {
     fatal(msg: string, ...data: any[]): void;
 }
 
-declare function createLogger({name, logLevel, filePath, stdout, ravenDNS}: {
+export var logger: _logger;
+export function createLogger({name, logLevel, filePath, stdout, ravenDNS}: {
     name: string;
     logLevel?: string;
     filePath: string;
     stdout: boolean;
     ravenDNS: string;
 }): _logger;
-
-declare function traceFunCall(target: any, name: string, descriptor: any): any;
-
-declare var logger: _logger;
-
-declare module 'episodehunter-logger' {
-    export default logger;
-    export {createLogger, logger, traceFunCall};
-}
+export function traceFunCall(target: any, name: string, descriptor: any): any;
