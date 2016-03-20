@@ -1,10 +1,10 @@
 import { Server } from 'hapi';
 import { connect as queueConnect } from 'episodehunter-queue';
-import {registerRouts} from './sections/index';
-import {registerPlugin} from './lib/plugins/index';
-import {registerLogger} from './lib/logger';
-import {decorateResponse} from './lib/decorate-response';
-import config from './config';
+import { registerRouts } from './sections/index';
+import { registerPlugin } from './lib/plugins/index';
+import { registerLogger } from './lib/logger';
+import { decorateResponse } from './lib/decorate-response';
+import { config } from './config';
 
 const server = new Server(<any>{
     load: {
