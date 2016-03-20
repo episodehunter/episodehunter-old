@@ -1,9 +1,7 @@
-'use strict';
-
-import {Request, IReply} from 'hapi';
-import {forbidden} from 'boom';
-import {autoInject} from 'autoinject';
-import {AuthService} from './auth-service';
+import { Request, IReply } from 'hapi';
+import { forbidden } from 'boom';
+import { autoInject } from 'autoinject';
+import { AuthService } from './auth-service';
 
 @autoInject
 class AuthController {
@@ -14,11 +12,11 @@ class AuthController {
     }
 
     createToken(request: Request, reply: IReply): void {
-        let username = request.payload['username'];
-        let password = request.payload['password'];
+        const username = request.payload.username;
+        const password = request.payload.password;
         this.service.generateToken(username, password)
             .then(token => reply({token}))
-            .catch(() => reply(forbidden('Invalid username or password')));
+            .catch(() => reply(forbidden('Invalid username or password'))); // TODO: This is naive
     }
 
 }

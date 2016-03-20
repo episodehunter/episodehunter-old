@@ -1,3 +1,4 @@
+
 {
   "rules": {
     "align": [
@@ -10,8 +11,7 @@
     "class-name": true,
     "comment-format": [
       true,
-      "check-space",
-      "check-uppercase"
+      "check-space"
     ],
     "curly": true,
     "eofline": true,
@@ -20,7 +20,7 @@
       true,
       "spaces"
     ],
-    "interface-name": true,
+    "interface-name": false,
     "jsdoc-format": true,
     "label-position": true,
     "label-undefined": true,
@@ -68,7 +68,7 @@
     "no-use-before-declare": true,
     "no-var-keyword": true,
     "no-var-requires": false,
-    "object-literal-sort-keys": true,
+    "object-literal-sort-keys": false,
     "one-line": [
       true,
       "check-open-brace",
@@ -85,7 +85,7 @@
     "semicolon": true,
     "switch-default": true,
     "trailing-comma": [
-      true,
+      false,
       {
         "multiline": "always",
         "singleline": "never"

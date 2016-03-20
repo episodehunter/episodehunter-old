@@ -1,6 +1,6 @@
-import {autoInject} from 'autoinject';
-import {database} from '../../../lib/db';
-import {as} from '../../../lib/utility/database';
+import { autoInject } from 'autoinject';
+import { database } from '../../../lib/db';
+import { as } from '../../../lib/utility/database';
 
 interface UpcompingDatabaseInterface {
     id: number;
@@ -30,7 +30,7 @@ class UpcomingRepository {
             follow: database.model.followingShow
         };
 
-        return database.q
+        return <any>database.q
             .select(
                 model.episode.id,
                 model.episode.image,

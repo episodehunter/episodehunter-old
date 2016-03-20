@@ -1,5 +1,5 @@
 
-let decorateResponse = server => {
+const decorateResponse = server => {
 
     server.ext('onPreResponse', (request, reply) => {
         if (request && request.response && request.response.header && typeof request.id === 'string') {

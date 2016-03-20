@@ -1,8 +1,8 @@
-import Hapi = require('hapi');
-import {autoInject} from 'autoinject';
-import {badImplementation} from 'boom';
-import {PopularService} from './popular-service';
-import {logger} from '../../lib/logger';
+import { Request, IReply } from 'hapi';
+import { autoInject } from 'autoinject';
+import { badImplementation } from 'boom';
+import { PopularService } from './popular-service';
+import { logger } from '../../lib/logger';
 
 @autoInject
 class PopularController {
@@ -12,7 +12,7 @@ class PopularController {
         this.service = service;
     }
 
-    getShows(request: Hapi.Request, reply: Hapi.IReply) {
+    getShows(request: Request, reply: IReply) {
         const since = request.params['since'];
         return this.service
             .getPopularShows(since)
@@ -23,7 +23,7 @@ class PopularController {
             });
     }
 
-    getMovies(request: Hapi.Request, reply: Hapi.IReply) {
+    getMovies(request: Request, reply: IReply) {
         const since = request.params['since'];
         return this.service
             .getPopularMovies(since)
@@ -36,4 +36,4 @@ class PopularController {
 
 }
 
-export {PopularController};
+export { PopularController };

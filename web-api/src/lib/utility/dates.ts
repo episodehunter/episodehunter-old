@@ -1,4 +1,4 @@
-import {int} from './type-conversion';
+import { int } from './type-conversion';
 
 const extractYear = (date: string): number => {
     // Expecting the format to be 'YYYY..'
@@ -13,9 +13,4 @@ const convertToUnixTimestamp = (date: Date): number => {
     return Math.floor(date.getTime() / 1000);
 };
 
-export default {
-    extractYear,
-    isValid,
-    convertToUnixTimestamp
-};
-export {extractYear, isValid, convertToUnixTimestamp};
+export { extractYear, isValid, convertToUnixTimestamp };

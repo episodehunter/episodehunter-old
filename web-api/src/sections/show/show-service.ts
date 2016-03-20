@@ -1,11 +1,10 @@
-import {autoInject} from 'autoinject';
-import {extractYear} from '../../lib/utility/dates';
-import {ShowRepository} from './show-repository';
-import {Show} from './model/show-model';
+import { autoInject } from 'autoinject';
+import { extractYear } from '../../lib/utility/dates';
+import { ShowRepository } from './show-repository';
+import { Show } from './model/show-model';
 
 @autoInject
 class ShowService {
-
     showRep: ShowRepository;
 
     constructor(showRep: ShowRepository) {

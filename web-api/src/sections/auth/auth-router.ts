@@ -1,6 +1,6 @@
-import {string as validateString} from 'joi';
-import {dependencyInjection} from 'autoinject';
-import {AuthController} from './auth-controller';
+import { string as validateString } from 'joi';
+import { dependencyInjection } from 'autoinject';
+import { AuthController } from './auth-controller';
 
 let controller: AuthController = dependencyInjection(AuthController);
 
@@ -22,4 +22,4 @@ const authRouts = [
     }
 ];
 
-export {authRouts};
+export { authRouts };

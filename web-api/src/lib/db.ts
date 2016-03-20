@@ -1,8 +1,6 @@
-'use strict';
-
-import config from '../config';
 import Knex = require('knex');
 import * as models from 'messages/database/index';
+import config from '../config';
 
 const knex = Knex(config.db);
 
@@ -11,4 +9,4 @@ let database = {
     model: models
 };
 
-export {database, models};
+export { database, models };

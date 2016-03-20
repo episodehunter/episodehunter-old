@@ -1,6 +1,6 @@
-import * as Promise from 'bluebird';
-const bcrypt = require('twin-bcrypt');
-import {UserSelectionInterface} from '../sections/auth/auth-repository';
+import bcrypt from 'twin-bcrypt';
+
+import { UserSelectionInterface } from '../sections/auth/auth-repository';
 
 function hash(data: string): Promise<string> {
     return new Promise<string>(resolve => {
@@ -8,17 +8,17 @@ function hash(data: string): Promise<string> {
     });
 }
 
-function compare(password: string, refhash: string): Promise<boolean> {
-    return new Promise<boolean>((resolve, reject) => {
-        bcrypt.hash(password, refhash, b => {
-            if (b) {
-                resolve(Promise.resolve(true));
-            } else {
-                reject(false);
-            }
-        });
-    });
-}
+// function compare(password: string, refhash: string): Promise<boolean> {
+//     return new Promise<boolean>((resolve, reject) => {
+//         bcrypt.hash(password, refhash, b => {
+//             if (b) {
+//                 resolve(Promise.resolve(true));
+//             } else {
+//                 reject(false);
+//             }
+//         });
+//     });
+// }
 
 function compareUserPassword(user: UserSelectionInterface, password: string): Promise<UserSelectionInterface> {
     return new Promise<UserSelectionInterface>((resolve, reject) => {
@@ -32,4 +32,4 @@ function compareUserPassword(user: UserSelectionInterface, password: string): Pr
     });
 }
 
-export {hash, compare, compareUserPassword};
+export { hash, compareUserPassword };

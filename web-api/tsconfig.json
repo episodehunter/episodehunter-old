@@ -1,13 +1,15 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "es6",
         "module": "commonjs",
+        "moduleResolution": "node",
         "noImplicitAny": false,
         "removeComments": true,
         "preserveConstEnums": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "sourceMap": true
+        "sourceMap": true,
+        "outDir": "./dist"
     },
     "compileOnSave": false,
     "exclude": [
@@ -15,7 +17,8 @@
         "dist",
         "log",
         "node_modules",
-        "vagrant"
+        "typings/browser.d.ts",
+        "typings/browser"
     ],
     "atom": {
         "rewriteTsconfig": true

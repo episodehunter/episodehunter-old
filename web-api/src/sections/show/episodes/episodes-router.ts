@@ -1,6 +1,6 @@
-import {number} from 'joi';
-import {dependencyInjection} from 'autoinject';
-import {EpisodesController} from './episodes-controller';
+import { number } from 'joi';
+import { dependencyInjection } from 'autoinject';
+import { EpisodesController } from './episodes-controller';
 
 const controller: EpisodesController = dependencyInjection(EpisodesController);
 

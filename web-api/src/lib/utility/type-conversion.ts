@@ -1,6 +1,6 @@
-let int = obj => obj | 0;
+const int = obj => obj | 0;
 
-let parseJson = jsonObj => {
+const parseJson = jsonObj => {
     try {
         return JSON.parse(jsonObj);
     } catch (err) {
@@ -8,8 +8,4 @@ let parseJson = jsonObj => {
     }
 };
 
-export default {
-    int,
-    parseJson
-};
 export {int, parseJson};

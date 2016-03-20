@@ -1,7 +1,5 @@
-'use strict';
-
-import {autoInject} from 'autoinject';
-import {database} from '../../lib/db';
+import { autoInject } from 'autoinject';
+import { database } from '../../lib/db';
 
 interface MovieDatabaseInterface {
     id: number;
@@ -28,7 +26,7 @@ class MovieRepository {
     get(movieId: number): Promise<MovieDatabaseInterface> {
         const model = database.model.movie;
 
-        return database.q
+        return <any>database.q
             .first(
                 model.id,
                 model.tmdbId,
@@ -59,4 +57,4 @@ class MovieRepository {
 
 }
 
-export {MovieRepository};
+export { MovieRepository };

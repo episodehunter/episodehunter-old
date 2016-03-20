@@ -1,7 +1,6 @@
-import {scrobbleTypes} from 'messages/constant/scrobble-types';
-import dateUtil from '../../lib/utility/dates';
-import {PopularShows} from './model/shows';
-import {database} from '../../lib/db';
+import { scrobbleTypes } from 'messages/constant/scrobble-types';
+import * as dateUtil from '../../lib/utility/dates';
+import { database } from '../../lib/db';
 
 class PopularService {
 
@@ -21,22 +20,33 @@ class PopularService {
         };
 
         const query = database.q(model.watched.$table)
-            .select(model.show.id, model.show.imdbId, model.show.tvdbId, model.show.title, model.show.poster, model.show.fanart)
-            .select(database.q.raw(`count(${model.watched.showId}) * count(DISTINCT ${model.watched.userId}) as r`))
+            .select(
+                model.show.id,
+                model.show.imdbId,
+                model.show.tvdbId,
+                model.show.title,
+                model.show.poster,
+                model.show.fanart,
+                database.q.raw(`count(${model.watched.showId}) * count(DISTINCT ${model.watched.userId}) as r`)
+            )
             .count(model.watched.showId + ' as views')
             .join(model.show.$table, model.watched.showId, model.show.id);
 
         if (time > 0) {
             query.where(model.watched.time, '>', time);
             query.where(function() {
-                this.where(model.watched.type, scrobbleTypes.checkIn).orWhere(model.watched.type, scrobbleTypes.xbmcScrobble)
+                this.where(
+                    model.watched.type, scrobbleTypes.checkIn
+                ).orWhere(
+                    model.watched.type, scrobbleTypes.xbmcScrobble
+                );
             });
             query.orderBy('r', 'DESC');
         } else {
             query.orderBy('views', 'DESC');
         }
 
-        return query
+        return <any>query
             .groupBy(model.watched.showId)
             .limit(100);
     }
@@ -49,18 +59,29 @@ class PopularService {
         };
 
         const query = database.q(model.watched.$table)
-            .select(model.movie.id, model.movie.imdbId, model.movie.tmdbId, model.movie.title, model.movie.poster, model.movie.fanart)
+            .select(
+                model.movie.id,
+                model.movie.imdbId,
+                model.movie.tmdbId,
+                model.movie.title,
+                model.movie.poster,
+                model.movie.fanart
+            )
             .count(model.watched.movieId + ' as views')
             .join(model.movie.$table, model.watched.movieId, model.movie.id);
 
         if (time > 0) {
             query.where(model.watched.time, '>', time);
             query.where(function() {
-                this.where(model.watched.type, scrobbleTypes.checkIn).orWhere(model.watched.type, scrobbleTypes.xbmcScrobble)
+                this.where(
+                    model.watched.type, scrobbleTypes.checkIn
+                ).orWhere(
+                    model.watched.type, scrobbleTypes.xbmcScrobble
+                );
             });
         }
 
-        return query
+        return <any>query
             .orderBy('views', 'DESC')
             .groupBy(model.watched.movieId)
             .limit(100);
@@ -118,4 +139,4 @@ class PopularService {
 
 }
 
-export {PopularService};
+export { PopularService };

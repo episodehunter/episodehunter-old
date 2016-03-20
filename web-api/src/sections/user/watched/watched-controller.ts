@@ -1,8 +1,9 @@
-import Hapi = require('hapi');
-import {autoInject} from 'autoinject';
-import {badImplementation, badRequest} from 'boom';
-import {statusCodes} from '../../../lib/constant/status-codes';
-import {WatchedService} from './watched-service';
+import { Request, IReply } from 'hapi';
+import { autoInject } from 'autoinject';
+import { badImplementation, badRequest } from 'boom';
+import { logger, traceFunCall } from '../../../lib/logger';
+import { statusCodes } from '../../../lib/constant/status-codes';
+import { WatchedService } from './watched-service';
 
 @autoInject
 class WatchedController {
@@ -12,7 +13,7 @@ class WatchedController {
         this.watchedService = watchedService;
     }
 
-    getWatchedMovies(request: Hapi.Request, reply: Hapi.IReply) {
+    getWatchedMovies(request: Request, reply: IReply) {
         let userId = request.auth.credentials.id;
         this.watchedService
             .getWatchedMovies(userId)
@@ -22,18 +23,19 @@ class WatchedController {
             });
     }
 
-    getWatchedShows(request: Hapi.Request, reply: Hapi.IReply) {
+    @traceFunCall
+    getWatchedShows(request: Request, reply: IReply) {
         let userId = request.auth.credentials.id;
         this.watchedService
             .getWatchedShows(userId)
             .then(series => reply({series}))
             .catch(error => {
-                console.log(error);
+                logger.error(error);
                 reply(badImplementation());
             });
     }
 
-    setShowsAsWatched(request: Hapi.Request, reply: Hapi.IReply) {
+    setShowsAsWatched(request: Request, reply: IReply) {
         let userId = request.auth.credentials.id;
         let shows = request.payload['shows'];
 
@@ -46,7 +48,7 @@ class WatchedController {
         reply({}).code(statusCodes.ACCEPTED);
     }
 
-    setMoviesAsWatched(request: Hapi.Request, reply: Hapi.IReply) {
+    setMoviesAsWatched(request: Request, reply: IReply) {
         let userId = request.auth.credentials.id;
         let movies = request.payload['movies'];
 
@@ -61,4 +63,4 @@ class WatchedController {
 
 }
 
-export {WatchedController};
+export { WatchedController };

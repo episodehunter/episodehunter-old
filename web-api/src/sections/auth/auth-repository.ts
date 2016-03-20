@@ -20,13 +20,15 @@ class UserRepository {
     }
 
     getUserById(id: number): Promise<UserSelectionInterface> {
-        return database.q
+        return <any>database.q
             .first(...this.selections)
             .from(database.model.userModel.$table)
             .where(
                 database.model.userModel.id, '=', id
-            ).then(user => {
+            )
+            .then(user => {
                 if (user === undefined) {
+                    // TODO: We should not reject here
                     return Promise.reject(undefined);
                 }
                 return user;
@@ -34,13 +36,14 @@ class UserRepository {
     }
 
     getUserByUsername(username: string): Promise<UserSelectionInterface> {
-        return database.q
+        return <any>database.q
             .first(...this.selections)
             .from(database.model.userModel.$table)
             .where(
                 database.model.userModel.username, '=', username
             ).then(user => {
                 if (user === undefined) {
+                    // TODO: We should not reject here
                     return Promise.reject(undefined);
                 }
                 return user;

@@ -1,8 +1,8 @@
-import Hapi = require('hapi');
-import {autoInject} from 'autoinject';
-import {notFound, badImplementation} from 'boom';
-import {int} from '../../lib/utility/type-conversion';
-import {MovieService} from './movie-service';
+import { Request, IReply } from 'hapi';
+import { notFound, badImplementation } from 'boom';
+import { autoInject } from 'autoinject';
+import { int } from '../../lib/utility/type-conversion';
+import { MovieService } from './movie-service';
 
 @autoInject
 class MovieController {
@@ -12,7 +12,7 @@ class MovieController {
         this.service = service;
     }
 
-    get(request: Hapi.Request, reply: Hapi.IReply) {
+    get(request: Request, reply: IReply) {
         let movieId = int(request.params['id']);
         this.service
             .getMovie(movieId)
@@ -28,4 +28,4 @@ class MovieController {
 
 }
 
-export {MovieController};
+export { MovieController };

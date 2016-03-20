@@ -1,12 +1,12 @@
-import Hapi = require('hapi');
-import queue from 'episodehunter-queue';
+import { Server } from 'hapi';
+import { connect as queueConnect } from 'episodehunter-queue';
 import {registerRouts} from './sections/index';
 import {registerPlugin} from './lib/plugins/index';
 import {registerLogger} from './lib/logger';
 import {decorateResponse} from './lib/decorate-response';
 import config from './config';
 
-const server = new Hapi.Server(<any>{
+const server = new Server(<any>{
     load: {
         sampleInterval: 1000,
     },
@@ -31,11 +31,11 @@ decorateResponse(server);
 
 // Only start the server if we run the script directly
 if (!module.parent) {
-    queue.connect(config.redis);
+    queueConnect(config.redis);
 
     server.start(() => {
         console.log('Server running at:', server.info.uri);
     });
 }
 
-export {server};
+export { server };

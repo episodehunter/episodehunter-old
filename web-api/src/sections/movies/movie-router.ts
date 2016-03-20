@@ -1,6 +1,6 @@
-import {number} from 'joi';
-import {dependencyInjection} from 'autoinject';
-import {MovieController} from './movie-controller';
+import { number } from 'joi';
+import { dependencyInjection } from 'autoinject';
+import { MovieController } from './movie-controller';
 
 const controller: MovieController = dependencyInjection(MovieController);
 
@@ -20,4 +20,4 @@ const movieRouts = [
     }
 ];
 
-export {movieRouts};
+export { movieRouts };

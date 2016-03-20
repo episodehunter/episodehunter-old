@@ -1,6 +1,6 @@
-import {autoInject} from 'autoinject';
-import {database} from '../../lib/db';
-import {as} from '../../lib/utility/database';
+import { autoInject } from 'autoinject';
+import { database } from '../../lib/db';
+import { as } from '../../lib/utility/database';
 
 interface ShowDatabaseInterface {
     id: number;
@@ -26,7 +26,7 @@ class ShowRepository {
     get(showId: number): Promise<ShowDatabaseInterface> {
         let model = database.model.show;
 
-        return database.q
+        return <any>database.q
             .first(
                 model.id,
                 as(model.tvdbId, 'tvdbId'),
@@ -56,4 +56,4 @@ class ShowRepository {
 
 }
 
-export {ShowRepository};
+export { ShowRepository };

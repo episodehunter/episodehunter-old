@@ -1,7 +1,7 @@
-import {number} from 'joi';
-import {dependencyInjection} from 'autoinject';
-import {ShowController} from './show-controller';
-import {episodesRouts} from './episodes/episodes-router';
+import { number } from 'joi';
+import { dependencyInjection } from 'autoinject';
+import { ShowController } from './show-controller';
+import { episodesRouts } from './episodes/episodes-router';
 
 const controller: ShowController = dependencyInjection(ShowController);
 

@@ -1,0 +1,10 @@
+{
+  "ambientDependencies": {
+    "boom": "registry:dt/boom#0.0.0+20150603151834",
+    "chai": "registry:dt/chai#3.4.0+20160317120654",
+    "hapi": "registry:dt/hapi#13.0.0+20160224204942",
+    "joi": "registry:dt/joi#4.6.0+20151223112818",
+    "knex": "registry:dt/knex#0.0.0+20160308160903",
+    "mocha": "registry:dt/mocha#2.2.5+20160317120654"
+  }
+}

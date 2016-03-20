@@ -1,8 +1,7 @@
-import Hapi = require('hapi');
-import {registerJWT} from './jwt/jwt';
+import { registerJWT } from './jwt/jwt';
 
-function registerPlugin(server: Hapi.Server) {
+function registerPlugin(server) {
     registerJWT(server);
 }
 
-export {registerPlugin};
+export { registerPlugin };

@@ -1,6 +1,6 @@
-import {string} from 'joi';
-import {dependencyInjection} from 'autoinject';
-import {PopularController} from './popular-controller';
+import { string } from 'joi';
+import { dependencyInjection } from 'autoinject';
+import { PopularController } from './popular-controller';
 
 const controller: PopularController = dependencyInjection(PopularController);
 

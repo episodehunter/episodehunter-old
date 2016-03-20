@@ -19,8 +19,17 @@ class EpisodesService {
             episode: database.model.episode
         };
 
-        return database.q(model.watched.$table)
-            .select(model.episode.id, model.episode.name, model.episode.season, model.episode.episode, model.episode.firstAired, model.episode.overview, model.episode.image, model.watched.time)
+        return <any>database.q(model.watched.$table)
+            .select(
+                model.episode.id,
+                model.episode.name,
+                model.episode.season,
+                model.episode.episode,
+                model.episode.firstAired,
+                model.episode.overview,
+                model.episode.image,
+                model.watched.time
+            )
             .leftJoin(model.episode.$table, function() {
                 this.on(model.watched.showId, model.episode.showId)
                     .andOn(model.episode.season, model.watched.season)

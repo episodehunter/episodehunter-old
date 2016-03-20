@@ -1,4 +1,4 @@
-import {Show} from '../../../show/model/show-model';
+import { Show } from '../../../show/model/show-model';
 
 interface UpcomingEpisode {
     ids: {
@@ -12,4 +12,4 @@ interface UpcomingEpisode {
     show: Show;
 }
 
-export {UpcomingEpisode};
+export { UpcomingEpisode };

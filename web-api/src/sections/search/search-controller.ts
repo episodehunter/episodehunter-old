@@ -1,8 +1,8 @@
-import Hapi = require('hapi');
-import {autoInject} from 'autoinject';
-import {badImplementation} from 'boom';
-import {SearchService} from './search-service';
-import {logger} from '../../lib/logger';
+import { Request, IReply } from 'hapi';
+import { autoInject } from 'autoinject';
+import { badImplementation } from 'boom';
+import { SearchService } from './search-service';
+import { logger } from '../../lib/logger';
 
 @autoInject
 class SearchController {
@@ -12,7 +12,7 @@ class SearchController {
         this.service = service;
     }
 
-    search(request: Hapi.Request, reply: Hapi.IReply) {
+    search(request: Request, reply: IReply) {
         const term = request.params['term'];
         return this.service.search(term)
             .then(result => reply({result}))

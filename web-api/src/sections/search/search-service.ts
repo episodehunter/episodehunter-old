@@ -13,8 +13,15 @@ class SearchService {
             show: database.model.show
         };
 
-        return database.q(model.show.$table)
-            .select(model.show.id, model.show.imdbId, model.show.tvdbId, model.show.title, model.show.poster, model.show.fanart)
+        return <any>database.q(model.show.$table)
+            .select(
+                model.show.id,
+                model.show.imdbId,
+                model.show.tvdbId,
+                model.show.title,
+                model.show.poster,
+                model.show.fanart
+            )
             .whereRaw(`${replaceNonAlphabeticSQL(model.show.title)} LIKE ?`, `%${replaceNonAlphabeticStr(term)}%`)
             .limit(20);
     }
@@ -24,8 +31,15 @@ class SearchService {
             movie: database.model.movie
         };
 
-        return database.q(model.movie.$table)
-            .select(model.movie.id, model.movie.imdbId, model.movie.tmdbId, model.movie.title, model.movie.poster, model.movie.fanart)
+        return <any>database.q(model.movie.$table)
+            .select(
+                model.movie.id,
+                model.movie.imdbId,
+                model.movie.tmdbId,
+                model.movie.title,
+                model.movie.poster,
+                model.movie.fanart
+            )
             .whereRaw(`${replaceNonAlphabeticSQL(model.movie.title)} LIKE ?`, `%${replaceNonAlphabeticStr(term)}%`)
             .limit(20);
     }

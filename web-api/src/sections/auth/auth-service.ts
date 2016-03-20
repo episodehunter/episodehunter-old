@@ -1,8 +1,8 @@
-import {autoInject} from 'autoinject';
-import {sign} from 'jsonwebtoken';
-import {UserRepository} from './auth-repository';
+import { autoInject } from 'autoinject';
+import { sign } from 'jsonwebtoken';
+import { UserRepository } from './auth-repository';
 import config from '../../config';
-import {compareUserPassword} from '../../lib/bcrypt';
+import { compareUserPassword } from '../../lib/bcrypt';
 
 @autoInject
 class AuthService {
@@ -24,4 +24,4 @@ class AuthService {
     }
 }
 
-export {AuthService};
+export { AuthService };

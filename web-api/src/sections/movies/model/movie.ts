@@ -20,4 +20,4 @@ class Movie {
     fanart: string;
 }
 
-export {Movie};
+export { Movie };

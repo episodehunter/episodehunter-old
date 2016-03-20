@@ -1,8 +1,8 @@
-import Hapi = require('hapi');
-import {autoInject} from 'autoinject';
-import {notFound, badImplementation} from 'boom';
-import {int} from '../../lib/utility/type-conversion';
-import {ShowService} from './show-service';
+import { Request, IReply } from 'hapi';
+import { autoInject } from 'autoinject';
+import { notFound, badImplementation } from 'boom';
+import { int } from '../../lib/utility/type-conversion';
+import { ShowService } from './show-service';
 
 @autoInject
 class ShowController {
@@ -12,7 +12,7 @@ class ShowController {
         this.service = service;
     }
 
-    get(request: Hapi.Request, reply: Hapi.IReply) {
+    get(request: Request, reply: IReply) {
         let showId = int(request.params['id']);
         this.service
             .getShow(showId)
@@ -28,4 +28,4 @@ class ShowController {
 
 }
 
-export {ShowController};
+export { ShowController };

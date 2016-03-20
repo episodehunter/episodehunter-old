@@ -1,6 +1,6 @@
-import {string} from 'joi';
-import {dependencyInjection} from 'autoinject';
-import {SearchController} from './search-controller';
+import { string } from 'joi';
+import { dependencyInjection } from 'autoinject';
+import { SearchController } from './search-controller';
 
 const controller: SearchController = dependencyInjection(SearchController);
 

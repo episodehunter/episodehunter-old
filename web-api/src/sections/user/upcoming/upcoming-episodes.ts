@@ -1,11 +1,10 @@
-import {autoInject} from 'autoinject';
-import {extractYear} from '../../../lib/utility/dates';
-import {UpcomingRepository} from './upcoming-repository';
-import {UpcomingEpisode} from './model/upcomping-model';
+import { autoInject } from 'autoinject';
+import { extractYear } from '../../../lib/utility/dates';
+import { UpcomingRepository } from './upcoming-repository';
+import { UpcomingEpisode } from './model/upcomping-model';
 
 @autoInject
 class UpcomingEpiosdes {
-
     upcomingRep: UpcomingRepository;
 
     constructor(upcomingRep: UpcomingRepository) {

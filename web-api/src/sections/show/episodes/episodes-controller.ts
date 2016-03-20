@@ -1,9 +1,9 @@
-import Hapi = require('hapi');
-import {autoInject} from 'autoinject';
-import {badImplementation} from 'boom';
-import {int} from '../../../lib/utility/type-conversion';
-import {EpisodesService} from './episodes-service';
-import {logger} from '../../../lib/logger';
+import { Request, IReply } from 'hapi';
+import { autoInject } from 'autoinject';
+import { badImplementation } from 'boom';
+import { int } from '../../../lib/utility/type-conversion';
+import { EpisodesService } from './episodes-service';
+import { logger } from '../../../lib/logger';
 
 @autoInject
 class EpisodesController {
@@ -13,7 +13,7 @@ class EpisodesController {
         this.service = service;
     }
 
-    get(request: Hapi.Request, reply: Hapi.IReply) {
+    get(request: Request, reply: IReply) {
         const showId = int(request.params['id']);
         const userId = request.auth.credentials.id;
         this.service
@@ -27,4 +27,4 @@ class EpisodesController {
 
 }
 
-export {EpisodesController};
+export { EpisodesController };

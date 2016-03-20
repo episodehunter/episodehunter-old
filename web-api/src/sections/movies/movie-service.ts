@@ -1,8 +1,8 @@
-import {autoInject} from 'autoinject';
-import {parseJson} from '../../lib/utility/type-conversion';
-import {extractYear} from '../../lib/utility/dates';
-import {Movie} from './model/movie';
-import {MovieRepository} from './movie-repository';
+import { autoInject } from 'autoinject';
+import { parseJson } from '../../lib/utility/type-conversion';
+import { extractYear } from '../../lib/utility/dates';
+import { Movie } from './model/movie';
+import { MovieRepository } from './movie-repository';
 
 @autoInject
 class MovieService {
@@ -42,4 +42,4 @@ class MovieService {
 
 }
 
-export {MovieService};
+export { MovieService };

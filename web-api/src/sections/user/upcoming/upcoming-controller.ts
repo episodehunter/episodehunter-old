@@ -1,8 +1,6 @@
-'use strict';
-
-import Hapi = require('hapi');
-import {autoInject} from 'autoinject';
-import {UpcomingEpiosdes} from './upcoming-episodes';
+import { Request, IReply } from 'hapi';
+import { autoInject } from 'autoinject';
+import { UpcomingEpiosdes } from './upcoming-episodes';
 
 @autoInject
 class UpcomingController {
@@ -12,7 +10,7 @@ class UpcomingController {
         this.episodeService = episodeService;
     }
 
-    episodes(request: Hapi.Request, reply: Hapi.IReply) {
+    episodes(request: Request, reply: IReply) {
         let userId = request.auth.credentials.id;
         this.episodeService
             .upcoming(userId)
