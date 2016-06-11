@@ -12,7 +12,7 @@
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
   "dependencies": {
-    "autoinject": "0.6.8",
+    "autoinject": "0.6.9",
     "boom": "3.1.2",
     "episodehunter-logger": "file:../logger",
     "episodehunter-queue": "file:../queue",
