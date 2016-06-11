@@ -4,7 +4,7 @@
   "description": "Api server for episodehunter.tv",
   "main": "dist/server.js",
   "scripts": {
-    "setup": "npm install && tsd reinstall && tsd link && gulp setup && echo 'Nice!'",
+    "build": "typings install && tsd",
     "test": "mocha dist/specs/unit --recursive --check-leaks",
     "test:all": "mocha dist/specs --recursive --check-leaks",
     "test:integration": "mocha dist/specs/integration --recursive --check-leaks"
@@ -29,6 +29,7 @@
   "devDependencies": {
     "chai": "^3.4.1",
     "mocha": "^2.3.4",
-    "mock-knex": "^0.3.0"
+    "mock-knex": "^0.3.0",
+    "typings": "^1.0.5"
   }
 }
