@@ -41,13 +41,7 @@ class UserRepository {
             .from(database.model.userModel.$table)
             .where(
                 database.model.userModel.username, '=', username
-            ).then(user => {
-                if (user === undefined) {
-                    // TODO: We should not reject here
-                    return Promise.reject(undefined);
-                }
-                return user;
-            });
+            );
     }
 
 }

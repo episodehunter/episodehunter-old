@@ -1,5 +1,4 @@
-import bcrypt from 'twin-bcrypt';
-
+const bcrypt = require('twin-bcrypt');
 import { UserSelectionInterface } from '../sections/auth/auth-repository';
 
 function hash(data: string): Promise<string> {
@@ -20,14 +19,10 @@ function hash(data: string): Promise<string> {
 //     });
 // }
 
-function compareUserPassword(user: UserSelectionInterface, password: string): Promise<UserSelectionInterface> {
-    return new Promise<UserSelectionInterface>((resolve, reject) => {
+function compareUserPassword(user: UserSelectionInterface, password: string): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
         bcrypt.compare(password, user.password, match => {
-            if (match === true) {
-                resolve(<any>user);
-            } else {
-                reject(`password don't match`);
-            }
+            resolve(match === true);
         });
     });
 }

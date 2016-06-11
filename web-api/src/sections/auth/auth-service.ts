@@ -12,15 +12,14 @@ class AuthService {
         this.rep = rep;
     }
 
-    generateToken(username: string, password: string): Promise<string> {
-        return this.rep
-            .getUserByUsername(username)
-            .then(user => compareUserPassword(user, password))
-            .then(user => {
-                // Remove the password
-                user.password = undefined;
-                return sign(user, config.jwt.salt);
-            });
+    async generateToken(username: string, password: string): Promise<string> {
+        const user = await this.rep.getUserByUsername(username);
+        const passwordMatch = await compareUserPassword(user, password);
+        if (passwordMatch === true) {
+            return await sign(user, config.jwt.salt);
+        } else {
+            return undefined;
+        }
     }
 }
 

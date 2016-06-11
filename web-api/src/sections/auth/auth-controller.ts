@@ -1,5 +1,5 @@
 import { Request, IReply } from 'hapi';
-import { forbidden } from 'boom';
+import { forbidden, badImplementation } from 'boom';
 import { autoInject } from 'autoinject';
 import { AuthService } from './auth-service';
 
@@ -15,8 +15,14 @@ class AuthController {
         const username = request.payload.username;
         const password = request.payload.password;
         this.service.generateToken(username, password)
-            .then(token => reply({token}))
-            .catch(() => reply(forbidden('Invalid username or password'))); // TODO: This is naive
+            .then(token => {
+                if (token) {
+                    reply({token});
+                } else {
+                    reply(forbidden('Invalid username or password :('));
+                }
+            })
+            .catch(error => reply(badImplementation(error)));
     }
 
 }
