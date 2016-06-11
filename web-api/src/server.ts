@@ -1,5 +1,4 @@
 import 'source-map-support/register';
-
 import { Server } from 'hapi';
 import { connect as queueConnect } from 'episodehunter-queue';
 import { registerRouts } from './sections/index';
