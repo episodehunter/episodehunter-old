@@ -13,4 +13,6 @@ const convertToUnixTimestamp = (date: Date): number => {
     return Math.floor(date.getTime() / 1000);
 };
 
-export { extractYear, isValid, convertToUnixTimestamp };
+const today = (): string => new Date().toISOString().slice(0, 10);
+
+export { extractYear, isValid, convertToUnixTimestamp, today };

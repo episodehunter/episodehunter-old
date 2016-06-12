@@ -1,6 +1,7 @@
 import { autoInject } from 'autoinject';
 import { database } from '../../../lib/db';
 import { as } from '../../../lib/utility/database';
+import { today } from '../../../lib/utility/dates';
 
 interface UpcompingDatabaseInterface {
     id: number;
@@ -20,7 +21,6 @@ interface UpcompingDatabaseInterface {
 class UpcomingRepository {
 
     get(userId: number): Promise<Array<UpcompingDatabaseInterface>> {
-        let today = new Date().toISOString().slice(0, 10);
         let limit = 100;
         let raw = database.q.raw;
 
@@ -50,7 +50,7 @@ class UpcomingRepository {
                 this.on(model.follow.showId, '=', model.episode.showId)
                     .on(model.episode.season, '!=', raw('0'))
                     .on(model.episode.episode, '!=', raw('0'))
-                    .on(model.episode.firstAired, '>=', raw('"' + today + '"'));
+                    .on(model.episode.firstAired, '>=', raw('"' + today() + '"'));
             })
             .where(model.follow.userId, '=', userId)
             .where(function() {
