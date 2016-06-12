@@ -7,18 +7,6 @@ function hash(data: string): Promise<string> {
     });
 }
 
-// function compare(password: string, refhash: string): Promise<boolean> {
-//     return new Promise<boolean>((resolve, reject) => {
-//         bcrypt.hash(password, refhash, b => {
-//             if (b) {
-//                 resolve(Promise.resolve(true));
-//             } else {
-//                 reject(false);
-//             }
-//         });
-//     });
-// }
-
 function compareUserPassword(user: UserSelectionInterface, password: string): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
         bcrypt.compare(password, user.password, match => {
