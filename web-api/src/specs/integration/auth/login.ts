@@ -44,7 +44,7 @@ describe('Auth', () => {
                 .then(response => {
                     const result = response.result;
                     assert.equal(response.statusCode, 200);
-                    assert.closeTo(result['token'].length, 150, 50);
+                    assert.isAbove(result.token.length, 100);
                 });
         });
 
