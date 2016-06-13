@@ -14,6 +14,9 @@ class AuthService {
 
     async generateToken(username: string, password: string): Promise<string> {
         const user = await this.rep.getUserByUsername(username);
+        if (!user) {
+            return undefined;
+        }
         const passwordMatch = await compareUserPassword(user, password);
         if (passwordMatch === true) {
             return await sign(user, config.jwt.salt);
