@@ -1,11 +1,9 @@
 {
   "globalDependencies": {
     "boom": "registry:dt/boom#0.0.0+20160317120654",
-    "chai": "registry:dt/chai#3.4.0+20160317120654",
     "hapi": "registry:dt/hapi#13.0.0+20160602125023",
     "joi": "registry:dt/joi#9.0.0+20160602140522",
     "knex": "registry:dt/knex#0.0.0+20160526133810",
-    "mocha": "registry:dt/mocha#2.2.5+20160317120654",
     "node": "registry:dt/node#6.0.0+20160608110640"
   }
 }

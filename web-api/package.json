@@ -5,9 +5,9 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "typings install && tsd",
-    "test": "mocha dist/specs/unit --recursive --check-leaks",
-    "test:all": "mocha dist/specs --recursive --check-leaks",
-    "test:integration": "mocha dist/specs/integration --recursive --check-leaks"
+    "test": "ava dist/src/test/**/*-test.js --serial --require ./dist/src/test/setup",
+    "test:unit": "ava dist/src/test/unit/**/*-test.js",
+    "test:integration": "ava dist/src/test/integration/**/*-test.js --serial --require ./dist/src/test/setup"
   },
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
@@ -27,9 +27,7 @@
     "twin-bcrypt": "2.1.1"
   },
   "devDependencies": {
-    "chai": "^3.4.1",
-    "mocha": "^2.3.4",
-    "mock-knex": "^0.3.0",
+    "ava": "^0.15.2",
     "typings": "^1.0.5"
   }
 }

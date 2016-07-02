@@ -18,7 +18,8 @@
         "log",
         "node_modules",
         "typings/browser.d.ts",
-        "typings/browser"
+        "typings/browser",
+        "src/specs"
     ],
     "atom": {
         "rewriteTsconfig": true
