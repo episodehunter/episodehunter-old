@@ -10,10 +10,10 @@ const jwtSecret = config.jwt.salt;
 const validate = (decoded: {id: number, username: string}, request, next) => {
     userRepository.getUserById(decoded.id)
         .then(user => {
-            if (user.username === decoded.username) {
+            if (user && user.username === decoded.username) {
                 next(null, true, decoded);
             } else {
-                next(new Error('Not a valid user'), false);
+                next(null, false);
             }
         });
 };
