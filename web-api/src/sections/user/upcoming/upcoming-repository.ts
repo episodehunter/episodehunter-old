@@ -1,5 +1,6 @@
 import { autoInject } from 'autoinject';
-import { database } from '../../../lib/db';
+import { showTable, episodeTabel, followingShowTable } from '../../../contracts/database';
+import { db } from '../../../lib/db';
 import { as } from '../../../lib/utility/database';
 import { today } from '../../../lib/utility/dates';
 
@@ -20,52 +21,44 @@ interface UpcompingDatabaseInterface {
 @autoInject
 class UpcomingRepository {
 
-    get(userId: number): Promise<Array<UpcompingDatabaseInterface>> {
+    get(userId: number): Promise<UpcompingDatabaseInterface[]> {
         let limit = 100;
-        let raw = database.q.raw;
 
-        let model = {
-            show: database.model.show,
-            episode: database.model.episode,
-            follow: database.model.followingShow
-        };
-
-        return <any>database.q
-            .select(
-                model.episode.id,
-                model.episode.image,
-                as(model.episode.name, 'title'),
-                as(model.show.id, 'show_id'),
-                as(model.show.title, 'show_title'),
-                as(model.show.airs.first, 'show_first_aired'),
-                as(model.show.poster, 'show_poster'),
-                as(model.show.fanart, 'show_fanart')
+        const t = <any> db.select(
+                episodeTabel.id,
+                episodeTabel.image,
+                as(episodeTabel.name, 'title'),
+                as(showTable.id, 'show_id'),
+                as(showTable.name, 'show_title'),
+                as(showTable.first_aired, 'show_first_aired'),
+                as(showTable.poster, 'show_poster'),
+                as(showTable.fanart, 'show_fanart')
             )
-            .max(as(model.episode.season, 'season'))
-            .min(as(model.episode.episode, 'episode'))
-            .min(as(model.episode.firstAired, 'airs'))
-            .from(model.follow.$table)
-            .leftJoin(model.show.$table, model.follow.showId, model.show.id)
-            .leftJoin(model.episode.$table, function() {
-                this.on(model.follow.showId, '=', model.episode.showId)
-                    .on(model.episode.season, '!=', raw('0'))
-                    .on(model.episode.episode, '!=', raw('0'))
-                    .on(model.episode.firstAired, '>=', raw('"' + today() + '"'));
+            .max(as(episodeTabel.season, 'season'))
+            .min(as(episodeTabel.episode, 'episode'))
+            .min(as(episodeTabel.first_aired, 'airs'))
+            .from(followingShowTable.$table)
+            .rightJoin(showTable.$table, followingShowTable.show_id, showTable.id)
+            .rightJoin(episodeTabel.$table, function() {
+                this.on(followingShowTable.show_id, '=', episodeTabel.serie_id)
+                    .on(episodeTabel.season, '!=', db.raw('0'))
+                    .on(episodeTabel.episode, '!=', db.raw('0'))
+                    .on(episodeTabel.first_aired, '>=', db.raw('"' + today() + '"'));
             })
-            .where(model.follow.userId, '=', userId)
+            .where(followingShowTable.user_id, '=', userId)
             .where(function() {
-                this.where(model.show.status, '=', 'Continuing')
-                    .orWhereNotNull(model.episode.episode);
+                this.where(showTable.status, '=', 'Continuing')
+                    .orWhereNotNull(episodeTabel.episode);
             })
-            .groupBy(model.follow.id)
-            .orderBy(model.episode.firstAired)
-            .limit(limit)
-            .then(epesodes => {
-                if (!epesodes) {
-                    return [];
-                }
-                return epesodes;
-            });
+            .groupBy(followingShowTable.id)
+            .orderBy(episodeTabel.first_aired)
+            .limit(limit);
+        return t.then(epesodes => {
+            if (!epesodes) {
+                return [];
+            }
+            return epesodes;
+        });
     }
 
 }

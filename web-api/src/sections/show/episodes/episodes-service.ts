@@ -1,4 +1,5 @@
-import {database} from '../../../lib/db';
+import { db } from '../../../lib/db';
+import { episodeTabel, watchedEpisode } from '../../../contracts/database';
 
 interface EpisodeInterface {
     id: number;
@@ -14,30 +15,25 @@ interface EpisodeInterface {
 class EpisodesService {
 
     getEpisodesForShowRaw(showId: number, userId: number): Promise<EpisodeInterface[]> {
-        const model = {
-            watched: database.model.watchedEpisode,
-            episode: database.model.episode
-        };
-
-        return <any>database.q(model.watched.$table)
+        return <any>db(watchedEpisode.$table)
             .select(
-                model.episode.id,
-                model.episode.name,
-                model.episode.season,
-                model.episode.episode,
-                model.episode.firstAired,
-                model.episode.overview,
-                model.episode.image,
-                model.watched.time
+                episodeTabel.id,
+                episodeTabel.name,
+                episodeTabel.season,
+                episodeTabel.episode,
+                episodeTabel.first_aired,
+                episodeTabel.overview,
+                episodeTabel.image,
+                watchedEpisode.time
             )
-            .leftJoin(model.episode.$table, function() {
-                this.on(model.watched.showId, model.episode.showId)
-                    .andOn(model.episode.season, model.watched.season)
-                    .andOn(model.episode.episode, model.watched.episode)
-                    .andOn(model.watched.userId, userId);
+            .leftJoin(episodeTabel.$table, function() {
+                this.on(watchedEpisode.showId, episodeTabel.serie_id)
+                    .andOn(episodeTabel.season, watchedEpisode.season)
+                    .andOn(episodeTabel.episode, watchedEpisode.episode)
+                    .andOn(watchedEpisode.userId, userId);
             })
-            .where(model.episode.showId, showId)
-            .groupBy(model.episode.season, model.episode.episode);
+            .where(episodeTabel.serie_id, showId)
+            .groupBy(episodeTabel.season, episodeTabel.episode);
     }
 
     getEpisodesForShow(showId: number, userId: number): Promise<any> {

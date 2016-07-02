@@ -9,4 +9,4 @@ let database = {
     model: models
 };
 
-export { database, models };
+export { database, models, knex as db };

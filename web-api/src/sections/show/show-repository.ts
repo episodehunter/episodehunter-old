@@ -1,5 +1,6 @@
 import { autoInject } from 'autoinject';
-import { database } from '../../lib/db';
+import { db } from '../../lib/db';
+import { showTable } from '../../contracts/database/show';
 import { as } from '../../lib/utility/database';
 
 interface ShowDatabaseInterface {
@@ -24,34 +25,31 @@ interface ShowDatabaseInterface {
 class ShowRepository {
 
     get(showId: number): Promise<ShowDatabaseInterface> {
-        let model = database.model.show;
-
-        return <any>database.q
-            .first(
-                model.id,
-                as(model.tvdbId, 'tvdbId'),
-                as(model.imdbId, 'imdbId'),
-                as(model.title, 'title'),
-                as(model.airs.dayOfWeek, 'dayOfWeek'),
-                as(model.airs.time, 'time'),
-                as(model.airs.first, 'first'),
-                model.genre,
-                model.language,
-                model.network,
-                model.overview,
-                model.runtime,
-                model.status,
-                model.fanart,
-                model.poster
-            )
-            .from(model.$table)
-            .where(model.id, '=', showId)
-            .then(show => {
-                if (show === undefined) {
-                    return Promise.reject(404);
-                }
-                return show;
-            });
+        return <any>db.first(
+            showTable.id,
+            as(showTable.tvdb_id, 'tvdbId'),
+            as(showTable.imdb_id, 'imdbId'),
+            as(showTable.name, 'title'),
+            as(showTable.airs_dayOfWeek, 'dayOfWeek'),
+            as(showTable.airs_time, 'time'),
+            as(showTable.first_aired, 'first'),
+            showTable.genre,
+            showTable.language,
+            showTable.network,
+            showTable.overview,
+            showTable.runtime,
+            showTable.status,
+            showTable.fanart,
+            showTable.poster
+        )
+        .from(showTable.$table)
+        .where(showTable.id, '=', showId)
+        .then(show => {
+            if (show === undefined) {
+                return Promise.reject(404);
+            }
+            return show;
+        });
     }
 
 }

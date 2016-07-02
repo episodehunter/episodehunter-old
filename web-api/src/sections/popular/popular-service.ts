@@ -1,6 +1,7 @@
 import { scrobbleTypes } from 'messages/constant/scrobble-types';
+import { showTable, watchedEpisode, movie, watchedMovie } from '../../contracts/database';
 import * as dateUtil from '../../lib/utility/dates';
-import { database } from '../../lib/db';
+import { db } from '../../lib/db';
 
 class PopularService {
 
@@ -14,31 +15,27 @@ class PopularService {
 
     getPopularShowsRaw(since: string): Promise<any> {
         const time = this.convertToTimestamp(since);
-        const model = {
-            watched: database.model.watchedEpisode,
-            show: database.model.show
-        };
 
-        const query = database.q(model.watched.$table)
+        const query = db(watchedEpisode.$table)
             .select(
-                model.show.id,
-                model.show.imdbId,
-                model.show.tvdbId,
-                model.show.title,
-                model.show.poster,
-                model.show.fanart,
-                database.q.raw(`count(${model.watched.showId}) * count(DISTINCT ${model.watched.userId}) as r`)
+                showTable.id,
+                showTable.imdb_id,
+                showTable.tvdb_id,
+                showTable.name,
+                showTable.poster,
+                showTable.fanart,
+                db.raw(`count(${watchedEpisode.showId}) * count(DISTINCT ${watchedEpisode.userId}) as r`)
             )
-            .count(model.watched.showId + ' as views')
-            .join(model.show.$table, model.watched.showId, model.show.id);
+            .count(watchedEpisode.showId + ' as views')
+            .join(showTable.$table, watchedEpisode.showId, showTable.id);
 
         if (time > 0) {
-            query.where(model.watched.time, '>', time);
+            query.where(watchedEpisode.time, '>', time);
             query.where(function() {
                 this.where(
-                    model.watched.type, scrobbleTypes.checkIn
+                    watchedEpisode.type, scrobbleTypes.checkIn
                 ).orWhere(
-                    model.watched.type, scrobbleTypes.xbmcScrobble
+                    watchedEpisode.type, scrobbleTypes.xbmcScrobble
                 );
             });
             query.orderBy('r', 'DESC');
@@ -47,43 +44,39 @@ class PopularService {
         }
 
         return <any>query
-            .groupBy(model.watched.showId)
+            .groupBy(watchedEpisode.showId)
             .limit(100);
     }
 
     getPopularMoviesRaw(since: string): Promise<any> {
         const time = this.convertToTimestamp(since);
-        const model = {
-            watched: database.model.watchedMovie,
-            movie: database.model.movie
-        };
 
-        const query = database.q(model.watched.$table)
+        const query = db(watchedMovie.$table)
             .select(
-                model.movie.id,
-                model.movie.imdbId,
-                model.movie.tmdbId,
-                model.movie.title,
-                model.movie.poster,
-                model.movie.fanart
+                movie.id,
+                movie.imdbId,
+                movie.tmdbId,
+                movie.title,
+                movie.poster,
+                movie.fanart
             )
-            .count(model.watched.movieId + ' as views')
-            .join(model.movie.$table, model.watched.movieId, model.movie.id);
+            .count(watchedMovie.movieId + ' as views')
+            .join(movie.$table, watchedMovie.movieId, movie.id);
 
         if (time > 0) {
-            query.where(model.watched.time, '>', time);
+            query.where(watchedMovie.time, '>', time);
             query.where(function() {
                 this.where(
-                    model.watched.type, scrobbleTypes.checkIn
+                    watchedMovie.type, scrobbleTypes.checkIn
                 ).orWhere(
-                    model.watched.type, scrobbleTypes.xbmcScrobble
+                    watchedMovie.type, scrobbleTypes.xbmcScrobble
                 );
             });
         }
 
         return <any>query
             .orderBy('views', 'DESC')
-            .groupBy(model.watched.movieId)
+            .groupBy(watchedMovie.movieId)
             .limit(100);
     }
 

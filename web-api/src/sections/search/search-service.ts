@@ -1,4 +1,5 @@
-import {database} from '../../lib/db';
+import { db } from '../../lib/db';
+import { showTable, movie } from '../../contracts/database';
 
 // Ugly as fuck
 const replaceNonAlphabeticSQL = str => {
@@ -9,38 +10,30 @@ const replaceNonAlphabeticStr = str => str.replace(/[+.:']/g, '');
 class SearchService {
 
     getShowSearchResultRaw(term: string): Promise<any> {
-        const model = {
-            show: database.model.show
-        };
-
-        return <any>database.q(model.show.$table)
+        return <any>db(showTable.$table)
             .select(
-                model.show.id,
-                model.show.imdbId,
-                model.show.tvdbId,
-                model.show.title,
-                model.show.poster,
-                model.show.fanart
+                showTable.id,
+                showTable.imdb_id,
+                showTable.tvdb_id,
+                showTable.name,
+                showTable.poster,
+                showTable.fanart
             )
-            .whereRaw(`${replaceNonAlphabeticSQL(model.show.title)} LIKE ?`, `%${replaceNonAlphabeticStr(term)}%`)
+            .whereRaw(`${replaceNonAlphabeticSQL(showTable.name)} LIKE ?`, `%${replaceNonAlphabeticStr(term)}%`)
             .limit(20);
     }
 
     getMovieSearchResultRaw(term: string): Promise<any> {
-        const model = {
-            movie: database.model.movie
-        };
-
-        return <any>database.q(model.movie.$table)
+        return <any>db(movie.$table)
             .select(
-                model.movie.id,
-                model.movie.imdbId,
-                model.movie.tmdbId,
-                model.movie.title,
-                model.movie.poster,
-                model.movie.fanart
+                movie.id,
+                movie.imdbId,
+                movie.tmdbId,
+                movie.title,
+                movie.poster,
+                movie.fanart
             )
-            .whereRaw(`${replaceNonAlphabeticSQL(model.movie.title)} LIKE ?`, `%${replaceNonAlphabeticStr(term)}%`)
+            .whereRaw(`${replaceNonAlphabeticSQL(movie.title)} LIKE ?`, `%${replaceNonAlphabeticStr(term)}%`)
             .limit(20);
     }
 
