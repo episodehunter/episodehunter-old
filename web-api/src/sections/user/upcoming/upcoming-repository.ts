@@ -38,8 +38,8 @@ class UpcomingRepository {
             .min(as(episodeTabel.episode, 'episode'))
             .min(as(episodeTabel.first_aired, 'airs'))
             .from(followingShowTable.$table)
-            .rightJoin(showTable.$table, followingShowTable.show_id, showTable.id)
-            .rightJoin(episodeTabel.$table, function() {
+            .leftJoin(showTable.$table, followingShowTable.show_id, showTable.id)
+            .leftJoin(episodeTabel.$table, function() {
                 this.on(followingShowTable.show_id, '=', episodeTabel.serie_id)
                     .on(episodeTabel.season, '!=', db.raw('0'))
                     .on(episodeTabel.episode, '!=', db.raw('0'))
