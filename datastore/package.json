@@ -1,0 +1,20 @@
+{
+  "name": "@episodehunter/datastore",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepublish": "tsc"
+  },
+  "repository": {},
+  "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
+  "license": "MIT",
+  "dependencies": {
+    "mysql": "^2.13.0",
+    "reflect-metadata": "^0.1.10",
+    "typeorm": "^0.0.11"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.12",
+    "typescript": "^2.2.2"
+  }
+}
