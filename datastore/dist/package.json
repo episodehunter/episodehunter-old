@@ -1,6 +1,6 @@
 {
   "name": "@episodehunter/datastore",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": {},
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
